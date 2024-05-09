@@ -11,12 +11,5 @@ register();
 })
 export class AppComponent {
   constructor() {
-    this.iniciarApp();
   }
-
-  iniciarApp(){
-    
-  }
-
-
 }
