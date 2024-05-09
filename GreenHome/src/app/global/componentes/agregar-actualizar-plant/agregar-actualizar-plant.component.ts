@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Fertilizante } from 'src/app/modelos/Fertilizante.model';
 import { Plantas } from 'src/app/modelos/Plantas.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -36,6 +37,8 @@ export class AgregarActualizarPlantComponent  implements OnInit {
     TipoSiembra: new FormControl('', [Validators.required, Validators.minLength(2)]),
     MonitoreoPLagas: new FormControl(null, [Validators.required, Validators.min(0)]),
   })
+
+  Fert: Fertilizante [] = [];
 
   firebase = inject(FirebaseService);
   utils = inject(UtilsService);
@@ -164,6 +167,22 @@ export class AgregarActualizarPlantComponent  implements OnInit {
       loading.dismiss();
     })
 
+  }
+  loading: boolean = false;
+
+  getFertilizante() {
+    this.loading = true;
+    let sub = this.firebase.getCollection<Fertilizante>('Fertilizantes').subscribe(res => {
+      console.log(res);
+      this.Fert = res;
+      this.loading = false;
+      sub.unsubscribe();
+    })
+
+  }
+
+  ionViewWillEnter() {
+    this.getFertilizante();
   }
 
 }
