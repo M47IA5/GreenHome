@@ -1,4 +1,3 @@
-
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
@@ -12,7 +11,7 @@
         <ion-item>
           <!-- Perfil -->
           <ion-icon name="person"></ion-icon>
-          <ion-label class="ion-margin">Perfil</ion-label> 
+          <ion-label class="ion-margin">Perfil</ion-label>
         </ion-item>
         <ion-item>
           <!-- Configuración -->
@@ -33,7 +32,7 @@
           <!-- Cerrar Sesión -->
           <ion-icon name="log-out"></ion-icon>
           <ion-label class="ion-margin">Cerrar Sesión</ion-label>
-          
+
         </ion-item>
       </ion-list>
     </ion-content>
@@ -49,28 +48,28 @@
     </ion-toolbar>
   </ion-header>
 
-    <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
+  <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
-    <ion-content class="ion-padding">
-      <ion-title>Plantas Populares</ion-title>
-      <swiper-container class="ion-padding">
-        <swiper-slide>Slide 1</swiper-slide>
-        <swiper-slide>Slide 2</swiper-slide>
-        <swiper-slide>Slide 3</swiper-slide>
-      </swiper-container>
-    </ion-content>
-<!-- Lista con las plantas registradas en la BD  -->
-<ion-content class="ion-padding">
-  <ion-title>Plantas disponibles</ion-title>
-  <ion-searchbar></ion-searchbar>
-  <ion-content class="ion-pading">
-    <ion-content>
+  <ion-content class="ion-padding">
+    <ion-title>Plantas Populares</ion-title>
+    <swiper-container class="ion-padding">
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
+    </swiper-container>
+  </ion-content>
+  <!-- Lista con las plantas registradas en la BD  -->
+  <ion-content class="ion-padding">
+    <ion-title>Plantas disponibles</ion-title>
+    <ion-searchbar></ion-searchbar>
+    <ion-content class="ion-pading">
+
       <!-- lista de las plantas -->
       <ion-list *ngIf="!loading">
         <ion-item-sliding class="products-item" *ngFor="let p of Plant">
           <ion-item (click)="verPlanta(p)">
             <ion-avatar slot="start">
-    
+
             </ion-avatar>
             <ion-label>
               <div class="name">{{p.NombrePlanta}}</div>
@@ -90,7 +89,7 @@
             <ion-button (click)="verPlanta(p)" expand="block" shape="round">
               ver
             </ion-button> -->
-    
+
           </ion-item>
           <!--opciones-->
           <ion-item-options>
@@ -102,21 +101,20 @@
             <ion-item-option color="danger" (click)="confirmDeletePlant(p)">
               <ion-icon class="option-btn" name="trash-outline"></ion-icon>
             </ion-item-option>
-    
+
           </ion-item-options>
-    
-    
+
+
         </ion-item-sliding>
       </ion-list>
 
-        <!--Agregar Plantas-->
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addUpdatePlant()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+      <!--Agregar Plantas-->
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="addUpdatePlant()">
+          <ion-icon name="add" size="small"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+
 
     </ion-content>
-
-</ion-content>
-

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController, AlertOptions, LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
 
 @Injectable({
@@ -9,7 +10,8 @@ export class UtilsService {
   constructor(private loadingCtrl: LoadingController,
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private router: Router
 
   ) { }
 
@@ -43,5 +45,18 @@ export class UtilsService {
     );
 
     await alert.present();
+  }
+
+  // enruta a cualquier pagina disponible
+  routerLink(url: string) {
+    return this.router.navigateByUrl(url);
+  }
+
+  saveInLocalStorage(key: string, value: any) {
+    return localStorage.setItem(key, JSON.stringify(value))
+  }
+  
+  getFromLocalStorage(key: string) {
+    return JSON.parse(localStorage.getItem(key))
   }
 }

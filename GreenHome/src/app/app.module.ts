@@ -21,8 +21,7 @@ import { CustomInputComponent } from './global/componentes/custom-input/custom-i
 import { HeaderComponent } from './global/componentes/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, AgregarActualizarPlantComponent , VerPlantComponent, 
-                CustomInputComponent, HeaderComponent],
+  declarations: [AppComponent,],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
             AngularFireAuthModule,

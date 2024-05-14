@@ -73,7 +73,7 @@ export class PlantasPage {
       this.Plant = this.Plant.filter(p => p.IDPlanta !== plant.IDPlanta);
 
       this.utils.presentToast({
-        message: 'PLanta agregada exitosamente',
+        message: 'Planta Eliminada exitosamente',
         duration: 1500,
         color: 'success',
         position: 'middle',
