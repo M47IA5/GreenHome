@@ -6,6 +6,7 @@ import { AgregarActualizarPlantComponent } from './componentes/agregar-actualiza
 import { VerPlantComponent } from './componentes/ver-plant/ver-plant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { PrePlantComponent } from './componentes/pre-plant/pre-plant.component';
 
 
 
@@ -14,14 +15,16 @@ import { IonicModule } from '@ionic/angular';
     HeaderComponent,
     CustomInputComponent,
     AgregarActualizarPlantComponent,
-    VerPlantComponent
+    VerPlantComponent,
+    PrePlantComponent
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
     AgregarActualizarPlantComponent,
     ReactiveFormsModule,
-    VerPlantComponent
+    VerPlantComponent,
+    PrePlantComponent
   ],
 
   imports: [

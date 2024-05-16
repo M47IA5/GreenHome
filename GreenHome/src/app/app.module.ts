@@ -19,10 +19,11 @@ import { VerPlantComponent } from './global/componentes/ver-plant/ver-plant.comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomInputComponent } from './global/componentes/custom-input/custom-input.component';
 import { HeaderComponent } from './global/componentes/header/header.component';
+import { PrePlantComponent } from './global/componentes/pre-plant/pre-plant.component';
 
 @NgModule({
   declarations: [AppComponent, AgregarActualizarPlantComponent , VerPlantComponent, 
-                CustomInputComponent, HeaderComponent],
+                CustomInputComponent, HeaderComponent, PrePlantComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
             AngularFireAuthModule,
