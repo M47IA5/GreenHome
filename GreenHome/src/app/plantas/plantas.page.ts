@@ -40,12 +40,12 @@ export class PlantasPage {
 
   }
 
-  agregarActualizarPlant(plant: Plantas) {
-    this.utils.presentModal({
-      component: AgregarActualizarPlantComponent,
-      componentProps: { plant }
-    })
-  }
+  // agregarActualizarPlant(plant: Plantas) {
+  //   this.utils.presentModal({
+  //     component: AgregarActualizarPlantComponent,
+  //     componentProps: { plant }
+  //   })
+  // }
 
 
 

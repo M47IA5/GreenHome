@@ -6,6 +6,9 @@ import { AgregarActualizarPlantComponent } from './componentes/agregar-actualiza
 import { VerPlantComponent } from './componentes/ver-plant/ver-plant.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { AgregarActualiFertComponent } from './componentes/agregar-actuali-fert/agregar-actuali-fert.component';
+import { AgregarActualiEnferComponent } from './componentes/agregar-actuali-enfer/agregar-actuali-enfer.component';
+import { AgregarActualiPlagaComponent } from './componentes/agregar-actuali-plaga/agregar-actuali-plaga.component';
 
 
 
@@ -14,14 +17,20 @@ import { IonicModule } from '@ionic/angular';
     HeaderComponent,
     CustomInputComponent,
     AgregarActualizarPlantComponent,
-    VerPlantComponent
+    VerPlantComponent,
+    AgregarActualiFertComponent,
+    AgregarActualiEnferComponent,
+    AgregarActualiPlagaComponent
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
     AgregarActualizarPlantComponent,
     ReactiveFormsModule,
-    VerPlantComponent
+    VerPlantComponent,
+    AgregarActualiFertComponent,
+    AgregarActualiEnferComponent,
+    AgregarActualiPlagaComponent
   ],
 
   imports: [
