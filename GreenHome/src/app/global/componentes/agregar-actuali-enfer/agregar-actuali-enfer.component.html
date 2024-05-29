@@ -29,7 +29,7 @@
       <div *ngIf="form.controls.NombreEnfer.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
     </div>
 
-    <!--descripcion Enfermedad-->
+    <!--Descripcion Enfermedad-->
 
     <app-custom-input [control]="form.controls.DescripcionEnfer" type="text"
       label="Descripcion del Enfermedad"></app-custom-input>
@@ -37,10 +37,9 @@
     <div class="validators" *ngIf="form.controls.DescripcionEnfer.errors && form.controls.DescripcionEnfer.touched">
 
       <div *ngIf="form.controls.DescripcionEnfer.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.DescripcionEnfer.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
-    <!--ModoDeUso-->
+    <!--Causas de la enfermedad-->
 
     <app-custom-input autocomplete="CausasEnfer" [control]="form.controls.CausasEnfer" type="text"
       label="Modo De Uso"></app-custom-input>
@@ -48,10 +47,10 @@
     <div class="validators" *ngIf="form.controls.CausasEnfer.errors && form.controls.CausasEnfer.touched">
 
       <div *ngIf="form.controls.CausasEnfer.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.CausasEnfer.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+      <div *ngIf="form.controls.CausasEnfer.errors?.['minLenght']">Se debe agregar la enfermedad</div>
     </div>
 
-    <!--ModoDeUso-->
+    <!--Control de las enfermedades-->
 
     <app-custom-input autocomplete="ControlEnfer" [control]="form.controls.ControlEnfer" type="text"
       label="Control de enfer"></app-custom-input>
@@ -63,7 +62,7 @@
     </div>
     
 
-    <!--FrecuenciaDias-->
+    <!--Duracion de la enfermedad-->
 
     <app-custom-input [control]="form.controls.DuracionEnfer" type="number" label="Duracion de uso"
       (ionInput)="setNumberInputs()"></app-custom-input>

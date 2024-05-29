@@ -49,7 +49,7 @@ export class AgregarActualiPlagaComponent  implements OnInit {
     if (DuracionDias.value) DuracionDias.setValue(parseFloat(DuracionDias.value));
   }
 
-  //agregar fertilizante
+  //agregar Plagas
   async createEnfer() { 
 
 
@@ -99,7 +99,7 @@ export class AgregarActualiPlagaComponent  implements OnInit {
 
   }
 
-  //actualizar fertilizante
+  //actualizar Plagas
   async updateEnfer() {
 
 

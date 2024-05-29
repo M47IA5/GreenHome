@@ -18,7 +18,7 @@
       tomar/seleccionar
     </ion-button>-->
 
-    <!--Nombre de fertilizante-->
+    <!--Nombre de Plaga-->
 
     <app-custom-input autocomplete="name" [control]="form.controls.NombrePlag" type="text"
       label="Nombre del Plaga"></app-custom-input>
@@ -29,7 +29,7 @@
       <div *ngIf="form.controls.NombrePlag.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
     </div>
 
-    <!--descripcion Fertilizacion-->
+    <!--descripcion Plaga-->
 
     <app-custom-input [control]="form.controls.DescripcionPlag" type="text"
       label="Descripcion del Plaga"></app-custom-input>
@@ -37,10 +37,10 @@
     <div class="validators" *ngIf="form.controls.DescripcionPlag.errors && form.controls.DescripcionPlag.touched">
 
       <div *ngIf="form.controls.DescripcionPlag.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.DescripcionPlag.errors?.['min']">El precio debe ser arriba de 0</div>
+      
     </div>
 
-    <!--ModoDeUso-->
+    <!--Causas de la plaga-->
 
     <app-custom-input autocomplete="CausasPosibles" [control]="form.controls.CausasPosibles" type="text"
       label="Modo De Uso"></app-custom-input>
@@ -48,10 +48,10 @@
     <div class="validators" *ngIf="form.controls.CausasPosibles.errors && form.controls.CausasPosibles.touched">
 
       <div *ngIf="form.controls.CausasPosibles.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.CausasPosibles.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+     
     </div>
 
-    <!--ModoDeUso-->
+    <!--Solucion-->
 
     <app-custom-input autocomplete="Control" [control]="form.controls.Control" type="text"
       label="Control de Plaga"></app-custom-input>
@@ -59,10 +59,9 @@
     <div class="validators" *ngIf="form.controls.Control.errors && form.controls.Control.touched">
 
       <div *ngIf="form.controls.Control.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.Control.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
-    <!--FrecuenciaDias-->
+    <!--Duracion de la plaga-->
 
     <app-custom-input [control]="form.controls.DuracionDias" type="number" label="Duracion de uso"
       (ionInput)="setNumberInputs()"></app-custom-input>

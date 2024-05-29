@@ -49,7 +49,7 @@ export class AgregarActualiEnferComponent  implements OnInit {
     if (DuracionEnfer.value) DuracionEnfer.setValue(parseFloat(DuracionEnfer.value));
   }
 
-  //agregar fertilizante
+  //agregar Enfermedades
   async createEnfer() { 
 
 
@@ -99,7 +99,7 @@ export class AgregarActualiEnferComponent  implements OnInit {
 
   }
 
-  //actualizar fertilizante
+  //actualizar Enfermedades
   async updateEnfer() {
 
 
