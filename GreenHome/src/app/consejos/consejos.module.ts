@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ConsejosPageRoutingModule } from './consejos-routing.module';
 
 import { ConsejosPage } from './consejos.page';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ConsejosPage } from './consejos.page';
     IonicModule,
     ConsejosPageRoutingModule
   ],
-  declarations: [ConsejosPage]
+  declarations: [ConsejosPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ConsejosPageModule {}

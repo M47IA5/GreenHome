@@ -8,13 +8,15 @@ import { PlantasPageRoutingModule } from './plantas-routing.module';
 
 import { PlantasPage } from './plantas.page';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { GlobalModule } from '../global/global.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlantasPageRoutingModule
+    PlantasPageRoutingModule,
+    GlobalModule
   ],
   declarations: [PlantasPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -1,9 +1,8 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <!--boton para cerrar modal-->
-      <ion-button (click)="dismissModal()" >
+      <ion-button (click)="dismissModal()">
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -30,10 +29,6 @@
     <ion-label>Descripcion: {{plant.Descripcion}}</ion-label>
   </ion-item>
 
-  <!--TipoLuz -->
-  <ion-item>
-    <ion-label>Tipo de Luz: {{plant.TipoLuz}}</ion-label>
-  </ion-item>
 
   <!--Recomendaciones -->
   <ion-item>
@@ -41,6 +36,7 @@
   </ion-item>
 
   <ion-item>
-    <ion-button (click)="verPlanta(plant)">Default</ion-button>
+    <ion-button (click)="verPlanta(plant)">Detalles</ion-button>
   </ion-item>
+
 </ion-content>

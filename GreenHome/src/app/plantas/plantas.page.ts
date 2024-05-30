@@ -41,12 +41,12 @@ export class PlantasPage {
 
   }
 
-  agregarActualizarPlant(plant: Plantas) {
-    this.utils.presentModal({
-      component: AgregarActualizarPlantComponent,
-      componentProps: { plant }
-    })
-  }
+  // agregarActualizarPlant(plant: Plantas) {
+  //   this.utils.presentModal({
+  //     component: AgregarActualizarPlantComponent,
+  //     componentProps: { plant }
+  //   })
+  // }
 
 
 
@@ -74,7 +74,7 @@ export class PlantasPage {
       this.Plant = this.Plant.filter(p => p.IDPlanta !== plant.IDPlanta);
 
       this.utils.presentToast({
-        message: 'PLanta agregada exitosamente',
+        message: 'Planta Eliminada exitosamente',
         duration: 1500,
         color: 'success',
         position: 'middle',

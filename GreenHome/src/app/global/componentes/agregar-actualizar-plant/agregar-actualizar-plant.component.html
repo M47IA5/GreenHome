@@ -1,5 +1,6 @@
 <app-header [isModal]="true" [title]="plant ? 'Actualizar Planta' : 'Agregar Planta'"></app-header>
 <ion-content>
+
   <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
     <!--solo si existe una imagen-->
@@ -28,26 +29,15 @@
       <div *ngIf="form.controls.NombrePlanta.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
     </div>
 
-    <!--Descripcion-->
+    <!--Dias de Fertilizacion-->
 
-    <app-custom-input autocomplete="Descripcion" [control]="form.controls.Descripcion" type="text"
-      label="Descripcion"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasFertilizacion" type="number"
+      label="Dias de Fertilizacion" (ionInput)="setNumberInputs()"></app-custom-input>
 
-    <div class="validators" *ngIf="form.controls.Descripcion.errors && form.controls.Descripcion.touched">
+    <div class="validators" *ngIf="form.controls.DiasFertilizacion.errors && form.controls.DiasFertilizacion.touched">
 
-      <div *ngIf="form.controls.Descripcion.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.Descripcion.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
-    </div>
-
-    <!--NombreCientifico-->
-
-    <app-custom-input autocomplete="NombreCientifico" [control]="form.controls.NombreCientifico" type="text"
-      label="Nombre Cientifico"></app-custom-input>
-
-    <div class="validators" *ngIf="form.controls.NombreCientifico.errors && form.controls.NombreCientifico.touched">
-
-      <div *ngIf="form.controls.NombreCientifico.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.NombreCientifico.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+      <div *ngIf="form.controls.DiasFertilizacion.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.DiasFertilizacion.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
     <!--Temporada-->
@@ -61,45 +51,10 @@
       <div *ngIf="form.controls.Temporada.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
-        <!--TipoSiembra-->
-
-        <app-custom-input autocomplete="TipoSiembra" [control]="form.controls.TipoSiembra" type="text" label="Tipo Siembra"
-        ></app-custom-input>
-  
-      <div class="validators" *ngIf="form.controls.TipoSiembra.errors && form.controls.TipoSiembra.touched">
-  
-        <div *ngIf="form.controls.TipoSiembra.errors?.['required']">Este campo es requerido</div>
-        <div *ngIf="form.controls.TipoSiembra.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
-      </div>
-
-      <!-- Lista de fertilizantes -->
-
-      <ion-item>
-        <ion-select label="Fertilizante a ocupar" label-placement="floating">
-          <ion-select-option *ngFor="let f of Fert">
-            <div class="name" id="nomFert">{{f.NombreFert}}</div>
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-      
-
-    <!--Dias de Fertilizacion-->
-
-    <app-custom-input [control]="form.controls.DiasFertilizacion" type="number" label="Dias de Fertilizacion"
-      (ionInput)="setNumberInputs()">
-
-    </app-custom-input>
-
-    <div class="validators" *ngIf="form.controls.DiasFertilizacion.errors && form.controls.DiasFertilizacion.touched">
-
-      <div *ngIf="form.controls.DiasFertilizacion.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.DiasFertilizacion.errors?.['min']">El precio debe ser arriba de 0</div>
-    </div>
-
     <!--DiasGerminacion-->
 
-    <app-custom-input [control]="form.controls.DiasGerminacion" type="number" label="Dias de Germinacion"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasGerminacion" type="number"
+      label="Dias de Germinacion" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DiasGerminacion.errors && form.controls.DiasGerminacion.touched">
 
@@ -109,8 +64,8 @@
 
     <!--DiasFruto-->
 
-    <app-custom-input [control]="form.controls.DiasFruto" type="number" label="Dias de Fruto"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasFruto" type="number"
+      label="Dias de Fruto" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DiasFruto.errors && form.controls.DiasFruto.touched">
 
@@ -120,8 +75,8 @@
 
     <!--DiasTransplante-->
 
-    <app-custom-input [control]="form.controls.DiasTransplante" type="number" label="Dias de Transplante"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasTransplante" type="number"
+      label="Dias de Transplante" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DiasTransplante.errors && form.controls.DiasTransplante.touched">
 
@@ -131,8 +86,8 @@
 
     <!--DiasCrecVegetativo-->
 
-    <app-custom-input [control]="form.controls.DiasCrecVegetativo" type="number" label="Dias Crecimiento Vegetativo"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasCrecVegetativo" type="number"
+      label="Dias Crecimiento Vegetativo" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DiasCrecVegetativo.errors && form.controls.DiasCrecVegetativo.touched">
 
@@ -145,8 +100,7 @@
     <app-custom-input [control]="form.controls.DiasCrecInflorecencia" type="number"
       label="Dias Crecimiento Inflorecencia" (ionInput)="setNumberInputs()"></app-custom-input>
 
-    <div class="validators"
-      *ngIf="form.controls.DiasCrecInflorecencia.errors && form.controls.DiasCrecInflorecencia.touched">
+    <div class="validators" *ngIf="form.controls.DiasCrecInflorecencia.errors && form.controls.DiasCrecInflorecencia.touched">
 
       <div *ngIf="form.controls.DiasCrecInflorecencia.errors?.['required']">Este campo es requerido</div>
       <div *ngIf="form.controls.DiasCrecInflorecencia.errors?.['min']">El precio debe ser arriba de 0</div>
@@ -154,8 +108,8 @@
 
     <!--DiasCosecha-->
 
-    <app-custom-input [control]="form.controls.DiasCosecha" type="number" label="Dias Cosecha"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasCosecha" type="number"
+      label="Dias Cosecha" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DiasCosecha.errors && form.controls.DiasCosecha.touched">
 
@@ -176,8 +130,8 @@
 
     <!--DiasRiego-->
 
-    <app-custom-input [control]="form.controls.DiasRiego" type="number" label="Dias de Riego"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DiasRiego" type="number"
+      label="Dias de Riego" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DiasRiego.errors && form.controls.DiasRiego.touched">
 
@@ -210,8 +164,8 @@
 
     <!--DistTransplanteCm-->
 
-    <app-custom-input [control]="form.controls.DistTransplanteCm" type="number" label="DistTransplanteCm"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.DistTransplanteCm" type="number"
+      label="DistTransplanteCm" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DistTransplanteCm.errors && form.controls.DistTransplanteCm.touched">
 
@@ -230,10 +184,43 @@
       <div *ngIf="form.controls.Recomendaciones.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
+    <!--Descripcion-->
+
+    <app-custom-input autocomplete="Descripcion" [control]="form.controls.Descripcion" type="text"
+      label="Descripcion"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.Descripcion.errors && form.controls.Descripcion.touched">
+
+      <div *ngIf="form.controls.Descripcion.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.Descripcion.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+    </div>
+
+    <!--NombreCientifico-->
+
+    <app-custom-input autocomplete="NombreCientifico" [control]="form.controls.NombreCientifico" type="text"
+      label="Nombre Cientifico"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.NombreCientifico.errors && form.controls.NombreCientifico.touched">
+
+      <div *ngIf="form.controls.NombreCientifico.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.NombreCientifico.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+    </div>
+
+    <!--TipoSiembra-->
+
+    <app-custom-input autocomplete="TipoSiembra" [control]="form.controls.TipoSiembra" type="text"
+      label="Tipo Siembra" (ionInput)="setNumberInputs()"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.TipoSiembra.errors && form.controls.TipoSiembra.touched">
+
+      <div *ngIf="form.controls.TipoSiembra.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.TipoSiembra.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+    </div>
+
     <!--MonitoreoPLagas-->
 
-    <app-custom-input [control]="form.controls.MonitoreoPLagas" type="number" label="Monitoreo de PLagas"
-      (ionInput)="setNumberInputs()"></app-custom-input>
+    <app-custom-input [control]="form.controls.MonitoreoPLagas" type="number"
+      label="Monitoreo de PLagas" (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.MonitoreoPLagas.errors && form.controls.MonitoreoPLagas.touched">
 

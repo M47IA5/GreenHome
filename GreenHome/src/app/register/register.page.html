@@ -4,39 +4,80 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col><img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png"></ion-col>
+      <ion-col><img alt="Silhouette of mountains"
+          src="https://ionicframework.com/docs/img/demos/card-media.png"></ion-col>
     </ion-row>
   </ion-grid>
   <ion-grid>
     <ion-row>
-      <ion-col>  
+      <ion-col>
         <ion-card class="center">
-        <ion-card-header>
-          <ion-card-title class="ion-text-center">Registrate</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>
-              <ion-input label="Correo" labelPlacement="floating" type="email"></ion-input>
-            </ion-item>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">Registrate</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
 
-            <ion-item>
-              <ion-input label="Contraseña" labelPlacement="floating" type="password"></ion-input>
-            </ion-item>
+            <ion-list>
 
-            <ion-item>
-              <ion-input label="Confirmar Contraseña" labelPlacement="floating" type="password"></ion-input>
-            </ion-item>
+              <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
-          </ion-list>
-        </ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-button fill="clear">Aceptar</ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+
+
+                <!--Nombre-->
+
+                <app-custom-input autocomplete="name" icon="person-outline" [control]="form.controls.NombreUser"
+                  type="text" label="Nombre"></app-custom-input>
+
+                <div class="validators" *ngIf="form.controls.NombreUser.errors && form.controls.NombreUser.touched">
+
+                  <div *ngIf="form.controls.NombreUser.errors?.['required']">El Nombre es Requerido</div>
+                  <div *ngIf="form.controls.NombreUser.errors?.['minLenght']">El Nombre debe tener al menos 2 caracteres
+                  </div>
+                </div>
+
+                <!--Email-->
+
+                <app-custom-input autocomplete="EmailUser" icon="mail" [control]="form.controls.EmailUser" type="email"
+                  label="Correo"></app-custom-input>
+
+                <div class="validators" *ngIf="form.controls.EmailUser.errors && form.controls.EmailUser.touched">
+
+                  <div *ngIf="form.controls.EmailUser.errors?.['required']">El Correo es Requerido</div>
+                  <div *ngIf="form.controls.EmailUser.errors?.['EmailUser']">Ingrese un correo valido</div>
+                </div>
+
+                <!--Password-->
+
+                <app-custom-input icon="lock-closed-outline" [control]="form.controls.Password" type="password"
+                  label="contrasenna">
+
+
+                </app-custom-input>
+
+                <div class="validators" *ngIf="form.controls.Password.errors && form.controls.Password.touched">
+
+                  <div *ngIf="form.controls.Password.errors?.['required']">La Contraseña es Requerida</div>
+                </div>
+
+                <ion-button expand="block" mode="md" class="submit" type="submit" [disabled]="form.invalid">
+                  Registrate
+                  <ion-icon slot="end" name="person-add-outline"></ion-icon>
+                </ion-button>
+
+              </form>
+
+            </ion-list>
+
+          </ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button fill="clear" [disabled]="form.invalid" class="submit" type="submit"
+                    >Aceptar</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
         </ion-card>
       </ion-col>
     </ion-row>
@@ -56,3 +97,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+</ion-content>

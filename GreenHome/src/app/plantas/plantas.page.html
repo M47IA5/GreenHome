@@ -38,6 +38,7 @@
     </ion-content>
   </ion-content>
 </ion-menu>
+
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
@@ -52,31 +53,10 @@
 
   <ion-content class="ion-padding">
     <ion-title>Plantas Populares</ion-title>
-    <swiper-container class="ion-padding" id="swipers">
-      <swiper-slide>
-        <ion-card>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-          <ion-card-header>
-            <ion-card-title>Lechuga</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </swiper-slide>
-      <swiper-slide>
-        <ion-card>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-          <ion-card-header>
-            <ion-card-title>Cilantro</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </swiper-slide>
-      <swiper-slide>
-        <ion-card>
-          <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-          <ion-card-header>
-            <ion-card-title>Espinaca</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </swiper-slide>
+    <swiper-container class="ion-padding">
+      <swiper-slide>Slide 1</swiper-slide>
+      <swiper-slide>Slide 2</swiper-slide>
+      <swiper-slide>Slide 3</swiper-slide>
     </swiper-container>
   </ion-content>
   <!-- Lista con las plantas registradas en la BD  -->
@@ -84,58 +64,46 @@
     <ion-title>Plantas disponibles</ion-title>
     <ion-searchbar></ion-searchbar>
     <ion-content class="ion-pading">
-      <ion-content>
-        <!-- lista de las plantas -->
-        <ion-list *ngIf="!loading">
-          <ion-item-sliding class="products-item" *ngFor="let p of Plant">
-            <ion-item (click)="prePlanta(p)">
-              <ion-avatar slot="start">
 
-              </ion-avatar>
-              <ion-label>
-                <div class="name">{{p.NombrePlanta}}</div>
-                <div>
-                  <strong>Temporada: </strong> {{p.Temporada}} <br>
-                  <strong>Dias de Fertilizacion: </strong> {{p.DiasFertilizacion}}
-                </div>
-              </ion-label>
-              <!-- botones de editar , eliminar y ver -->
-              <!-- <ion-button (click)="addUpdatePlant(p)" color="primary" expand="block" shape="round">
-              editar
-            </ion-button>
-            <ion-button (click)="confirmDeletePlant(p)" color="danger" expand="block" shape="round">
-              eliminar
-            </ion-button>
-    
-            <ion-button (click)="verPlanta(p)" expand="block" shape="round">
-              ver
-            </ion-button> -->
+      <!-- lista de las plantas -->
+      <ion-list *ngIf="!loading">
+        <ion-item-sliding class="products-item" *ngFor="let p of Plant">
+          <ion-item (click)="prePlanta(p)">
+            <ion-avatar slot="start">
 
-            </ion-item>
-            <!--opciones-->
-            <ion-item-options>
-              <!--editar-->
-              <ion-item-option (click)="addUpdatePlant(p)">
-                <ion-icon class="option-btn" name="create-outline"></ion-icon>
-              </ion-item-option>
-              <!--borrar-->
-              <ion-item-option color="danger" (click)="confirmDeletePlant(p)">
-                <ion-icon class="option-btn" name="trash-outline"></ion-icon>
-              </ion-item-option>
+            </ion-avatar>
+            <ion-label>
+              <div class="name">{{p.NombrePlanta}}</div>
+              <div>
+                <strong>Temporada: </strong> {{p.Temporada}} <br>
+                <strong>Dias de Fertilizacion: </strong> {{p.DiasFertilizacion}}
+              </div>
+            </ion-label>
+          </ion-item>
+          <!--opciones-->
+          <ion-item-options>
+            <!--editar-->
+            <ion-item-option (click)="addUpdatePlant(p)">
+              <ion-icon class="option-btn" name="create-outline"></ion-icon>
+            </ion-item-option>
+            <!--borrar-->
+            <ion-item-option color="danger" (click)="confirmDeletePlant(p)">
+              <ion-icon class="option-btn" name="trash-outline"></ion-icon>
+            </ion-item-option>
 
-            </ion-item-options>
+          </ion-item-options>
 
 
-          </ion-item-sliding>
-        </ion-list>
+        </ion-item-sliding>
+      </ion-list>
 
-        <!--Agregar Plantas-->
-        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-          <ion-fab-button (click)="addUpdatePlant()">
-            <ion-icon name="add"></ion-icon>
-          </ion-fab-button>
-        </ion-fab>
+      <!--Agregar Plantas-->
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="addUpdatePlant()">
+          <ion-icon name="add" size="small"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
 
-      </ion-content>
+
 
     </ion-content>
