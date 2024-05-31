@@ -1,0 +1,113 @@
+
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <!--boton para cerrar modal-->
+        <ion-button (click)="dismissModal()" >
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  
+      <ion-title>
+        <strong>{{plant.NombrePlanta}}</strong>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <!--Nombre Planta-->
+    <ion-item>
+      <ion-label>Nombre: {{plant.NombrePlanta}} </ion-label>
+    </ion-item>
+  
+    <!--Nombre Cientifico-->
+    <ion-item>
+      <ion-label>Nombre Cientifico: {{plant.NombreCientifico}}</ion-label>
+    </ion-item>
+  
+    <!--Temporada -->
+    <ion-item>
+      <ion-label>Temporada: {{plant.Temporada}}</ion-label>
+    </ion-item>
+  
+    <!--Descripcion -->
+    <ion-item>
+      <ion-label>Descripcion: {{plant.Descripcion}}</ion-label>
+    </ion-item>
+  
+    <!--TipoLuz -->
+    <ion-item>
+      <ion-label>Tipo de Luz: {{plant.TipoLuz}}</ion-label>
+    </ion-item>
+  
+    <!--TipoSiembra -->
+    <ion-item>
+      <ion-label>Tipo de Siembra: {{plant.TipoSiembra}}</ion-label>
+    </ion-item>
+  
+    <!--DiasFertilizacion -->
+    <ion-item>
+      <ion-label>Dias Fertilizacion: {{plant.DiasFertilizacion}}</ion-label>
+    </ion-item>
+  
+    <!--DiasGerminacion -->
+    <ion-item>
+      <ion-label>Dias Germinacion: {{plant.DiasGerminacion}}</ion-label>
+    </ion-item>
+  
+    <!--DiasTransplante -->
+    <ion-item>
+      <ion-label>Dias Transplante: {{plant.DiasTransplante}}</ion-label>
+    </ion-item>
+  
+    <!--DiasCrecVegetativo -->
+    <ion-item>
+      <ion-label>Dias Crecimiento Vegetativo: {{plant.DiasCrecVegetativo}}</ion-label>
+    </ion-item>
+  
+    <!--DiasCrecInflorecencia -->
+    <ion-item>
+      <ion-label>Dias Crecimiento Inflorecencia: {{plant.DiasCrecInflorecencia}}</ion-label>
+    </ion-item>
+  
+    <!--DiasFruto -->
+    <ion-item>
+      <ion-label>Dias Fruto: {{plant.DiasFruto}}</ion-label>
+    </ion-item>
+  
+    <!--DiasCosecha -->
+    <ion-item>
+      <ion-label>Dias de Cosecha: {{plant.DiasCosecha}}</ion-label>
+    </ion-item>
+  
+    <!--DiasRiego -->
+    <ion-item>
+      <ion-label>Dias Riego: {{plant.DiasRiego}}</ion-label>
+    </ion-item>
+  
+    <!--TempMin -->
+    <ion-item>
+      <ion-label>Temperatura Minima: {{plant.TempMin}}</ion-label>
+    </ion-item>
+  
+    <!--TempMax -->
+    <ion-item>
+      <ion-label>Temperatura Maxima: {{plant.TempMax}}</ion-label>
+    </ion-item>
+  
+    <!--Recomendaciones -->
+    <ion-item>
+      <ion-label>Recomendaciones: {{plant.Recomendaciones}}</ion-label>
+    </ion-item>
+  
+    <!--DistTransplanteCm -->
+    <ion-item>
+      <ion-label>Distanciamiento Transplante planta en CM: {{plant.DistTransplanteCm}}</ion-label>
+    </ion-item>
+  
+    <!--MonitoreoPLagas -->
+    <ion-item>
+      <ion-label>Monitoreo de PLagas: {{plant.MonitoreoPLagas}}</ion-label>
+    </ion-item>
+  
+  </ion-content>
