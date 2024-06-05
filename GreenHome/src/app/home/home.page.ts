@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { UtilsService } from '../services/utils.service';
 import { User } from '../modelos/User.module';
-import { Plantas } from '../modelos/Plantas.model';
 import { PlantasUser } from '../modelos/PlantasUser.model';
+import { PrePlantComponent } from '../global/componentes/pre-plant/pre-plant.component';
 import { ActuAgrePlantUserComponent } from '../global/componentes/actu-agre-plant-user/actu-agre-plant-user.component';
+import { Plantas } from '../modelos/Plantas.model';
 
 @Component({
   selector: 'app-home',
@@ -13,15 +14,15 @@ import { ActuAgrePlantUserComponent } from '../global/componentes/actu-agre-plan
 })
 export class HomePage {
 
-  constructor(private firebase: FirebaseService,
-    private utils: UtilsService
-  ) { }
+  constructor(private firebase:FirebaseService,
+              private utils:UtilsService
+  ) {}
 
   plantUser: PlantasUser[] = [];
   Plant: Plantas[] = [];
   loading: boolean = false;
 
-  user(): User {
+  user(): User{
     return this.utils.getFromLocalStorage('user');
   }
 
@@ -137,4 +138,12 @@ export class HomePage {
       });
     }
 
+    prePlanta(plantUser: PlantasUser) {
+      this.utils.presentModal({
+        component: PrePlantComponent,
+        componentProps: { plantUser }
+      })
+    }
+
+    
 }

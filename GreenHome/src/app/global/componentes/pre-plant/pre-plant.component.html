@@ -6,7 +6,6 @@
         <ion-icon name="close-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
     <ion-title>
       <strong>{{plant.NombrePlanta}}</strong>
     </ion-title>
@@ -37,6 +36,10 @@
 
   <ion-item>
     <ion-button (click)="verPlanta(plant)">Detalles</ion-button>
+    <!--editar-->
+    <ion-button (click)="addUpdatePlant(plant)" color="success">Editar</ion-button>
+    <!--borrar-->
+    <ion-button (click)="confirmDeletePlant(plant)" color="danger">Borrar</ion-button>
   </ion-item>
-
+  
 </ion-content>

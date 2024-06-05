@@ -9,10 +9,12 @@ import { IonicModule } from '@ionic/angular';
 import { AgregarActualiFertComponent } from './componentes/agregar-actuali-fert/agregar-actuali-fert.component';
 import { AgregarActualiEnferComponent } from './componentes/agregar-actuali-enfer/agregar-actuali-enfer.component';
 import { AgregarActualiPlagaComponent } from './componentes/agregar-actuali-plaga/agregar-actuali-plaga.component';
-import { ActuAgrePlantUserComponent } from './componentes/actu-agre-plant-user/actu-agre-plant-user.component';
 import { VerEnfComponent } from './componentes/ver-enf/ver-enf.component';
 import { VerFertComponent } from './componentes/ver-fert/ver-fert.component';
 import { VerPlagComponent } from './componentes/ver-plag/ver-plag.component';
+import { ActuAgrePlantUserComponent } from './componentes/actu-agre-plant-user/actu-agre-plant-user.component';
+
+
 
 @NgModule({
   declarations: [
@@ -24,10 +26,10 @@ import { VerPlagComponent } from './componentes/ver-plag/ver-plag.component';
     AgregarActualiEnferComponent,
     AgregarActualiPlagaComponent,
     VerPlantComponent,
-    ActuAgrePlantUserComponent,
     VerEnfComponent,
     VerFertComponent,
-    VerPlagComponent
+    VerPlagComponent,
+    ActuAgrePlantUserComponent
   ],
   exports: [
     HeaderComponent,
@@ -39,10 +41,10 @@ import { VerPlagComponent } from './componentes/ver-plag/ver-plag.component';
     AgregarActualiEnferComponent,
     AgregarActualiPlagaComponent,
     VerPlantComponent,
-    ActuAgrePlantUserComponent,
     VerEnfComponent,
     VerFertComponent,
-    VerPlagComponent
+    VerPlagComponent,
+    ActuAgrePlantUserComponent
   ],
 
   imports: [

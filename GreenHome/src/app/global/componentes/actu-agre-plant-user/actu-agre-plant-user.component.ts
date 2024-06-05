@@ -1,16 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Plantas } from 'src/app/modelos/Plantas.model';
 import { PlantasUser } from 'src/app/modelos/PlantasUser.model';
 import { User } from 'src/app/modelos/User.module';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { PrePlantComponent } from '../pre-plant/pre-plant.component';
 
 @Component({
   selector: 'app-actu-agre-plant-user',
   templateUrl: './actu-agre-plant-user.component.html',
   styleUrls: ['./actu-agre-plant-user.component.scss'],
 })
-export class ActuAgrePlantUserComponent implements OnInit {
+export class ActuAgrePlantUserComponent  implements OnInit {
 
   @Input() plantUser!: PlantasUser
   constructor(private firebase: FirebaseService,
@@ -151,9 +153,6 @@ export class ActuAgrePlantUserComponent implements OnInit {
       loading.dismiss();
     })
 
-  }
-
-  
-
-
+  }  
 }
+

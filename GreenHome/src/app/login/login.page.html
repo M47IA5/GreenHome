@@ -3,12 +3,12 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col><img class="logo" src="assets\icon\GH.png" alt="logo"></ion-col>
+      <ion-col><img id="logo" class="logo" src="assets\icon\GH.png" alt="logo"></ion-col>
     </ion-row>
   </ion-grid>
   <ion-content>
     <div class="d-flex-center">
-  
+      <ion-card id="cform">
       <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
   
   
@@ -19,8 +19,8 @@
   
         <div class="validators" *ngIf="form.controls.EmailUser.errors && form.controls.EmailUser.touched">
   
-          <div *ngIf="form.controls.EmailUser.errors?.['required']">El Correo es Requerido</div>
-          <div *ngIf="form.controls.EmailUser.errors?.['EmailUser']">Ingrese un correo valido</div>
+          <div class="ion-text-center" *ngIf="form.controls.EmailUser.errors?.['required']">El Correo es Requerido</div>
+          <div class="ion-text-center" *ngIf="form.controls.EmailUser.errors?.['EmailUser']">Ingrese un correo valido</div>
         </div>
   
          <!--Password-->
@@ -32,11 +32,10 @@
         </app-custom-input>
   
         <div class="validators" *ngIf="form.controls.Password.errors && form.controls.Password.touched">
-  
-          <div *ngIf="form.controls.Password.errors?.['required']">La Contraseña es Requerida</div>
+          <div class="ion-text-center" *ngIf="form.controls.Password.errors?.['required']">La Contraseña es Requerida</div>
         </div>
   
-        <p routerLink="forgot-Password">¿Olvidaste tu contraseña?</p>
+        <p class="ion-text-center" routerLink="forgot-Password">¿Olvidaste tu contraseña?</p>
   
         <ion-button expand="block" mode="md" class="submit" type="submit" [disabled]="form.invalid">
           Ingresar
@@ -45,13 +44,11 @@
   
         <ion-button class="ion-margin-top" href="register"  expand="block" mode="md" fill="outline" >
           Registrate
-          <ion-icon slot="end" name="person-add-outline"></ion-icon>
+          <ion-icon slot="end" name="person-add-outline" class="ion-padding-end"></ion-icon>
         </ion-button>
-  
       </form>
-  
+    </ion-card>
     </div>
-  
   </ion-content>
 
 </ion-content>

@@ -4,19 +4,19 @@
   <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
     <!--solo si existe una imagen-->
-    <ion-avatar *ngIf="form.value.FotoPlag">
-      <img [src]="form.value.FotoPlag">
-    </ion-avatar>
+    <!--<ion-avatar *ngIf="form.value.FotoPlanta">
+      <img [src]="form.value.FotoPlanta">
+    </ion-avatar>-->
 
     <!--solo si NO existe una imagen-->
 
-    <ion-icon class="image-icon" *ngIf="!form.value.FotoPlag" name="image-outline"></ion-icon>
+    <!--<ion-icon class="image-icon" *ngIf="!form.value.FotoPlanta" name="image-outline"></ion-icon>-->
 
     <br>
     <!--tomar/selecciona imagen-->
-    <ion-button (click)="tomarImagen()"  mode="md" size="small" shape="round">
+    <!--<ion-button  mode="md" size="small" shape="round">
       tomar/seleccionar
-    </ion-button>
+    </ion-button>-->
 
     <!--Nombre de fertilizante-->
 

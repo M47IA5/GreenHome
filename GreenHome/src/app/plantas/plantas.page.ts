@@ -25,6 +25,13 @@ export class PlantasPage {
   ionViewWillEnter() {
     this.getPlantas();
   }
+ 
+  doRefresh(event) { 
+    setTimeout(() => {
+      this.getPlantas();
+      event.target.complete();
+    }, 1000);
+  }
 
   //obtener plantas
   getPlantas() {
@@ -40,15 +47,6 @@ export class PlantasPage {
     })
 
   }
-
-  // agregarActualizarPlant(plant: Plantas) {
-  //   this.utils.presentModal({
-  //     component: AgregarActualizarPlantComponent,
-  //     componentProps: { plant }
-  //   })
-  // }
-
-
 
   async addUpdatePlant(plant?: Plantas) {
 
@@ -95,34 +93,37 @@ export class PlantasPage {
 
   }
 
-    //confirmar la eliminacion de la planta
-    async confirmDeletePlant(plant: Plantas) {
-      this.utils.presentAlert({
-        header: 'Eliminar Planta',
-        message: 'Seguro que deseas eliminar esta planta?',
-        buttons: [
-          {
-            text: 'Cancelar',
-          }, {
-            text: 'Si, eliminar',
-            handler: () => {
-              this.deletePlant(plant)
-            }
+  //confirmar la eliminacion de la planta
+  async confirmDeletePlant(plant: Plantas) {
+    this.utils.presentAlert({
+      header: 'Eliminar Planta',
+      message: 'Seguro que deseas eliminar esta planta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Si, eliminar',
+          handler: () => {
+            this.deletePlant(plant)
           }
-        ]
-      });
-    }
+        }
+      ]
+    });
+  }
 
-    verPlanta(plant: Plantas) {
-      this.utils.presentModal({
-        component: VerPlantComponent,
-        componentProps: { plant }
-      })
-    }
-    prePlanta(plant: Plantas) {
-      this.utils.presentModal({
-        component: PrePlantComponent,
-        componentProps: { plant }
-      })
-    }
+  verPlanta(plant: Plantas) {
+    this.utils.presentModal({
+      component: VerPlantComponent,
+      componentProps: { plant }
+    })
+  }
+
+  async prePlanta(plant: Plantas) {
+    let success = await this.utils.presentModal({
+      component: PrePlantComponent,
+      componentProps: { plant }
+    })
+    if (success) this.getPlantas();
+  }
+
 }

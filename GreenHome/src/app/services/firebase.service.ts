@@ -5,39 +5,44 @@ import { addDoc, collection, collectionData, deleteDoc, doc, getDoc, getFirestor
 import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { User } from '../modelos/User.module';
 import { UtilsService } from './utils.service';
-import { getStorage, uploadString, ref, getDownloadURL, deleteObject } from "firebase/storage";
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-
+  
   constructor(private firestore: AngularFirestore,
-    private auth: AngularFireAuth,
-    private utils: UtilsService
+              private auth: AngularFireAuth,
+              private utils: UtilsService
   ) { }
 
   getCollection<tipo>(path: string) {
     const collection = this.firestore.collection<tipo>(path);
     return collection.valueChanges();
   }
+
+  obtdoc<tipo>(path: string) {
+    const collection = this.firestore.doc<tipo>(path);
+    return collection.valueChanges();
+  }
+
   //agregar documentos
   addDocument(path: string, data: any) {
     return addDoc(collection(getFirestore(), path), data);
 
   }
-  //crear documentos
-  createDoc(data: any, path: string, id: string) {
 
+  createDoc(data: any, path: string, id:string){
+    
     const collection = this.firestore.collection(path);
     return collection.doc(id).set(data);
 
   }
-
-  getId() {
+  
+  getId(){
     return this.firestore.createId();
   }
-
+  
   //actualizar documentos
   updateDocument(path: string, data: any) {
     return updateDoc(doc(getFirestore(), path), data);
@@ -76,8 +81,8 @@ export class FirebaseService {
   // obtener usuarios por uid
 
   async getUid() {
-    const user = await this.auth.currentUser;
-    return user.uid;
+   const user = await this.auth.currentUser;
+   return user.uid;
   }
 
   //cerrar sesion
@@ -87,12 +92,12 @@ export class FirebaseService {
     this.utils.routerLink('/login')
   }
 
-  //setear documentos/ guardar datos
-  setDocument(path: string, data: any) {
-    return setDoc(doc(getFirestore(), path), data);
-  }
+    //setear documentos/ guardar datos
+    setDocument(path: string, data: any) {
+      return setDoc(doc(getFirestore(), path), data);
+    }
 
-  //obtener documentos
+      //obtener documentos
   async getDocument(path: string) {
     return (await getDoc(doc(getFirestore(), path))).data();
   }
@@ -100,27 +105,9 @@ export class FirebaseService {
   stateUser() {
     return this.auth.authState;
   }
-
   getCollectionData(path: string, colletionQuery?: any) {
     const ref = collection(getFirestore(), path);
     return collectionData(query(ref, ...colletionQuery), { idField: 'id' });
   }
-
-  async uploadImage(path: string, data_url: string) {
-    return uploadString(ref(getStorage(), path), data_url, 'data_url').then(() => {
-      return getDownloadURL(ref(getStorage(), path))
-    })
-
-  }
-  //obtener ruta de la imagen
-  async getFilePath(url: string) {
-    return ref(getStorage(), url).fullPath
-
-  }
-  //Eliminar archivos
-  deleteFile(path: string) {
-    return deleteObject(ref(getStorage(), path));
-  }
-
 }
 

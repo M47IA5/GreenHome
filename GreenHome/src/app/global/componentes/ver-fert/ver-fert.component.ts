@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, inject } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { Fertilizante } from 'src/app/modelos/Fertilizante.model';
+import { Fertilizantes } from 'src/app/modelos/Fertilizantes.model';
 
 @Component({
   selector: 'app-ver-fert',
@@ -10,7 +10,7 @@ import { Fertilizante } from 'src/app/modelos/Fertilizante.model';
 })
 export class VerFertComponent  implements OnInit {
 
-  @Input() fert!:Fertilizante;
+  @Input() fert!:Fertilizantes;
 
   firebase = inject(FirebaseService);
   utils = inject(UtilsService);
