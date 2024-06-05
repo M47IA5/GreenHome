@@ -5,6 +5,7 @@ import { VerPlantComponent } from '../global/componentes/ver-plant/ver-plant.com
 import { AgregarActualizarPlantComponent } from '../global/componentes/agregar-actualizar-plant/agregar-actualizar-plant.component';
 import { UtilsService } from '../services/utils.service';
 import { FirebaseService } from '../services/firebase.service';
+import { PrePlantComponent } from '../global/componentes/pre-plant/pre-plant.component';
 register(); 
 @Component({
   selector: 'app-plantas',
@@ -115,6 +116,12 @@ export class PlantasPage {
     verPlanta(plant: Plantas) {
       this.utils.presentModal({
         component: VerPlantComponent,
+        componentProps: { plant }
+      })
+    }
+    prePlanta(plant: Plantas) {
+      this.utils.presentModal({
+        component: PrePlantComponent,
         componentProps: { plant }
       })
     }

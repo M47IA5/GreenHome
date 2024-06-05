@@ -36,10 +36,6 @@ export class ConsejosPage implements OnInit {
 
   }
 
-  ionViewDidEnter() {
-    console.log('yaass');
-  }
-
   //obtener Fertilizantes
   getFert() {
     this.loading = true;
@@ -218,7 +214,7 @@ export class ConsejosPage implements OnInit {
 
   }
 
-  //confirmar la eliminacion del fertilizante
+  //confirmar la eliminacion del enfermedades
   async confirmDeleteEnfer(enfer: Enfermedades) {
     this.utils.presentAlert({
       header: 'Eliminar Fertilizante',
@@ -272,7 +268,7 @@ export class ConsejosPage implements OnInit {
 
   }
 
-  //confirmar la eliminacion del fertilizante
+  //confirmar la eliminacion del plagas
   async confirmDeletePlag(plag: Plagas) {
     this.utils.presentAlert({
       header: 'Eliminar Plaga',

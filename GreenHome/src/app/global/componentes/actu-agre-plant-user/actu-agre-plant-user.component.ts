@@ -1,63 +1,66 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Enfermedades } from 'src/app/modelos/Enfermedad.model';
+import { PlantasUser } from 'src/app/modelos/PlantasUser.model';
+import { User } from 'src/app/modelos/User.module';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
-  selector: 'app-agregar-actuali-enfer',
-  templateUrl: './agregar-actuali-enfer.component.html',
-  styleUrls: ['./agregar-actuali-enfer.component.scss'],
+  selector: 'app-actu-agre-plant-user',
+  templateUrl: './actu-agre-plant-user.component.html',
+  styleUrls: ['./actu-agre-plant-user.component.scss'],
 })
-export class AgregarActualiEnferComponent  implements OnInit {
+export class ActuAgrePlantUserComponent implements OnInit {
 
-  @Input() enfer!: Enfermedades
-
-  constructor(private firebase:FirebaseService,
-              private utils:UtilsService
+  @Input() plantUser!: PlantasUser
+  constructor(private firebase: FirebaseService,
+    private utils: UtilsService
   ) { }
 
-  form = new FormGroup({
-    EnferID: new FormControl(''),
-    //FotoPlanta: new FormControl('', [Validators.required]),
-    NombreEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    DescripcionEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    CausasEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    ControlEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    DuracionEnfer: new FormControl(null, [Validators.required, Validators.min(0)]),
-  })
-
+  user = {} as User;
 
   ngOnInit() {
-    if (this.enfer) this.form.setValue(this.enfer);
+    this.user = this.utils.getFromLocalStorage('user');
+    if (this.plantUser) this.form.setValue(this.plantUser);
   }
 
-
+  form = new FormGroup({
+    IDPlantaUser: new FormControl(''),
+    NombrePlanta: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    NombrePerso: new FormControl('', [Validators.required]),
+    FechaSiembra: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    TipoPLanta: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    UltimoDiaRiego: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    
+    Temporada: new FormControl('', [Validators.required, Validators.minLength(2)]),
+  })
 
   submit() {
     if (this.form.valid) {
-
-      if (this.enfer) this.updateEnfer();
-      else this.createEnfer()
+      if (this.plantUser) this.updatePlant();
+      else this.createPlant()
 
     }
   }
 
-  setNumberInputs() {
+  // setNumberInputs() {
 
-    let { DuracionEnfer } = this.form.controls;
-    if (DuracionEnfer.value) DuracionEnfer.setValue(parseFloat(DuracionEnfer.value));
-  }
+  //   let { FechaSiembra } = this.form.controls;
+  //   if (FechaSiembra.value) FechaSiembra.setValue(parseFloat(FechaSiembra.value));
 
-  //agregar fertilizante
-  async createEnfer() { 
+  //   let { UltimoDiaRiego } = this.form.controls;
+  //   if (UltimoDiaRiego.value) UltimoDiaRiego.setValue(Data(UltimoDiaRiego.value));
+
+  // }
 
 
-    let path = `Enfermedades`
+  async createPlant() {
+
+    let path = `users/${this.user.UserID}/plantasUsuario`
 
     const loading = await this.utils.loading();
     const id = this.firebase.getId();
-    this.form.value.EnferID = id;
+    this.form.value.IDPlantaUser = id;
     await loading.present();
 
     /*///subir imagen y obtener la url
@@ -66,14 +69,12 @@ export class AgregarActualiEnferComponent  implements OnInit {
     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
     this.form.controls.FotoPlanta.setValue(imagenUrl);*/
 
-
-
     this.firebase.createDoc(this.form.value, path, id).then(async res => {
 
       this.utils.dismissModal({ success: true });
 
       this.utils.presentToast({
-        message: 'Enfermedad agregada exitosamente',
+        message: 'PLanta agregada exitosamente',
         duration: 1500,
         color: 'success',
         position: 'middle',
@@ -99,11 +100,13 @@ export class AgregarActualiEnferComponent  implements OnInit {
 
   }
 
-  //actualizar fertilizante
-  async updateEnfer() {
 
 
-    let path = `Enfermedades/${this.enfer.EnferID}`
+
+  //actualizar Planta
+  async updatePlant() {
+
+    let path = `users/${this.user.UserID}/plantasUsuario/${this.plantUser.IDPlantaUser}`
 
     const loading = await this.utils.loading();
     await loading.present();
@@ -124,7 +127,7 @@ export class AgregarActualiEnferComponent  implements OnInit {
       this.utils.dismissModal({ success: true });
 
       this.utils.presentToast({
-        message: 'Enfermedad Actualizada exitosamente',
+        message: 'Planta Actualizada exitosamente',
         duration: 1500,
         color: 'success',
         position: 'middle',
@@ -149,6 +152,8 @@ export class AgregarActualiEnferComponent  implements OnInit {
     })
 
   }
+
+  
 
 
 }

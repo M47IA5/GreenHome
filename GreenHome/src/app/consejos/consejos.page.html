@@ -67,7 +67,7 @@
                 <div>
                   <strong>Descripcion: </strong> {{f.DescripcionFert}} <br>
                   <strong>Modo de uso: </strong> {{f.ModoDeUso}} <br>
-                  <strong>Duracion del tratamiento:</strong> {{f.FrecuenciaDias}}
+                  <strong>duracion del tratamiento:</strong> {{f.FrecuenciaDias}}
                 </div>
               </ion-label>
 
@@ -91,6 +91,7 @@
               <ion-icon name="add" size="small"></ion-icon>
             </ion-fab-button>
           </ion-fab>
+
         </ion-list>
       </ion-card>
       <!-- Enfermedades -->
@@ -107,8 +108,8 @@
                 <div>
                   <strong>Descripcion: </strong> {{e.DescripcionEnfer}} <br>
                   <strong>Modo de uso: </strong> {{e.CausasEnfer}} <br>
-                  <strong>Medicamento Recomendado:</strong>{{e.ControlEnfer}} <br>
-                  <strong>Duracion del tratamiento:</strong> {{e.DuracionEnfer}}
+                  <strong>control:</strong>{{e.ControlEnfer}} <br>
+                  <strong>duracion del tratamiento:</strong> {{e.DuracionEnfer}}
                 </div>
               </ion-label>
             </ion-item>
@@ -144,15 +145,16 @@
           <ion-item-sliding class="products-item" *ngFor="let p of plag">
             <ion-item>
               <ion-avatar slot="start">
-
+                <img [src]="p.FotoPlag" />
               </ion-avatar>
               <ion-label>
                 <div class="name">{{p.NombrePlag}}</div>
                 <div>
+
                   <strong>Descripcion: </strong> {{p.DescripcionPlag}} <br>
                   <strong>Modo de uso: </strong> {{p.CausasPosibles}} <br>
-                  <strong>Medicamento Recomendado:</strong>{{p.Control}} <br>
-                  <strong>Duracion del tratamiento:</strong> {{p.DuracionDias}}
+                  <strong>control:</strong>{{p.Control}} <br>
+                  <strong>duracion del tratamiento:</strong> {{p.DuracionDias}}
                 </div>
               </ion-label>
             </ion-item>
@@ -176,6 +178,7 @@
               <ion-icon name="add" size="small"></ion-icon>
             </ion-fab-button>
           </ion-fab>
+
         </ion-list>
       </ion-card>
 

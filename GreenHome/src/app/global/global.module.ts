@@ -9,6 +9,7 @@ import { IonicModule } from '@ionic/angular';
 import { AgregarActualiFertComponent } from './componentes/agregar-actuali-fert/agregar-actuali-fert.component';
 import { AgregarActualiEnferComponent } from './componentes/agregar-actuali-enfer/agregar-actuali-enfer.component';
 import { AgregarActualiPlagaComponent } from './componentes/agregar-actuali-plaga/agregar-actuali-plaga.component';
+import { ActuAgrePlantUserComponent } from './componentes/actu-agre-plant-user/actu-agre-plant-user.component';
 
 
 
@@ -20,7 +21,9 @@ import { AgregarActualiPlagaComponent } from './componentes/agregar-actuali-plag
     VerPlantComponent,
     AgregarActualiFertComponent,
     AgregarActualiEnferComponent,
-    AgregarActualiPlagaComponent
+    AgregarActualiPlagaComponent,
+    VerPlantComponent,
+    ActuAgrePlantUserComponent
   ],
   exports: [
     HeaderComponent,
@@ -30,7 +33,9 @@ import { AgregarActualiPlagaComponent } from './componentes/agregar-actuali-plag
     VerPlantComponent,
     AgregarActualiFertComponent,
     AgregarActualiEnferComponent,
-    AgregarActualiPlagaComponent
+    AgregarActualiPlagaComponent,
+    VerPlantComponent,
+    ActuAgrePlantUserComponent
   ],
 
   imports: [

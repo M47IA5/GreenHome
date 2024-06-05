@@ -4,21 +4,21 @@
   <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
     <!--solo si existe una imagen-->
-    <!--<ion-avatar *ngIf="form.value.FotoPlanta">
-      <img [src]="form.value.FotoPlanta">
-    </ion-avatar>-->
+    <ion-avatar *ngIf="form.value.FotoPlag">
+      <img [src]="form.value.FotoPlag">
+    </ion-avatar>
 
     <!--solo si NO existe una imagen-->
 
-    <!--<ion-icon class="image-icon" *ngIf="!form.value.FotoPlanta" name="image-outline"></ion-icon>-->
+    <ion-icon class="image-icon" *ngIf="!form.value.FotoPlag" name="image-outline"></ion-icon>
 
     <br>
     <!--tomar/selecciona imagen-->
-    <!--<ion-button  mode="md" size="small" shape="round">
+    <ion-button (click)="tomarImagen()"  mode="md" size="small" shape="round">
       tomar/seleccionar
-    </ion-button>-->
+    </ion-button>
 
-    <!--Nombre de Plaga-->
+    <!--Nombre de fertilizante-->
 
     <app-custom-input autocomplete="name" [control]="form.controls.NombrePlag" type="text"
       label="Nombre del Plaga"></app-custom-input>
@@ -29,7 +29,7 @@
       <div *ngIf="form.controls.NombrePlag.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
     </div>
 
-    <!--descripcion Plaga-->
+    <!--descripcion Fertilizacion-->
 
     <app-custom-input [control]="form.controls.DescripcionPlag" type="text"
       label="Descripcion del Plaga"></app-custom-input>
@@ -37,10 +37,10 @@
     <div class="validators" *ngIf="form.controls.DescripcionPlag.errors && form.controls.DescripcionPlag.touched">
 
       <div *ngIf="form.controls.DescripcionPlag.errors?.['required']">Este campo es requerido</div>
-      
+      <div *ngIf="form.controls.DescripcionPlag.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
-    <!--Causas de la plaga-->
+    <!--ModoDeUso-->
 
     <app-custom-input autocomplete="CausasPosibles" [control]="form.controls.CausasPosibles" type="text"
       label="Modo De Uso"></app-custom-input>
@@ -48,10 +48,10 @@
     <div class="validators" *ngIf="form.controls.CausasPosibles.errors && form.controls.CausasPosibles.touched">
 
       <div *ngIf="form.controls.CausasPosibles.errors?.['required']">Este campo es requerido</div>
-     
+      <div *ngIf="form.controls.CausasPosibles.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
-    <!--Solucion-->
+    <!--ModoDeUso-->
 
     <app-custom-input autocomplete="Control" [control]="form.controls.Control" type="text"
       label="Control de Plaga"></app-custom-input>
@@ -59,9 +59,10 @@
     <div class="validators" *ngIf="form.controls.Control.errors && form.controls.Control.touched">
 
       <div *ngIf="form.controls.Control.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.Control.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
-    <!--Duracion de la plaga-->
+    <!--FrecuenciaDias-->
 
     <app-custom-input [control]="form.controls.DuracionDias" type="number" label="Duracion de uso"
       (ionInput)="setNumberInputs()"></app-custom-input>

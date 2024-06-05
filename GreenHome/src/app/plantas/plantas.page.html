@@ -68,7 +68,7 @@
       <!-- lista de las plantas -->
       <ion-list *ngIf="!loading">
         <ion-item-sliding class="products-item" *ngFor="let p of Plant">
-          <ion-item (click)="verPlanta(p)">
+          <ion-item (click)="prePlanta(p)">
             <ion-avatar slot="start">
 
             </ion-avatar>
@@ -79,18 +79,6 @@
                 <strong>Dias de Fertilizacion: </strong> {{p.DiasFertilizacion}}
               </div>
             </ion-label>
-            <!-- botones de editar , eliminar y ver -->
-            <!-- <ion-button (click)="addUpdatePlant(p)" color="primary" expand="block" shape="round">
-              editar
-            </ion-button>
-            <ion-button (click)="confirmDeletePlant(p)" color="danger" expand="block" shape="round">
-              eliminar
-            </ion-button>
-    
-            <ion-button (click)="verPlanta(p)" expand="block" shape="round">
-              ver
-            </ion-button> -->
-
           </ion-item>
           <!--opciones-->
           <ion-item-options>
