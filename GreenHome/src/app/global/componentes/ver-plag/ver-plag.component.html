@@ -1,0 +1,43 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!--boton para cerrar modal-->
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      <strong>{{plag.NombrePlag}}</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Nombre Plaga-->
+  <ion-item>
+    <ion-label>Nombre: {{plag.NombrePlag}} </ion-label>
+  </ion-item>
+
+  <!--Descripcion -->
+  <ion-item>
+    <ion-label>Descripción: {{plag.DescripcionPlag}}</ion-label>
+  </ion-item>
+
+  <!--Causas -->
+  <ion-item>
+    <ion-label>Causas: {{plag.CausasPosibles}}</ion-label>
+  </ion-item>
+
+  <!--Control -->
+  <ion-item>
+    <ion-label>Control: {{plag.Control}}</ion-label>
+  </ion-item>
+
+    <!--Duración -->
+    <ion-item>
+      <ion-label>Duración: {{plag.DuracionDias}}</ion-label>
+    </ion-item>
+
+</ion-content>

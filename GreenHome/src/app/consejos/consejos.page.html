@@ -8,6 +8,11 @@
     <!-- Aca va el contenido del menu -->
     <ion-content>
       <ion-list [inset]="true">
+        <ion-item href="home">
+          <!-- Home -->
+          <ion-icon name="home"></ion-icon>
+          <ion-label class="ion-margin">Home</ion-label>
+        </ion-item>
         <ion-item>
           <!-- Perfil -->
           <ion-icon name="person"></ion-icon>
@@ -32,7 +37,6 @@
           <!-- Cerrar Sesión -->
           <ion-icon name="log-out"></ion-icon>
           <ion-label class="ion-margin">Cerrar Sesión</ion-label>
-
         </ion-item>
       </ion-list>
     </ion-content>
@@ -44,144 +48,130 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Cosejos</ion-title>
+      <ion-title>Consejos</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
   <ion-content class="ion-padding">
+    <!-- Fertilizantes -->
+    <div class="ion-text-center">Fertilizantes</div>
+    <br />
+    <ion-list lines="inset" *ngIf="!loading" lines="full">
+      <ion-item-sliding class="products-item" *ngFor="let f of fert">
+        <ion-item [button]="true" (click)="verFert(f)">
+          <ion-icon
+            class="ion-padding"
+            color="secondary"
+            name="nutrition"
+          ></ion-icon>
+          <ion-label class="ion-text-left">{{f.NombreFert}}</ion-label>
+        </ion-item>
+        <ion-item-options slot="end" (click)="addUpdateFert(f)">
+          <ion-item-option color="warning">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-item-option>
+          <ion-item-option
+            color="danger"
+            expandable="true"
+            (click)="confirmDeleteFert(f)"
+          >
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item [button]="true" (click)="addUpdateFert()">
+        <ion-icon name="add" slot="start"></ion-icon>
+        <ion-label>Agregar nuevo</ion-label>
+      </ion-item>
+    </ion-list>
+    <br />
 
-    <ion-content>
-      <ion-card>
-        <!-- Fertilizantes -->
-        <ion-label>Fertilizantes</ion-label>
-        <ion-list *ngIf="!loading">
-          <ion-item-sliding class="products-item" *ngFor="let f of fert">
-            <ion-item>
-              <ion-avatar slot="start">
-
-              </ion-avatar>
-              <ion-label>
-                <div class="name">{{f.NombreFert}}</div>
-                <div>
-                  <strong>Descripcion: </strong> {{f.DescripcionFert}} <br>
-                  <strong>Modo de uso: </strong> {{f.ModoDeUso}} <br>
-                  <strong>duracion del tratamiento:</strong> {{f.FrecuenciaDias}}
-                </div>
-              </ion-label>
-
-            </ion-item>
-            <!--opciones-->
-            <ion-item-options>
-              <!--editar-->
-              <ion-item-option (click)="addUpdateFert(f)">
-                <ion-icon class="option-btn" name="create-outline"></ion-icon>
-              </ion-item-option>
-              <!--borrar-->
-              <ion-item-option color="danger" (click)="confirmDeleteFert(f)">
-                <ion-icon class="option-btn" name="trash-outline"></ion-icon>
-              </ion-item-option>
-
-            </ion-item-options>
-          </ion-item-sliding>
-          <!-- agregar  -->
-          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button (click)="addUpdateFert()">
-              <ion-icon name="add" size="small"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
-
-        </ion-list>
-      </ion-card>
-      <!-- Enfermedades -->
-      <ion-card>
-        <ion-label>Enfermedades</ion-label>
-        <ion-list *ngIf="!loading">
-          <ion-item-sliding class="products-item" *ngFor="let e of enfer">
-            <ion-item>
-              <ion-avatar slot="start">
-
-              </ion-avatar>
-              <ion-label>
-                <div class="name">{{e.NombreEnfer}}</div>
-                <div>
-                  <strong>Descripcion: </strong> {{e.DescripcionEnfer}} <br>
-                  <strong>Modo de uso: </strong> {{e.CausasEnfer}} <br>
-                  <strong>control:</strong>{{e.ControlEnfer}} <br>
-                  <strong>duracion del tratamiento:</strong> {{e.DuracionEnfer}}
-                </div>
-              </ion-label>
-            </ion-item>
-
-            <!--opciones-->
-            <ion-item-options>
-              <!--editar-->
-              <ion-item-option (click)="addUpdateEnfer(e)">
-                <ion-icon class="option-btn" name="create-outline"></ion-icon>
-              </ion-item-option>
-              <!--borrar-->
-              <ion-item-option color="danger" (click)="confirmDeleteEnfer(e)">
-                <ion-icon class="option-btn" name="trash-outline"></ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-          </ion-item-sliding>
-
-          <!-- agregar  -->
-          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button (click)="addUpdateEnfer()">
-              <ion-icon name="add" size="small"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
-
-        </ion-list>
-      </ion-card>
-
-      <!-- Plagas -->
-
-      <ion-card>
-        <ion-label>Plagas</ion-label>
-        <ion-list *ngIf="!loading">
-          <ion-item-sliding class="products-item" *ngFor="let p of plag">
-            <ion-item>
-              <ion-avatar slot="start">
-
-              </ion-avatar>
-              <ion-label>
-                <div class="name">{{p.NombrePlag}}</div>
-                <div>
-                  <strong>Descripcion: </strong> {{p.DescripcionPlag}} <br>
-                  <strong>Modo de uso: </strong> {{p.CausasPosibles}} <br>
-                  <strong>control:</strong>{{p.Control}} <br>
-                  <strong>duracion del tratamiento:</strong> {{p.DuracionDias}}
-                </div>
-              </ion-label>
-            </ion-item>
-
-            <!--opciones-->
-            <ion-item-options>
-              <!--editar-->
-              <ion-item-option (click)="addUpdatePlaga(p)">
-                <ion-icon class="option-btn" name="create-outline"></ion-icon>
-              </ion-item-option>
-              <!--borrar-->
-              <ion-item-option color="danger" (click)="confirmDeletePlag(p)">
-                <ion-icon class="option-btn" name="trash-outline"></ion-icon>
-              </ion-item-option>
-            </ion-item-options>
-
-          </ion-item-sliding>
-          <!-- agregar  -->
-          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-            <ion-fab-button (click)="addUpdatePlaga()">
-              <ion-icon name="add" size="small"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
-
-        </ion-list>
-      </ion-card>
-
-    </ion-content>
-
+    <!-- Enfermedades -->
+    <div class="ion-text-center">Enfermedades</div>
+    <br />
+    <ion-list lines="inset" *ngIf="!loading" lines="full">
+      <ion-item-sliding class="products-item" *ngFor="let e of enfer">
+        <ion-item [button]="true" (click) = verEnf(e)>
+          <ion-icon
+            color="warning"
+            class="ion-padding"
+            name="bandage"
+          ></ion-icon>
+          <ion-label class="ion-text-left">{{e.NombreEnfer}}</ion-label>
+        </ion-item>
+        <ion-item-options slot="end" (click)="addUpdateEnfer(e)">
+          <ion-item-option color="warning">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-item-option>
+          <ion-item-option
+            color="danger"
+            expandable="true"
+            (click)="confirmDeleteEnfer(e)"
+          >
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item [button]="true" (click)="addUpdateEnfer()">
+        <ion-icon name="add" slot="start"></ion-icon>
+        <ion-label>Agregar nuevo</ion-label>
+      </ion-item>
+    </ion-list>
+    <br />
+    <!-- Plagas -->
+    <div class="ion-text-center">Plagas</div>
+    <br />
+    <ion-list lines="inset" *ngIf="!loading" lines="full">
+      <ion-item-sliding class="products-item" *ngFor="let p of plag">
+        <ion-item [button]="true" (click)="verPlag(p)">
+          <ion-icon
+            color="danger"
+            class="ion-padding"
+            name="bug"
+          ></ion-icon>
+          <ion-label class="ion-text-left">{{p.NombrePlag}}</ion-label>
+        </ion-item>
+        <ion-item-options slot="end" (click)="addUpdatePlaga(p)">
+          <ion-item-option color="warning">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-item-option>
+          <ion-item-option
+            color="danger"
+            expandable="true"
+            (click)="confirmDeletePlag(p)"
+          >
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item [button]="true" (click)="addUpdatePlaga()">
+        <ion-icon name="add" slot="start"></ion-icon>
+        <ion-label>Agregar nuevo</ion-label>
+      </ion-item>
+    </ion-list>
   </ion-content>
-</div>|
+
+  <!--Footer-->
+  <ion-footer>
+    <ion-toolbar>
+      <ion-tabs>
+        <ion-tab-bar slot="bottom">
+          <ion-tab-button href="plantas">
+            <ion-icon color="primary" name="leaf"></ion-icon>
+            Plantas
+          </ion-tab-button>
+          <ion-tab-button href="home">
+            <ion-icon color="primary" name="Home"></ion-icon>
+            Home
+          </ion-tab-button>
+          <ion-tab-button href="consejos">
+            <ion-icon color="primary" name="bulb"></ion-icon>
+            Consejos
+          </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-toolbar>
+  </ion-footer>
+</div>

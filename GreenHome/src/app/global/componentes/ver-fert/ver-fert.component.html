@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!--boton para cerrar modal-->
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      <strong>{{fert.NombreFert}}</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Nombre Fertilizante-->
+  <ion-item>
+    <ion-label>Nombre: {{fert.NombreFert}} </ion-label>
+  </ion-item>
+
+  <!--Descripcion -->
+  <ion-item>
+    <ion-label>Descripción: {{fert.DescripcionFert}}</ion-label>
+  </ion-item>
+
+  <!--Frecuencia -->
+  <ion-item>
+    <ion-label>Frecuencia: {{fert.FrecuenciaDias}}</ion-label>
+  </ion-item>
+
+  <!--Modo de uso -->
+  <ion-item>
+    <ion-label>Modo de uso: {{fert.ModoDeUso}}</ion-label>
+  </ion-item>
+
+</ion-content>
