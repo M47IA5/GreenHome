@@ -8,7 +8,8 @@
     </ion-buttons>
 
     <ion-title>
-      <strong>{{fert.NombreFert}}</strong>
+      <ion-icon class="ion-padding" color="secondary" name="nutrition" class=""></ion-icon>
+      {{fert.NombreFert}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,22 +17,23 @@
 <ion-content>
   <!--Nombre Fertilizante-->
   <ion-item>
-    <ion-label>Nombre: {{fert.NombreFert}} </ion-label>
+    <ion-icon name="bookmark"></ion-icon>
+    <h1>Nombre: {{fert.NombreFert}} </h1>
   </ion-item>
 
   <!--Descripcion -->
   <ion-item>
-    <ion-label>Descripción: {{fert.DescripcionFert}}</ion-label>
+    <h3>Descripción: {{fert.DescripcionFert}}</h3>
   </ion-item>
 
   <!--Frecuencia -->
   <ion-item>
-    <ion-label>Frecuencia: {{fert.FrecuenciaDias}}</ion-label>
+    <h3>Frecuencia: {{fert.FrecuenciaDias}}</h3>
   </ion-item>
 
   <!--Modo de uso -->
   <ion-item>
-    <ion-label>Modo de uso: {{fert.ModoDeUso}}</ion-label>
+    <h3>Modo de uso: {{fert.ModoDeUso}}</h3>
   </ion-item>
 
 </ion-content>

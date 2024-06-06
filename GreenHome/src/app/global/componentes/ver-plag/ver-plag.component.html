@@ -9,7 +9,8 @@
     </ion-buttons>
 
     <ion-title>
-      <strong>{{plag.NombrePlag}}</strong>
+      <ion-icon name="bug" color="danger"></ion-icon>
+      {{plag.NombrePlag}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,27 +18,27 @@
 <ion-content>
   <!--Nombre Plaga-->
   <ion-item>
-    <ion-label>Nombre: {{plag.NombrePlag}} </ion-label>
+    <h1>Nombre: {{plag.NombrePlag}} </h1>
   </ion-item>
 
   <!--Descripcion -->
   <ion-item>
-    <ion-label>Descripción: {{plag.DescripcionPlag}}</ion-label>
+    <h3>Descripción: {{plag.DescripcionPlag}}</h3>
   </ion-item>
 
   <!--Causas -->
   <ion-item>
-    <ion-label>Causas: {{plag.CausasPosibles}}</ion-label>
+    <h3>Causas: {{plag.CausasPosibles}}</h3>
   </ion-item>
 
   <!--Control -->
   <ion-item>
-    <ion-label>Control: {{plag.Control}}</ion-label>
+    <h3>Control: {{plag.Control}}</h3>
   </ion-item>
 
     <!--Duración -->
     <ion-item>
-      <ion-label>Duración: {{plag.DuracionDias}}</ion-label>
+      <h3>Duración: {{plag.DuracionDias}}</h3>
     </ion-item>
 
 </ion-content>

@@ -60,7 +60,6 @@
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
-    <ion-title>Plantas</ion-title>
     <swiper-container *ngIf="!loading">
       <swiper-slide *ngFor="let p of Plant">
         <ion-card>
