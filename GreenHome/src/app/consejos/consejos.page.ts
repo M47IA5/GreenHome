@@ -17,9 +17,9 @@ import { VerPlagComponent } from "../global/componentes/ver-plag/ver-plag.compon
   styleUrls: ["./consejos.page.scss"],
 })
 export class ConsejosPage implements OnInit {
-  constructor(private firebase: FirebaseService, private utils: UtilsService) {}
+  constructor(private firebase: FirebaseService, private utils: UtilsService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   fert: Fertilizantes[] = [];
   enfer: Enfermedades[] = [];
@@ -88,30 +88,36 @@ export class ConsejosPage implements OnInit {
   //Actualizar y agregar fertilizantes
 
   async addUpdateFert(fert?: Fertilizantes) {
+
     let success = await this.utils.presentModal({
       component: AgregarActualiFertComponent,
       componentProps: { fert },
     });
+
     if (success) this.getFert();
   }
 
   //Actualizar y agregar enfermedades
 
   async addUpdateEnfer(enfer?: Enfermedades) {
+
     let success = await this.utils.presentModal({
       component: AgregarActualiEnferComponent,
       componentProps: { enfer },
     });
+
     if (success) this.getEnfer();
   }
 
   //Actualizar y agregar plagas
 
   async addUpdatePlaga(plag?: Plagas) {
+
     let success = await this.utils.presentModal({
       component: AgregarActualiPlagaComponent,
       componentProps: { plag },
     });
+
     if (success) this.getPlag();
   }
 
@@ -166,7 +172,7 @@ export class ConsejosPage implements OnInit {
 
   //ver detalle fertilizantes
 
-  verFert(fert: Fertilizantes){
+  verFert(fert: Fertilizantes) {
     this.utils.presentModal({
       component: VerFertComponent,
       componentProps: { fert },
@@ -183,14 +189,14 @@ export class ConsejosPage implements OnInit {
   }
 
   //ver detalle plagas
-  
+
   verPlag(plag: Plagas) {
     this.utils.presentModal({
       component: VerPlagComponent,
       componentProps: { plag },
     });
   }
-  
+
 
   //eliminar enfermedades
   async deleteEnfer(enfer: Enfermedades) {

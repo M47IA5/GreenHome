@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, AlertOptions, LoadingController, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Injectable({
   providedIn: 'root'
@@ -59,4 +60,18 @@ export class UtilsService {
   getFromLocalStorage(key: string) {
     return JSON.parse(localStorage.getItem(key))
   }
+
+  async tomarFoto(promptLabelHeader: string) {
+    return await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Prompt,
+      promptLabelHeader,
+      promptLabelPhoto: 'Selecciona una imagen',
+      promptLabelPicture: 'Toma una foto'
+
+    });
+  };
+
 }

@@ -5,6 +5,8 @@ import { addDoc, collection, collectionData, deleteDoc, doc, getDoc, getFirestor
 import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { User } from '../modelos/User.module';
 import { UtilsService } from './utils.service';
+import { getStorage, uploadString, ref, getDownloadURL, deleteObject } from "firebase/storage";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -109,5 +111,23 @@ export class FirebaseService {
     const ref = collection(getFirestore(), path);
     return collectionData(query(ref, ...colletionQuery), { idField: 'id' });
   }
+
+  async uploadImage(path: string, data_url: string) {
+    return uploadString(ref(getStorage(), path), data_url, 'data_url').then(() => {
+      return getDownloadURL(ref(getStorage(), path))
+    })
+
+  }
+  //obtener ruta de la imagen
+  async getFilePath(url: string) {
+    return ref(getStorage(), url).fullPath
+
+  }
+  //Eliminar archivos
+  deleteFile(path: string) {
+    return deleteObject(ref(getStorage(), path));
+  }
+
+
 }
 
