@@ -14,4 +14,9 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 Firebase
 npm i @angular/fire firebase --save
 
+Para la camara
+npm install @capacitor/camera
+Para la interfaz de la camara
+npm install @ionic/pwa-elements
+
 
