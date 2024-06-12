@@ -139,11 +139,12 @@ export class HomePage {
       });
     }
 
-    prePlanta(plantUser: PlantasUser) {
-      this.utils.presentModal({
+    async prePlanta(plantUser: PlantasUser) {
+      let success = await this.utils.presentModal({
         component: VerPlatUserComponent,
         componentProps: { plantUser }
       })
+      if (success) this.getPlantUser();
     }
 
     

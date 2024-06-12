@@ -10,7 +10,7 @@ import { User } from 'src/app/modelos/User.module';
   templateUrl: './ver-plat-user.component.html',
   styleUrls: ['./ver-plat-user.component.scss'],
 })
-export class VerPlatUserComponent  implements OnInit {
+export class VerPlatUserComponent implements OnInit {
   @Input() plantUser!: PlantasUser;
   PlantUSer: PlantasUser[] = [];
 
@@ -18,15 +18,33 @@ export class VerPlatUserComponent  implements OnInit {
   utils = inject(UtilsService);
   loading: boolean = false;
 
-  user(): User{
+  user(): User {
     return this.utils.getFromLocalStorage('user');
   }
 
   ngOnInit() {
 
   }
-  dismissModal() {
-    this.utils.dismissModal()
+  async dismissModal() {
+
+    const loading = await this.utils.loading();
+    await loading.present();
+    this.utils.dismissModal({ success: true }).then(async res => {
+    }).catch(error => {
+      console.log(error);
+
+      this.utils.presentToast({
+        message: error.message,
+        duration: 2500,
+        position: 'middle',
+        icon: 'alert-circle-outline'
+
+      })
+
+    }).finally(() => {
+      loading.dismiss();
+    })
+
   }
 
   getPlantUser() {
@@ -63,10 +81,10 @@ export class VerPlatUserComponent  implements OnInit {
 
 
   //eliminar planta
-  async deletePlant(PlantUser: PlantasUser) {
+  async deletePlant(plantUser: PlantasUser) {
 
-
-    let path = `Plantas/${PlantUser.IDPlantaUser}`
+    let user = this.user();
+    let path = `/users/${user.UserID}/plantasUsuario/${plantUser.IDPlantaUser}`
 
     const loading = await this.utils.loading();
     await loading.present();
@@ -74,7 +92,7 @@ export class VerPlatUserComponent  implements OnInit {
 
     this.firebase.deleteDocument(path).then(async res => {
 
-      this.PlantUSer = this.PlantUSer.filter(p => p.IDPlantaUser !== PlantUser.IDPlantaUser);
+      this.PlantUSer = this.PlantUSer.filter(p => p.IDPlantaUser !== plantUser.IDPlantaUser);
       this.utils.dismissModal({ success: true });
       this.utils.presentToast({
         message: 'Planta Eliminada exitosamente',
