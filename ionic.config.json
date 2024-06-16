@@ -1,0 +1,7 @@
+{
+  "name": "GreenHome",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
