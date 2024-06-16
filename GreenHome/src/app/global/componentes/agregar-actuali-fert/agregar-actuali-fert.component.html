@@ -1,0 +1,72 @@
+<app-header [isModal]="true" [title]="fert ? 'Actualizar Fertilizante' : 'Agregar Fertilizante'"></app-header>
+<ion-content>
+
+  <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+    <!--solo si existe una imagen-->
+    <ion-avatar *ngIf="form.value.FotoFert">
+      <img [src]="form.value.FotoFert">
+    </ion-avatar>
+
+    <!--solo si NO existe una imagen-->
+
+    <ion-icon class="image-icon" *ngIf="!form.value.FotoFert" name="image-outline"></ion-icon>
+
+    <br>
+    <!--tomar/selecciona imagen-->
+    <ion-button (click)="tomarImagen()"  mode="md" size="small" shape="round">
+      tomar/seleccionar
+    </ion-button>
+
+    <!--Nombre de fertilizante-->
+
+    <app-custom-input autocomplete="name" [control]="form.controls.NombreFert" type="text"
+      label="Nombre del Fertilizante"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.NombreFert.errors && form.controls.NombreFert.touched">
+
+      <div *ngIf="form.controls.NombreFert.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.NombreFert.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
+    </div>
+
+    <!--descripcion Fertilizacion-->
+
+    <app-custom-input [control]="form.controls.DescripcionFert" type="text"
+      label="Descripcion del Fertilizacion" ></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.DescripcionFert.errors && form.controls.DescripcionFert.touched">
+
+      <div *ngIf="form.controls.DescripcionFert.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.DescripcionFert.errors?.['min']">El precio debe ser arriba de 0</div>
+    </div>
+
+    <!--ModoDeUso-->
+
+    <app-custom-input autocomplete="ModoDeUso" [control]="form.controls.ModoDeUso" type="text"
+      label="Modo De Uso"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.ModoDeUso.errors && form.controls.ModoDeUso.touched">
+
+      <div *ngIf="form.controls.ModoDeUso.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.ModoDeUso.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
+    </div>
+
+    <!--FrecuenciaDias-->
+
+    <app-custom-input [control]="form.controls.FrecuenciaDias" type="number"
+      label="Duracion de uso" (ionInput)="setNumberInputs()"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.FrecuenciaDias.errors && form.controls.FrecuenciaDias.touched">
+
+      <div *ngIf="form.controls.FrecuenciaDias.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.FrecuenciaDias.errors?.['min']">no se pueden ingresar numeros negativos</div>
+    </div>
+
+    <ion-button mode="md" class="ion-margin" type="submit" [disabled]="form.invalid">
+      {{fert ? 'Actualizar fertilizante' : 'Agregar fertilizante'}}
+      <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
+
+  </form>
+
+</ion-content>

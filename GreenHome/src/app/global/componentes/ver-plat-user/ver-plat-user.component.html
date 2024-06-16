@@ -1,0 +1,54 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!--boton para cerrar modal-->
+      <ion-button (click)="dismissModal()" >
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>  
+    <ion-title>
+      <strong>{{plantUser.NombrePlanta}}</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Nombre Planta-->
+  <ion-item>
+    <ion-label>Nombre: {{plantUser.NombrePlanta}} </ion-label>
+  </ion-item>
+
+  <!--Nombre Cientifico-->
+  <ion-item>
+    <ion-label>Alias de la planta: {{plantUser.NombrePerso}}</ion-label>
+  </ion-item>
+
+  <!--Temporada -->
+  <ion-item>
+    <ion-label>Temporada: {{plantUser.Temporada}}</ion-label>
+  </ion-item>
+
+  <!--Descripcion -->
+  <ion-item>
+    <ion-label>Descripcion: {{plantUser.FechaSiembra}}</ion-label>
+  </ion-item>
+
+  <!--TipoLuz -->
+  <ion-item>
+    <ion-label>Tipo de Luz: {{plantUser.TipoPLanta}}</ion-label>
+  </ion-item>
+
+  <!--TipoSiembra -->
+  <ion-item>
+    <ion-label>Tipo de Siembra: {{plantUser.UltimoDiaRiego}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="getPlantUser()">Detalles</ion-button>
+    <!--editar-->
+    <ion-button (click)="addUpdatePlant(plantUser)" color="success">Editar</ion-button>
+    <!--borrar-->
+    <ion-button (click)="confirmDeletePlant(plantUser)" color="danger">Borrar</ion-button>
+  </ion-item>
+</ion-content>

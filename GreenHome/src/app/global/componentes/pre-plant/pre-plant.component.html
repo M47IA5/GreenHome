@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!--boton para cerrar modal-->
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <strong>{{plant.NombrePlanta}}</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Nombre Planta-->
+  <ion-item>
+    <ion-label>Nombre: {{plant.NombrePlanta}} </ion-label>
+  </ion-item>
+
+  <!--Temporada -->
+  <ion-item>
+    <ion-label>Temporada: {{plant.Temporada}}</ion-label>
+  </ion-item>
+
+  <!--Descripcion -->
+  <ion-item>
+    <ion-label>Descripcion: {{plant.Descripcion}}</ion-label>
+  </ion-item>
+
+
+  <!--Recomendaciones -->
+  <ion-item>
+    <ion-label>Recomendaciones: {{plant.Recomendaciones}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-button (click)="verPlanta(plant)">Detalles</ion-button>
+    <!--editar-->
+    <ion-button (click)="addUpdatePlant(plant)" color="success">Editar</ion-button>
+    <!--borrar-->
+    <ion-button (click)="confirmDeletePlant(plant)" color="danger">Borrar</ion-button>
+  </ion-item>
+  
+</ion-content>

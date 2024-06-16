@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!--boton para cerrar modal-->
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-icon name="bandage" color="warning" class=""></ion-icon>
+      {{ enfer.NombreEnfer }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- foto -->
+  <img [src]="enfer.FotoEnfer">
+  <!--Nombre Enfermedad-->
+  <ion-item>
+    <ion-icon name="bookmark"></ion-icon>
+    <h1>Nombre: {{ enfer.NombreEnfer }}</h1>
+  </ion-item>
+
+  <!--Descripcion -->
+  <ion-item>
+    <h3>Descripción: {{ enfer.DescripcionEnfer }}</h3>
+  </ion-item>
+
+  <!--Causas -->
+  <ion-item>
+    <h3>Causas: {{ enfer.CausasEnfer }}</h3>
+  </ion-item>
+
+  <!--Control -->
+  <ion-item>
+    <h3>Control: {{ enfer.ControlEnfer }}</h3>
+  </ion-item>
+
+  <!--Duración -->
+  <ion-item>
+    <h3>Duración: {{ enfer.DuracionEnfer }}</h3>
+  </ion-item>
+</ion-content>
