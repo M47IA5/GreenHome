@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import { UtilsService } from '../services/utils.service';
 import { User } from '../modelos/User.module';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterPage implements OnInit {
     Password: new FormControl('', [Validators.required]),
     NombreUser: new FormControl('', [Validators.required, Validators.minLength(2)]),
   })
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
   firebaseSvc = inject(FirebaseService);
   utilsSvc = inject(UtilsService)
   ngOnInit() {
@@ -87,6 +88,9 @@ export class RegisterPage implements OnInit {
         loading.dismiss();
       })
     }
+  }
+  goToLogin() {
+    this.navCtrl.navigateForward('/login');
   }
 
 }

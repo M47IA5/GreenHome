@@ -6,6 +6,7 @@ import { PlantasUser } from '../modelos/PlantasUser.model';
 import { PrePlantComponent } from '../global/componentes/pre-plant/pre-plant.component';
 import { ActuAgrePlantUserComponent } from '../global/componentes/actu-agre-plant-user/actu-agre-plant-user.component';
 import { Plantas } from '../modelos/Plantas.model';
+import { VerPlatUserComponent } from '../global/componentes/ver-plat-user/ver-plat-user.component';
 
 @Component({
   selector: 'app-home',
@@ -138,11 +139,12 @@ export class HomePage {
       });
     }
 
-    prePlanta(plantUser: PlantasUser) {
-      this.utils.presentModal({
-        component: PrePlantComponent,
+    async prePlanta(plantUser: PlantasUser) {
+      let success = await this.utils.presentModal({
+        component: VerPlatUserComponent,
         componentProps: { plantUser }
       })
+      if (success) this.getPlantUser();
     }
 
     

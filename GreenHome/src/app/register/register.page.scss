@@ -1,8 +1,46 @@
-.logo{
-    position:center;
-    margin:auto;
-    width: 75%;
-    padding: 10px;
-    text-align: center;
-    display: block;
+.logo {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+}
+.background-login-register {
+  background-image: url("./../../../src/assets/hojas.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
+
+.justify-content-center {
+  justify-content: center;
+  text-align: center;
+}
+
+ion-button {
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #066d04;
+}
+
+ion-button.submit {
+  color: #ffffff;
+}
+
+ion-button.volver {
+  color: #ffffff;
+}
+
+ion-text-center {
+  color: #2e865f;
+}
+
+h1{
+    color: #044703; 
+    font-size: xx-large;
 }

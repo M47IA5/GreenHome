@@ -31,6 +31,7 @@ const routes: Routes = [
     path: 'consejos',
     loadChildren: () => import('./consejos/consejos.module').then( m => m.ConsejosPageModule)
   },
+
 ];
 
 @NgModule({
