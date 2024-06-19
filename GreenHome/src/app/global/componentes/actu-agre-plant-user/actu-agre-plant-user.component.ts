@@ -20,11 +20,13 @@ export class ActuAgrePlantUserComponent  implements OnInit {
   ) { }
 
   user = {} as User;
+  loading: boolean = false;
 
   ngOnInit() {
     this.user = this.utils.getFromLocalStorage('user');
     if (this.plantUser) this.form.setValue(this.plantUser);
   }
+Plant: Plantas[]=[];
 
   form = new FormGroup({
     IDPlantaUser: new FormControl(''),
@@ -153,6 +155,24 @@ export class ActuAgrePlantUserComponent  implements OnInit {
       loading.dismiss();
     })
 
-  }  
+  } 
+  
+  getPlantas() {
+    this.loading = true;
+    let sub = this.firebase.getCollection<Plantas>('Plantas').subscribe(res => {
+      console.log(res);
+      this.Plant = res;
+
+      this.loading = false;
+
+      sub.unsubscribe();
+
+    })
+
+  }
+ionViewWillEnter() {
+    this.getPlantas();
+  }
+  
 }
 

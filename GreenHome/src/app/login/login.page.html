@@ -7,10 +7,24 @@
     </ion-row>
     <ion-row class="justify-content-center">
       <div class="d-flex-center">
+
+        <ion-input
+        type="email"
+        fill="outline" 
+        label="Mail" 
+        label-placement="floating"
+        helperText="Ingrese un mail valido"
+        errorText="Mail no valido"
+        placeholder="Enter text"
+        ngModel
+        email>
+        </ion-input>
+
+        <br>
+        <ion-input label="Constraseña" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
           <form
             id = "formlog"
             [formGroup]="form"
-            class="auth-form"
             (ngSubmit)="submit()"
             (keypress.enter)="submit()"
             

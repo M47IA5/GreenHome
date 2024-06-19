@@ -20,14 +20,14 @@
 
     <!--Nombre de Planta-->
 
-    <app-custom-input autocomplete="name" [control]="form.controls.NombrePlanta" type="text"
-      label="Nombre de la planta"></app-custom-input>
 
-    <div class="validators" *ngIf="form.controls.NombrePlanta.errors && form.controls.NombrePlanta.touched">
+      <ion-item>
+        <ion-select label="Seleccione una planta" label-placement="floating">
 
-      <div *ngIf="form.controls.NombrePlanta.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.NombrePlanta.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
-    </div>
+          <ion-select-option value="apple">Apple</ion-select-option>
+          <ion-select-option *ngFor="let p of Plant">{{p.NombrePlanta}}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
     <!--Alias planta-->
 

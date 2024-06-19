@@ -42,7 +42,7 @@
   }
 
   ion-text-center{
-    color: #2E865F;
+    color: #ff0000;
     
 }
 
@@ -59,4 +59,8 @@ h4 {
   
   .app-custom-input:focus {
     background-color: transparent; /* Fondo transparente al enfocar el input */
+  }
+  .formlog{
+    text-align: center;
+    counter-reset: none;
   }
