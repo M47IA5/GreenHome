@@ -73,7 +73,7 @@
       <div *ngIf="form.controls.DuracionDias.errors?.['min']">no se pueden ingresar numeros negativos</div>
     </div>
 
-    <ion-button mode="md" class="ion-margin" type="submit">
+    <ion-button mode="md" class="ion-margin" type="submit" [disabled]="form.invalid">
       {{plag ? 'Actualizar Plaga' : 'Agregar Plaga'}}
       <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
     </ion-button>

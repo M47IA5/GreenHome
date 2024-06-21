@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FirebaseService } from '../services/firebase.service';
 import { UtilsService } from '../services/utils.service';
 import { User } from '../modelos/User.module';
+import { ContraOlvidadaComponent } from '../global/componentes/contra-olvidada/contra-olvidada.component';
 
 @Component({
   selector: 'app-login',
@@ -126,4 +127,9 @@ export class LoginPage implements OnInit {
     }
   }
 
+  async olvidoContra() {
+    let success = await this.utilsSvc.presentModal({
+      component: ContraOlvidadaComponent
+    })
+  }
 }

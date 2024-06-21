@@ -60,7 +60,7 @@ export class UtilsService {
   getFromLocalStorage(key: string) {
     return JSON.parse(localStorage.getItem(key))
   }
-
+  //habilita la opcion de tomar fotos
   async tomarFoto(promptLabelHeader: string) {
     return await Camera.getPhoto({
       quality: 90,
@@ -70,7 +70,6 @@ export class UtilsService {
       promptLabelHeader,
       promptLabelPhoto: 'Selecciona una imagen',
       promptLabelPicture: 'Toma una foto'
-
     });
   };
 

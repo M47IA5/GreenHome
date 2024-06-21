@@ -4,19 +4,19 @@
   <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
     <!--solo si existe una imagen-->
-    <!--<ion-avatar *ngIf="form.value.FotoPlanta">
-      <img [src]="form.value.FotoPlanta">
-    </ion-avatar>-->
+    <ion-avatar *ngIf="form.value.FotoEnfer">
+      <img [src]="form.value.FotoEnfer">
+    </ion-avatar>
 
     <!--solo si NO existe una imagen-->
 
-    <!--<ion-icon class="image-icon" *ngIf="!form.value.FotoPlanta" name="image-outline"></ion-icon>-->
+    <ion-icon class="image-icon" *ngIf="!form.value.FotoEnfer" name="image-outline"></ion-icon>
 
     <br>
     <!--tomar/selecciona imagen-->
-    <!--<ion-button  mode="md" size="small" shape="round">
+    <ion-button (click)="tomarImagen()" mode="md" size="small" shape="round">
       tomar/seleccionar
-    </ion-button>-->
+    </ion-button>
 
     <!--Nombre de enfermedad-->
 
@@ -40,7 +40,7 @@
       <div *ngIf="form.controls.DescripcionEnfer.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
-    <!--ModoDeUso-->
+    <!--Causas de la enfermedad-->
 
     <app-custom-input autocomplete="CausasEnfer" [control]="form.controls.CausasEnfer" type="text"
       label="Modo De Uso"></app-custom-input>
@@ -51,7 +51,7 @@
       <div *ngIf="form.controls.CausasEnfer.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
-    <!--ModoDeUso-->
+    <!--Tratamiento-->
 
     <app-custom-input autocomplete="ControlEnfer" [control]="form.controls.ControlEnfer" type="text"
       label="Control de enfer"></app-custom-input>
@@ -63,7 +63,7 @@
     </div>
     
 
-    <!--FrecuenciaDias-->
+    <!--Duracion del tratamiento-->
 
     <app-custom-input [control]="form.controls.DuracionEnfer" type="number" label="Duracion de uso"
       (ionInput)="setNumberInputs()"></app-custom-input>
@@ -74,7 +74,7 @@
       <div *ngIf="form.controls.DuracionEnfer.errors?.['min']">no se pueden ingresar numeros negativos</div>
     </div>
 
-    <ion-button mode="md" class="ion-margin" type="submit">
+    <ion-button mode="md" class="ion-margin" type="submit" [disabled]="form.invalid">
       {{enfer ? 'Actualizar Enfermedad' : 'Agregar Enfermedad'}}
       <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
     </ion-button>

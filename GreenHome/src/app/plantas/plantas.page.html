@@ -64,8 +64,10 @@
       <swiper-slide *ngFor="let p of Plant">
         <ion-card>
           <ion- (click)="prePlanta(p)">
-            <img alt="Lechuga"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
+            <!-- si existe una imagen -->
+            <img [src]="p.FotoPlanta" *ngIf="p.FotoPlanta" alt="">
+            <!-- si no existe una imagen -->
+            <img alt="Lechuga" *ngIf="!p.FotoPlanta"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
             <ion-card-header>
               <ion-card-title>{{p.NombrePlanta}}</ion-card-title>
             </ion-card-header>

@@ -50,21 +50,22 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Bienvenido</ion-title>
+      <ion-title>GreenHome</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
   <ion-content class="ion-padding">
-    <ion-title>Plantas</ion-title>
     <swiper-container *ngIf="!loading">
       <swiper-slide *ngFor="let p of plantUser">
         <ion-card>
-
           <ion-card (click)="prePlanta(p)">
-            <img alt="Lechuga"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
+            <!-- si tiene imagen -->
+            <img  *ngIf="p.FotoPlantUser" [src]="p.FotoPlantUser">
+            <!-- si no tiene imagen -->
+            <img alt="Lechuga" *ngIf="!p.FotoPlantUser" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
+            
             <ion-card-header>
               <ion-card-title>{{p.NombrePerso}}</ion-card-title>
             </ion-card-header>
@@ -91,6 +92,22 @@
                   <strong>Tipo de luz:</strong>{{p.TipoPLanta}}
                 </ion-item>
               </ion-list>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-card>
+      </swiper-slide>
+      <!-- Agregar planta nueva slide -->
+      <swiper-slide (click)="addUpdatePlant()">
+        <ion-card>
+          <ion-card>
+            <img alt="Lechuga"
+              src="https://static.vecteezy.com/system/resources/thumbnails/012/578/976/small/leaf-and-pot-icon-potted-plant-icon-trendy-design-leaf-on-pot-icon-garden-logo-illustration-vector.jpg" />
+            <ion-card-header>
+              <ion-card-title>Agregue una nueva planta</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              
             </ion-card-content>
           </ion-card>
 
@@ -127,4 +144,3 @@
     </ion-toolbar>
   </ion-footer>
 </div>
-

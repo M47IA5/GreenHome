@@ -5,5 +5,6 @@ export interface PlantasUser{
     FechaSiembra: string,
     TipoPLanta: string,
     UltimoDiaRiego: string,
-    Temporada: string
+    Temporada: string,
+    FotoPlantUser: string
 }

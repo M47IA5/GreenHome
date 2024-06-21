@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Plantas } from 'src/app/modelos/Plantas.model';
+import { User } from 'src/app/modelos/User.module';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -9,13 +10,13 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './agregar-actualizar-plant.component.html',
   styleUrls: ['./agregar-actualizar-plant.component.scss'],
 })
-export class AgregarActualizarPlantComponent  implements OnInit {
+export class AgregarActualizarPlantComponent implements OnInit {
 
   @Input() plant!: Plantas
 
   form = new FormGroup({
     IDPlanta: new FormControl(''),
-    //FotoPlanta: new FormControl('', [Validators.required]),
+    FotoPlanta: new FormControl('',[Validators.required]),
     NombrePlanta: new FormControl('', [Validators.required, Validators.minLength(2)]),
     DiasFertilizacion: new FormControl(null, [Validators.required, Validators.min(0)]),
     Temporada: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -44,7 +45,9 @@ export class AgregarActualizarPlantComponent  implements OnInit {
     if (this.plant) this.form.setValue(this.plant);
   }
 
-
+  user(): User {
+    return this.utils.getFromLocalStorage('user');
+  }
 
   submit() {
     if (this.form.valid) {
@@ -53,6 +56,12 @@ export class AgregarActualizarPlantComponent  implements OnInit {
       else this.createPlant()
 
     }
+  }
+
+  
+  async tomarImagen() {
+    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Planta')).dataUrl;
+    this.form.controls.FotoPlanta.setValue(dataUrl)
   }
 
   setNumberInputs() {
@@ -66,23 +75,22 @@ export class AgregarActualizarPlantComponent  implements OnInit {
   }
 
   //agregar planta
-  async createPlant() { 
+  async createPlant() {
 
-
+    let user = this.user();
     let path = `Plantas`
 
     const loading = await this.utils.loading();
-    const id = this.firebase.getId();
-    this.form.value.IDPlanta = id;
     await loading.present();
 
-    /*///subir imagen y obtener la url
+    ///subir imagen y obtener la url
     let dataUrl = this.form.value.FotoPlanta;
-    let imagenPath = `${this.user.uid}/${Date.now()}`;
+    let imagenPath = `Plantas/${user.UserID}/${Date.now()}`;
     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
-    this.form.controls.FotoPlanta.setValue(imagenUrl);*/
+    this.form.controls.FotoPlanta.setValue(imagenUrl);
 
-
+    const id = this.firebase.getId();
+    this.form.value.IDPlanta = id;
 
     this.firebase.createDoc(this.form.value, path, id).then(async res => {
 
@@ -125,12 +133,12 @@ export class AgregarActualizarPlantComponent  implements OnInit {
     await loading.present();
 
     //si cambio de imagen y obtener la url
-    //   /*if (this.form.value.FotoPlanta !== this.Plant.FotoPlanta) {
-    //     let dataUrl = this.form.value.FotoPlanta;
-    //     let imagenPath = await this.firebase.getFilePath(this.Plant.FotoPlanta);
-    //     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
-    //     this.form.controls.FotoPlanta.setValue(imagenUrl);
-    //   }*/
+    if (this.form.value.FotoPlanta !== this.plant.FotoPlanta) {
+      let dataUrl = this.form.value.FotoPlanta;
+      let imagenPath = await this.firebase.getFilePath(this.plant.FotoPlanta);
+      let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
+      this.form.controls.FotoPlanta.setValue(imagenUrl);
+    }
 
 
 

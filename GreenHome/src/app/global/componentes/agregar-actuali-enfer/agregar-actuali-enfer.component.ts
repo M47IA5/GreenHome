@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Enfermedades } from 'src/app/modelos/Enfermedad.model';
+import { User } from 'src/app/modelos/User.module';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -9,17 +10,17 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './agregar-actuali-enfer.component.html',
   styleUrls: ['./agregar-actuali-enfer.component.scss'],
 })
-export class AgregarActualiEnferComponent  implements OnInit {
+export class AgregarActualiEnferComponent implements OnInit {
 
   @Input() enfer!: Enfermedades
 
-  constructor(private firebase:FirebaseService,
-              private utils:UtilsService
+  constructor(private firebase: FirebaseService,
+    private utils: UtilsService
   ) { }
 
   form = new FormGroup({
     EnferID: new FormControl(''),
-    //FotoPlanta: new FormControl('', [Validators.required]),
+    FotoEnfer: new FormControl('', [Validators.required]),
     NombreEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
     DescripcionEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
     CausasEnfer: new FormControl('', [Validators.required, Validators.minLength(2)]),
@@ -27,9 +28,18 @@ export class AgregarActualiEnferComponent  implements OnInit {
     DuracionEnfer: new FormControl(null, [Validators.required, Validators.min(0)]),
   })
 
+  user = {} as User;
 
   ngOnInit() {
+
+    this.user = this.utils.getFromLocalStorage('user')
+
     if (this.enfer) this.form.setValue(this.enfer);
+  }
+
+  async tomarImagen() {
+    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Plaga')).dataUrl;
+    this.form.controls.FotoEnfer.setValue(dataUrl)
   }
 
 
@@ -49,24 +59,23 @@ export class AgregarActualiEnferComponent  implements OnInit {
     if (DuracionEnfer.value) DuracionEnfer.setValue(parseFloat(DuracionEnfer.value));
   }
 
-  //agregar fertilizante
-  async createEnfer() { 
+  //agregar Enfermedad
+  async createEnfer() {
 
 
     let path = `Enfermedades`
 
     const loading = await this.utils.loading();
-    const id = this.firebase.getId();
-    this.form.value.EnferID = id;
     await loading.present();
 
-    /*///subir imagen y obtener la url
-    let dataUrl = this.form.value.FotoPlanta;
-    let imagenPath = `${this.user.uid}/${Date.now()}`;
+    ///subir imagen y obtener la url
+    let dataUrl = this.form.value.FotoEnfer;
+    let imagenPath = `Enfermedades/${this.user.UserID}/${Date.now()}`;
     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
-    this.form.controls.FotoPlanta.setValue(imagenUrl);*/
+    this.form.controls.FotoEnfer.setValue(imagenUrl);
 
-
+    const id = this.firebase.getId();
+    this.form.value.EnferID = id;
 
     this.firebase.createDoc(this.form.value, path, id).then(async res => {
 
@@ -99,7 +108,7 @@ export class AgregarActualiEnferComponent  implements OnInit {
 
   }
 
-  //actualizar fertilizante
+  //actualizar Enfermedad
   async updateEnfer() {
 
 
@@ -109,12 +118,12 @@ export class AgregarActualiEnferComponent  implements OnInit {
     await loading.present();
 
     //si cambio de imagen y obtener la url
-    //   /*if (this.form.value.FotoPlanta !== this.Plant.FotoPlanta) {
-    //     let dataUrl = this.form.value.FotoPlanta;
-    //     let imagenPath = await this.firebase.getFilePath(this.Plant.FotoPlanta);
-    //     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
-    //     this.form.controls.FotoPlanta.setValue(imagenUrl);
-    //   }*/
+    if (this.form.value.FotoEnfer !== this.enfer.FotoEnfer) {
+      let dataUrl = this.form.value.FotoEnfer;
+      let imagenPath = await this.firebase.getFilePath(this.enfer.FotoEnfer);
+      let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
+      this.form.controls.FotoEnfer.setValue(imagenUrl);
+    }
 
 
 

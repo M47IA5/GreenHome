@@ -14,6 +14,7 @@ import { VerFertComponent } from './componentes/ver-fert/ver-fert.component';
 import { VerPlagComponent } from './componentes/ver-plag/ver-plag.component';
 import { ActuAgrePlantUserComponent } from './componentes/actu-agre-plant-user/actu-agre-plant-user.component';
 import { VerPlatUserComponent } from './componentes/ver-plat-user/ver-plat-user.component';
+import { ContraOlvidadaComponent } from './componentes/contra-olvidada/contra-olvidada.component';
 
 
 
@@ -31,7 +32,8 @@ import { VerPlatUserComponent } from './componentes/ver-plat-user/ver-plat-user.
     VerFertComponent,
     VerPlagComponent,
     ActuAgrePlantUserComponent,
-    VerPlatUserComponent
+    VerPlatUserComponent,
+    ContraOlvidadaComponent
   ],
   exports: [
     HeaderComponent,
@@ -47,7 +49,8 @@ import { VerPlatUserComponent } from './componentes/ver-plat-user/ver-plat-user.
     VerFertComponent,
     VerPlagComponent,
     ActuAgrePlantUserComponent,
-    VerPlatUserComponent
+    VerPlatUserComponent,
+    ContraOlvidadaComponent
   ],
 
   imports: [

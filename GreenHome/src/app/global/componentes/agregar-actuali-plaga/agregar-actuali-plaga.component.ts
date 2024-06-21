@@ -20,20 +20,18 @@ export class AgregarActualiPlagaComponent implements OnInit {
 
   form = new FormGroup({
     PlagID: new FormControl(''),
-    FotoPlag: new FormControl(''),
+    FotoPlag: new FormControl('',[Validators.required]),
     NombrePlag: new FormControl('', [Validators.required, Validators.minLength(2)]),
     DescripcionPlag: new FormControl('', [Validators.required, Validators.minLength(2)]),
     CausasPosibles: new FormControl('', [Validators.required, Validators.minLength(2)]),
     Control: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    DuracionDias: new FormControl(null, [Validators.required, Validators.min(0)]),
+    DuracionDias: new FormControl(null, [Validators.required, Validators.min(0)])
   })
 
   user = {} as User;
 
   ngOnInit() {
-
     this.user = this.utils.getFromLocalStorage('user')
-
     if (this.plag) this.form.setValue(this.plag);
   }
 
@@ -45,8 +43,8 @@ export class AgregarActualiPlagaComponent implements OnInit {
   submit() {
     if (this.form.valid) {
 
-      if (this.plag) this.updateEnfer();
-      else this.createEnfer()
+      if (this.plag) this.updatePlag();
+      else this.createPlag()
 
     }
   }
@@ -57,24 +55,22 @@ export class AgregarActualiPlagaComponent implements OnInit {
     if (DuracionDias.value) DuracionDias.setValue(parseFloat(DuracionDias.value));
   }
 
-  //agregar fertilizante
-  async createEnfer() {
-
+  //agregar Plaga
+  async createPlag() {
 
     let path = `Plagas`
 
     const loading = await this.utils.loading();
-    const id = this.firebase.getId();
-    this.form.value.PlagID = id;
     await loading.present();
 
     //subir imagen y obtener la url
     let dataUrl = this.form.value.FotoPlag;
-    let imagenPath = `${this.user.UserID}/${Date.now()}`;
+    let imagenPath = `Plagas/${this.user.UserID}/${Date.now()}`;
     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
     this.form.controls.FotoPlag.setValue(imagenUrl);
 
-
+    const id = this.firebase.getId();
+    this.form.value.PlagID = id;
 
     this.firebase.createDoc(this.form.value, path, id).then(async res => {
 
@@ -89,7 +85,6 @@ export class AgregarActualiPlagaComponent implements OnInit {
 
       })
 
-
     }).catch(error => {
       console.log(error);
 
@@ -107,9 +102,8 @@ export class AgregarActualiPlagaComponent implements OnInit {
 
   }
 
-  //actualizar fertilizante
-  async updateEnfer() {
-
+  //actualizar Plaga
+  async updatePlag() {
 
     let path = `Plagas/${this.plag.PlagID}`
 
@@ -124,9 +118,6 @@ export class AgregarActualiPlagaComponent implements OnInit {
       this.form.controls.FotoPlag.setValue(imagenUrl);
     }
 
-
-
-
     this.firebase.updateDocument(path, this.form.value).then(async res => {
 
       this.utils.dismissModal({ success: true });
@@ -139,7 +130,6 @@ export class AgregarActualiPlagaComponent implements OnInit {
         icon: 'checkmark-circle-outline'
 
       })
-
 
     }).catch(error => {
       console.log(error);
@@ -157,7 +147,5 @@ export class AgregarActualiPlagaComponent implements OnInit {
     })
 
   }
-
-
 }
 

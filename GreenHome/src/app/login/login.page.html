@@ -14,7 +14,7 @@
   
          <!--Email-->
   
-        <app-custom-input autocomplete="EmailUser" icon="mail" [control]="form.controls.EmailUser" type="email"
+        <app-custom-input class="" autocomplete="EmailUser" icon="mail" [control]="form.controls.EmailUser" type="email"
           label="Correo"></app-custom-input>
   
         <div class="validators" *ngIf="form.controls.EmailUser.errors && form.controls.EmailUser.touched">
@@ -35,7 +35,7 @@
           <div class="ion-text-center" *ngIf="form.controls.Password.errors?.['required']">La Contraseña es Requerida</div>
         </div>
   
-        <p class="ion-text-center" routerLink="forgot-Password">¿Olvidaste tu contraseña?</p>
+        <p class="ion-text-center" (click)="olvidoContra()">¿Olvidaste tu contraseña?</p>
   
         <ion-button expand="block" mode="md" class="submit" type="submit" [disabled]="form.invalid">
           Ingresar

@@ -4,35 +4,33 @@
   <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
     <!--solo si existe una imagen-->
-    <!--<ion-avatar *ngIf="form.value.FotoPlanta">
-      <img [src]="form.value.FotoPlanta">
-    </ion-avatar>-->
+    <ion-avatar *ngIf="form.value.FotoPlantUser">
+      <img [src]="form.value.FotoPlantUser">
+    </ion-avatar>
 
     <!--solo si NO existe una imagen-->
 
-    <!--<ion-icon class="image-icon" *ngIf="!form.value.FotoPlanta" name="image-outline"></ion-icon>-->
+    <ion-icon class="image-icon" *ngIf="!form.value.FotoPlantUser" name="image-outline"></ion-icon>
 
     <br>
     <!--tomar/selecciona imagen-->
-    <!--<ion-button  mode="md" size="small" shape="round">
+    <ion-button (click)="tomarImagen()" mode="md" size="small" shape="round">
       tomar/seleccionar
-    </ion-button>-->
+    </ion-button>
 
-    <!--Nombre de Planta-->
+    <!--  Nombre de la Planta -->
 
-    <app-custom-input autocomplete="name" [control]="form.controls.NombrePlanta" type="text"
-      label="Nombre de la planta"></app-custom-input>
+    <app-custom-input [control]="form.controls.NombrePlanta" type="text" label="Nombre de la planta"></app-custom-input>
 
-    <div class="validators" *ngIf="form.controls.NombrePlanta.errors && form.controls.NombrePlanta.touched">
+    <div class="validators" *ngIf="form.controls.NombrePerso.errors && form.controls.NombrePlanta.touched">
 
       <div *ngIf="form.controls.NombrePlanta.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.NombrePlanta.errors?.['minLenght']">El nombre debe tener al menos 2 caracteres</div>
+      <div *ngIf="form.controls.NombrePlanta.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
     <!--Alias planta-->
 
-    <app-custom-input [control]="form.controls.NombrePerso" type="text"
-      label="Alias de la planta" ></app-custom-input>
+    <app-custom-input [control]="form.controls.NombrePerso" type="text" label="Alias de la planta"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.NombrePerso.errors && form.controls.NombrePerso.touched">
 
@@ -40,9 +38,9 @@
       <div *ngIf="form.controls.NombrePerso.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
-    <!--Temporada-->
+    <!--Fecha de la siembra-->
 
-    <app-custom-input autocomplete="Temporada" [control]="form.controls.FechaSiembra" type="text"
+    <app-custom-input autocomplete="Temporada" [control]="form.controls.FechaSiembra" type="date"
       label="Fecha de siembra"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.FechaSiembra.errors && form.controls.FechaSiembra.touched">
@@ -51,21 +49,12 @@
       <div *ngIf="form.controls.FechaSiembra.errors?.['minLenght']">se debe decir si hay unidades disponibles</div>
     </div>
 
-    <!--DiasGerminacion-->
+    <!--Ultimo dia de riego-->
 
-    <app-custom-input [control]="form.controls.TipoPLanta" type="text"
-      label="Tipo de planta" ></app-custom-input>
+    
 
-    <div class="validators" *ngIf="form.controls.TipoPLanta.errors && form.controls.TipoPLanta.touched">
-
-      <div *ngIf="form.controls.TipoPLanta.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.TipoPLanta.errors?.['min']">El precio debe ser arriba de 0</div>
-    </div>
-
-    <!--DiasFruto-->
-
-    <app-custom-input [control]="form.controls.UltimoDiaRiego" type="text"
-      label="Ultimo Dia de riego" ></app-custom-input>
+    <app-custom-input [control]="form.controls.UltimoDiaRiego" type="date"
+      label="Ultimo Dia de riego"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.UltimoDiaRiego.errors && form.controls.UltimoDiaRiego.touched">
 
@@ -73,10 +62,9 @@
       <div *ngIf="form.controls.UltimoDiaRiego.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
-    <!--DiasTransplante-->
+    <!--Temporada -->
 
-    <app-custom-input [control]="form.controls.Temporada" type="text"
-      label="Temporada" ></app-custom-input>
+    <app-custom-input [control]="form.controls.Temporada" type="text" label="Temporada"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.Temporada.errors && form.controls.Temporada.touched">
 
@@ -84,7 +72,17 @@
       <div *ngIf="form.controls.Temporada.errors?.['min']">El precio debe ser arriba de 0</div>
     </div>
 
-    <ion-button mode="md" class="ion-margin" type="submit">
+    <!--Tipo de PLanta-->
+
+    <app-custom-input [control]="form.controls.TipoPLanta" type="text" label="Tipo de siembra"></app-custom-input>
+
+    <div class="validators" *ngIf="form.controls.TipoPLanta.errors && form.controls.TipoPLanta.touched">
+
+      <div *ngIf="form.controls.TipoPLanta.errors?.['required']">Este campo es requerido</div>
+      <div *ngIf="form.controls.TipoPLanta.errors?.['min']">El precio debe ser arriba de 0</div>
+    </div>
+
+    <ion-button mode="md" class="ion-margin" type="submit" [disabled]="form.invalid">
       {{plantUser ? 'Actualizar Planta' : 'Agregar planta'}}
       <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
     </ion-button>
