@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { NoAuthGuard } from './guards/no-auth.guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule), canActivate:[NoAuthGuard]
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule), canActivate:[AuthGuard]
   },
   {
     path: '',
@@ -17,15 +19,15 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule), canActivate:[NoAuthGuard]
   },
   {
     path: 'plantas',
-    loadChildren: () => import('./plantas/plantas.module').then( m => m.PlantasPageModule)
+    loadChildren: () => import('./plantas/plantas.module').then( m => m.PlantasPageModule), canActivate:[AuthGuard]
   },
   {
     path: 'consejos',
-    loadChildren: () => import('./consejos/consejos.module').then( m => m.ConsejosPageModule)
+    loadChildren: () => import('./consejos/consejos.module').then( m => m.ConsejosPageModule), canActivate:[AuthGuard]
   },
 ];
 
