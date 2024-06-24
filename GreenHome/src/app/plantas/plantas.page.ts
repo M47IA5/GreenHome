@@ -125,5 +125,7 @@ export class PlantasPage {
     })
     if (success) this.getPlantas();
   }
-
+  cerrarSesion() {
+    this.firebase.signOut();
+  }
 }

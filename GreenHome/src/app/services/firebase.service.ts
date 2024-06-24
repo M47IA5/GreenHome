@@ -114,7 +114,7 @@ export class FirebaseService {
   }
   getCollectionData(path: string, colletionQuery?: any) {
     const ref = collection(getFirestore(), path);
-    return collectionData(query(ref, ...colletionQuery), { idField: 'id' });
+    return collectionData(query(ref, ...colletionQuery), { idField: 'IDPlantaUser' });
   }
 
   //subir la imagen

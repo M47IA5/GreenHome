@@ -4,8 +4,37 @@ swiper-container {
   }
    
   swiper-slide {
+    margin-top: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
+  .disabled {
+    opacity: 0.5; /* Oscurecer el elemento */
+    pointer-events: none; /* Desactivar el evento de click */
+  }
+  .img-card {
+    width: 350px;
+    height: 300px;
+    border-radius: 30px;
+    border-color: rgba(0, 0, 0, 0.250);
+    border-style: solid;
+    border-width: 1px;
+  }
+  .seed-icon {
+    width: 32px; /* ajusta el ancho */
+    height: 32px; /* ajusta el alto */
+  }
+  .background-login-register{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgb(14,103,0);
+    background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(12,205,62,1) 23%, rgba(0,212,255,1) 100%);
+    
+  }
+
+  

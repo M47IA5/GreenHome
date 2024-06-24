@@ -1,8 +1,55 @@
-.logo{
-    position:center;
-    margin:auto;
-    width: 75%;
-    padding: 10px;
-    text-align: center;
-    display: block;
+.logo {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+}
+.background-login-register {
+  position: relative;
+  background: rgb(164, 240, 255);
+  background: radial-gradient(
+    circle,
+    rgba(164, 240, 255, 1) 0%,
+    rgba(116, 247, 129, 1) 48%,
+    rgba(164, 240, 255, 1) 100%
+  );
+  background-repeat: no-repeat;
+
+}
+
+#form-list {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.justify-content-center {
+  justify-content: center;
+  text-align: center;
+}
+
+ion-button {
+  height: 40px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #066d04;
+}
+
+ion-button.submit {
+  color: #ffffff;
+}
+
+ion-button.volver {
+  color: #ffffff;
+}
+
+ion-text-center {
+  color: #2e865f;
+}
+
+h1 {
+  color: #044703;
+  font-size: xx-large;
 }
