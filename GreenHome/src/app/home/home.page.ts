@@ -147,5 +147,5 @@ export class HomePage {
       if (success) this.getPlantUser();
     }
 
-    
 }
+

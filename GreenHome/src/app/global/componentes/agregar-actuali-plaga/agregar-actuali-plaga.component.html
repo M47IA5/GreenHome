@@ -21,7 +21,7 @@
     <!--Nombre de fertilizante-->
 
     <app-custom-input autocomplete="name" [control]="form.controls.NombrePlag" type="text"
-      label="Nombre del Plaga"></app-custom-input>
+      label="Nombre de la Plaga"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.NombrePlag.errors && form.controls.NombrePlag.touched">
 
@@ -32,7 +32,7 @@
     <!--descripcion Fertilizacion-->
 
     <app-custom-input [control]="form.controls.DescripcionPlag" type="text"
-      label="Descripcion del Plaga"></app-custom-input>
+      label="Descripción de la Plaga"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DescripcionPlag.errors && form.controls.DescripcionPlag.touched">
 
@@ -43,7 +43,7 @@
     <!--ModoDeUso-->
 
     <app-custom-input autocomplete="CausasPosibles" [control]="form.controls.CausasPosibles" type="text"
-      label="Modo De Uso"></app-custom-input>
+      label="Causas posibles"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.CausasPosibles.errors && form.controls.CausasPosibles.touched">
 
@@ -54,7 +54,7 @@
     <!--ModoDeUso-->
 
     <app-custom-input autocomplete="Control" [control]="form.controls.Control" type="text"
-      label="Control de Plaga"></app-custom-input>
+      label="Tratamiento de la Plaga"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.Control.errors && form.controls.Control.touched">
 
@@ -64,7 +64,7 @@
 
     <!--FrecuenciaDias-->
 
-    <app-custom-input [control]="form.controls.DuracionDias" type="number" label="Duracion de uso"
+    <app-custom-input [control]="form.controls.DuracionDias" type="number" label="Dias de Tratamiento"
       (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DuracionDias.errors && form.controls.DuracionDias.touched">

@@ -64,7 +64,7 @@ export class ActuAgrePlantUserComponent implements OnInit {
   // }
 
   async tomarImagen() {
-    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Plaga')).dataUrl;
+    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la planta')).dataUrl;
     this.form.controls.FotoPlantUser.setValue(dataUrl)
   }
 

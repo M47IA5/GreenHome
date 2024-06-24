@@ -9,33 +9,33 @@
     <!-- Aca va el contenido del menu -->
     <ion-content>
       <ion-list [inset]="true">
+                  <!-- Home -->
         <ion-item href="home">
-          <!-- Home -->
           <ion-icon name="home"></ion-icon>
           <ion-label class="ion-margin">Home</ion-label>
         </ion-item>
-        <ion-item>
-          <!-- Perfil -->
+                  <!-- Perfil -->
+        <ion-item class="disabled" id="perf_prox">
           <ion-icon name="person"></ion-icon>
-          <ion-label class="ion-margin">Perfil</ion-label> 
+          <ion-label class="ion-margin">Perfil</ion-label>
         </ion-item>
-        <ion-item>
-          <!-- Configuración -->
+                  <!-- Configuración -->
+        <ion-item class="disabled" id="conf_prox">
           <ion-icon name="build"></ion-icon>
           <ion-label class="ion-margin">Configuración</ion-label>
         </ion-item>
+                  <!-- Plantas -->
         <ion-item href="plantas">
-          <!-- Plantas -->
           <ion-icon name="leaf"></ion-icon>
           <ion-label class="ion-margin">Plantas</ion-label>
         </ion-item>
+                  <!-- Consejos -->
         <ion-item href="consejos">
-          <!-- Consejos -->
           <ion-icon name="help"></ion-icon>
           <ion-label class="ion-margin">Consejos</ion-label>
         </ion-item>
+                  <!-- Cerrar Sesión -->
         <ion-item (click)="cerrarSesion()">
-          <!-- Cerrar Sesión -->
           <ion-icon name="log-out"></ion-icon>
           <ion-label class="ion-margin">Cerrar Sesión</ion-label>
           
@@ -50,17 +50,16 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>GreenHome</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
-  <ion-content class="ion-padding">
+  <ion-content>
+    <ion-grid class="background-login-register ion-padding">
     <swiper-container *ngIf="!loading">
       <swiper-slide *ngFor="let p of plantUser">
-        <ion-card>
-          <ion-card (click)="prePlanta(p)">
+          <ion-card (click)="prePlanta(p)" class="card-holder">
             <!-- si tiene imagen -->
             <img  *ngIf="p.FotoPlantUser" [src]="p.FotoPlantUser">
             <!-- si no tiene imagen -->
@@ -74,42 +73,36 @@
                 <ion-item>
                   <ion-icon name="leaf" class="ion-margin"></ion-icon>
                   <!-- Agregar Nombre desde BD -->
-                  <strong>Nombre:</strong>{{p.NombrePlanta}}
+                  Nombre: {{p.NombrePlanta}}
                 </ion-item>
                 <ion-item>
                   <ion-icon name="calendar" class="ion-margin"></ion-icon>
                   <!-- Agregar Temporada desde BD -->
-                  <strong>Temporada: </strong>{{p.Temporada}}
+                  Temporada: {{p.Temporada}}
                 </ion-item>
                 <ion-item>
                   <ion-icon name="time" class="ion-margin"></ion-icon>
                   <!-- Calcular tiempo de riego -->
-                  Ultimo Riego: Hoy
+                  Ultimo Riego: {{p.UltimoDiaRiego}}
                 </ion-item>
                 <ion-item>
                   <ion-icon name="sunny" class="ion-margin"></ion-icon>
                   <!-- Agregar Temporada desde BD -->
-                  <strong>Tipo de luz:</strong>{{p.TipoPLanta}}
+                  Tipo de plantación: {{p.TipoPLanta}}
                 </ion-item>
               </ion-list>
             </ion-card-content>
-          </ion-card>
 
         </ion-card>
       </swiper-slide>
       <!-- Agregar planta nueva slide -->
       <swiper-slide (click)="addUpdatePlant()">
         <ion-card>
-          <ion-card>
             <img alt="Lechuga"
               src="https://static.vecteezy.com/system/resources/thumbnails/012/578/976/small/leaf-and-pot-icon-potted-plant-icon-trendy-design-leaf-on-pot-icon-garden-logo-illustration-vector.jpg" />
             <ion-card-header>
               <ion-card-title>Agregue una nueva planta</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-              
-            </ion-card-content>
-          </ion-card>
 
         </ion-card>
       </swiper-slide>
@@ -121,7 +114,7 @@
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-
+  </ion-grid>
   </ion-content>
   <ion-footer>
     <ion-toolbar>

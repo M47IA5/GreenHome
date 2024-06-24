@@ -15,11 +15,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-grid id="container">
     <img [src]="plag.FotoPlag">
-  </ion-item>
+  </ion-grid>
   <!--Nombre Plaga-->
   <ion-item>
+    <ion-icon name="bookmark" class="margin"></ion-icon>
     <h1>Nombre: {{plag.NombrePlag}} </h1>
   </ion-item>
 
@@ -40,7 +41,7 @@
 
   <!--Duración -->
   <ion-item>
-    <h3>Duración: {{plag.DuracionDias}}</h3>
+    <h3>Verificar cada: {{plag.DuracionDias}} dias</h3>
   </ion-item>
 
 </ion-content>

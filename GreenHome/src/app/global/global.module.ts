@@ -33,7 +33,7 @@ import { ContraOlvidadaComponent } from './componentes/contra-olvidada/contra-ol
     VerPlagComponent,
     ActuAgrePlantUserComponent,
     VerPlatUserComponent,
-    ContraOlvidadaComponent
+    ContraOlvidadaComponent,
   ],
   exports: [
     HeaderComponent,

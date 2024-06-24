@@ -21,7 +21,7 @@
     <!--Nombre de enfermedad-->
 
     <app-custom-input autocomplete="name" [control]="form.controls.NombreEnfer" type="text"
-      label="Nombre del Enfermedad"></app-custom-input>
+      label="Nombre de la Enfermedad"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.NombreEnfer.errors && form.controls.NombreEnfer.touched">
 
@@ -32,7 +32,7 @@
     <!--descripcion Enfermedad-->
 
     <app-custom-input [control]="form.controls.DescripcionEnfer" type="text"
-      label="Descripcion del Enfermedad"></app-custom-input>
+      label="Descripción de la Enfermedad"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DescripcionEnfer.errors && form.controls.DescripcionEnfer.touched">
 
@@ -43,7 +43,7 @@
     <!--Causas de la enfermedad-->
 
     <app-custom-input autocomplete="CausasEnfer" [control]="form.controls.CausasEnfer" type="text"
-      label="Modo De Uso"></app-custom-input>
+      label="Causa de la Enfermedad"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.CausasEnfer.errors && form.controls.CausasEnfer.touched">
 
@@ -54,7 +54,7 @@
     <!--Tratamiento-->
 
     <app-custom-input autocomplete="ControlEnfer" [control]="form.controls.ControlEnfer" type="text"
-      label="Control de enfer"></app-custom-input>
+      label="Tratamiento"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.ControlEnfer.errors && form.controls.ControlEnfer.touched">
 
@@ -65,7 +65,7 @@
 
     <!--Duracion del tratamiento-->
 
-    <app-custom-input [control]="form.controls.DuracionEnfer" type="number" label="Duracion de uso"
+    <app-custom-input [control]="form.controls.DuracionEnfer" type="number" label="Duración del tratamiento"
       (ionInput)="setNumberInputs()"></app-custom-input>
 
     <div class="validators" *ngIf="form.controls.DuracionEnfer.errors && form.controls.DuracionEnfer.touched">

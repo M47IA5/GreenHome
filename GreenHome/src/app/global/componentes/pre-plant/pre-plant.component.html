@@ -15,31 +15,32 @@
 <ion-content>
   <!--Nombre Planta-->
   <ion-item>
-    <ion-label>Nombre: {{plant.NombrePlanta}} </ion-label>
+    <ion-icon slot="start" name="leaf" color="primary"></ion-icon>
+    <h1> Nombre: {{plant.NombrePlanta}} </h1>
   </ion-item>
 
   <!--Temporada -->
   <ion-item>
-    <ion-label>Temporada: {{plant.Temporada}}</ion-label>
+    <h2>Temporada: {{plant.Temporada}}</h2>
   </ion-item>
 
   <!--Descripcion -->
   <ion-item>
-    <ion-label>Descripcion: {{plant.Descripcion}}</ion-label>
+    <h3>Descripcion: {{plant.Descripcion}}</h3>
   </ion-item>
 
 
   <!--Recomendaciones -->
   <ion-item>
-    <ion-label>Recomendaciones: {{plant.Recomendaciones}}</ion-label>
+    <h3>Recomendaciones: {{plant.Recomendaciones}}</h3>
   </ion-item>
 
   <ion-item>
-    <ion-button (click)="verPlanta(plant)">Detalles</ion-button>
+    <ion-button size="medium" slot="start" (click)="verPlanta(plant)">Detalles</ion-button>
     <!--editar-->
-    <ion-button (click)="addUpdatePlant(plant)" color="success">Editar</ion-button>
+    <ion-button size="medium" (click)="addUpdatePlant(plant)" color="success">Editar</ion-button>
     <!--borrar-->
-    <ion-button (click)="confirmDeletePlant(plant)" color="danger">Borrar</ion-button>
+    <ion-button size="medium" slot="end" (click)="confirmDeletePlant(plant)" color="danger">Borrar</ion-button>
   </ion-item>
   
 </ion-content>

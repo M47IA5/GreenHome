@@ -49,24 +49,12 @@ export class VerPlatUserComponent implements OnInit {
 
   getPlantUser() {
     let user = this.user();
-    let path = `/users/${user.UserID}/plantasUsuario`;
-
     this.loading = true;
-
-    let query = [
-      //orderBy('precio', 'desc'),
-      //where('precio', '>',5000)
-    ]
-
-    let sub = this.firebase.getCollectionData(path, query).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.plantUser = res;
-
-        this.loading = false;
-
-        sub.unsubscribe();
-      }
+    let sub = this.firebase.obtdoc<PlantasUser>(`users/${user.UserID}/plantasUsuario/${this.plantUser.IDPlantaUser}`).subscribe(res => {
+      console.log(res);
+      this.plantUser = res;
+      this.loading = false;
+      sub.unsubscribe();
     })
   }
 
@@ -81,10 +69,10 @@ export class VerPlatUserComponent implements OnInit {
 
 
   //eliminar planta
-  async deletePlant(plantUser: PlantasUser) {
+  async deletePlant(PlantUser: PlantasUser) {
 
     let user = this.user();
-    let path = `/users/${user.UserID}/plantasUsuario/${plantUser.IDPlantaUser}`
+    let path = `/users/${user.UserID}/plantasUsuario/${PlantUser.IDPlantaUser}`
 
     const loading = await this.utils.loading();
     await loading.present();
@@ -92,7 +80,7 @@ export class VerPlatUserComponent implements OnInit {
 
     this.firebase.deleteDocument(path).then(async res => {
 
-      this.PlantUSer = this.PlantUSer.filter(p => p.IDPlantaUser !== plantUser.IDPlantaUser);
+      this.PlantUSer = this.PlantUSer.filter(p => p.IDPlantaUser !== PlantUser.IDPlantaUser);
       this.utils.dismissModal({ success: true });
       this.utils.presentToast({
         message: 'Planta Eliminada exitosamente',
@@ -117,7 +105,7 @@ export class VerPlatUserComponent implements OnInit {
   }
 
   //confirmar la eliminacion de la planta
-  async confirmDeletePlant(plantUser: PlantasUser) {
+  async confirmDeletePlant(PlantUser: PlantasUser) {
     this.utils.presentAlert({
       header: 'Eliminar Planta',
       message: 'Seguro que deseas eliminar esta planta?',
@@ -127,7 +115,7 @@ export class VerPlatUserComponent implements OnInit {
         }, {
           text: 'Si, eliminar',
           handler: () => {
-            this.deletePlant(plantUser)
+            this.deletePlant(PlantUser)
           }
         }
       ]

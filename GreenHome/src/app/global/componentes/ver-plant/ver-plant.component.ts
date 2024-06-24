@@ -8,6 +8,8 @@ import { UtilsService } from 'src/app/services/utils.service';
   templateUrl: './ver-plant.component.html',
   styleUrls: ['./ver-plant.component.scss'],
 })
+
+
 export class VerPlantComponent  implements OnInit {
 
   @Input() plant!: Plantas;

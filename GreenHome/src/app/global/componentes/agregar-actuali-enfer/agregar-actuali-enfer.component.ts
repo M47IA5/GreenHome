@@ -38,7 +38,7 @@ export class AgregarActualiEnferComponent implements OnInit {
   }
 
   async tomarImagen() {
-    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Plaga')).dataUrl;
+    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Enfermedad')).dataUrl;
     this.form.controls.FotoEnfer.setValue(dataUrl)
   }
 

@@ -36,7 +36,7 @@ export class AgregarActualiFertComponent implements OnInit {
 
 
   async tomarImagen() {
-    const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Plaga')).dataUrl;
+    const dataUrl = (await this.utils.tomarFoto('Imagen referencial del Fertilizante')).dataUrl;
     this.form.controls.FotoFert.setValue(dataUrl)
   }
 

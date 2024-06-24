@@ -8,42 +8,41 @@
     <!-- Aca va el contenido del menu -->
     <ion-content>
       <ion-list [inset]="true">
+                  <!-- Home -->
         <ion-item href="home">
-          <!-- Home -->
           <ion-icon name="home"></ion-icon>
           <ion-label class="ion-margin">Home</ion-label>
         </ion-item>
-        <ion-item>
-          <!-- Perfil -->
+                  <!-- Perfil -->
+        <ion-item class="disabled" id="perf_prox">
           <ion-icon name="person"></ion-icon>
           <ion-label class="ion-margin">Perfil</ion-label>
         </ion-item>
-        <ion-item>
-          <!-- Configuración -->
+                  <!-- Configuración -->
+        <ion-item class="disabled" id="conf_prox">
           <ion-icon name="build"></ion-icon>
           <ion-label class="ion-margin">Configuración</ion-label>
         </ion-item>
+                  <!-- Plantas -->
         <ion-item href="plantas">
-          <!-- Plantas -->
           <ion-icon name="leaf"></ion-icon>
           <ion-label class="ion-margin">Plantas</ion-label>
         </ion-item>
+                  <!-- Consejos -->
         <ion-item href="consejos">
-          <!-- Consejos -->
           <ion-icon name="help"></ion-icon>
           <ion-label class="ion-margin">Consejos</ion-label>
         </ion-item>
-        <ion-item href="login">
-          <!-- Cerrar Sesión -->
+                  <!-- Cerrar Sesión -->
+        <ion-item (click)="cerrarSesion()">
           <ion-icon name="log-out"></ion-icon>
           <ion-label class="ion-margin">Cerrar Sesión</ion-label>
-
+          
         </ion-item>
       </ion-list>
     </ion-content>
   </ion-content>
 </ion-menu>
-
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
@@ -56,64 +55,74 @@
 
   <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
-  <ion-content class="ion-padding">
-    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-    <swiper-container *ngIf="!loading">
-      <swiper-slide *ngFor="let p of Plant">
-        <ion-card>
-          <ion- (click)="prePlanta(p)">
-            <!-- si existe una imagen -->
-            <img [src]="p.FotoPlanta" *ngIf="p.FotoPlanta" alt="">
-            <!-- si no existe una imagen -->
-            <img alt="Lechuga" *ngIf="!p.FotoPlanta"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
-            <ion-card-header>
-              <ion-card-title>{{p.NombrePlanta}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-list>
-                <ion-item>
-                  <ion-icon name="leaf" class="ion-margin"></ion-icon>
-                  <!-- Agregar Nombre desde BD -->
-                  <strong>Nombre:</strong>{{p.NombrePlanta}}
-                </ion-item>
-                <ion-item>
-                  <ion-icon name="calendar" class="ion-margin"></ion-icon>
-                  <!-- Agregar Temporada desde BD -->
-                  <strong>Temporada: </strong>{{p.Temporada}}
-                </ion-item>
-                <ion-item>
-                  <ion-icon name="time" class="ion-margin"></ion-icon>
-                  <!-- Calcular tiempo de riego -->
-                  Ultimo Riego: Hoy
-                </ion-item>
-                <ion-item>
-                  <ion-icon name="sunny" class="ion-margin"></ion-icon>
-                  <!-- Agregar Temporada desde BD -->
-                  <strong>Tipo de luz:</strong>{{p.TipoLuz}}
-                </ion-item>
-              </ion-list>
-            </ion-card-content>
-          </ion->
-        </ion-card>
-      </swiper-slide>
-          <!--Agregar Plantas-->
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button size="small" (click)="addUpdatePlant()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-    </swiper-container>
+  <ion-content>
+    <ion-grid class="background-login-register" id="swipers">
+      <ion-row>
+        <ion-col>
+          <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+          </ion-refresher>
+          <swiper-container *ngIf="!loading">
+            <swiper-slide *ngFor="let p of Plant">
+              <ion-card (click)="prePlanta(p)">
+                  <!-- si existe una imagen -->
+                  <img class="img-card"  [src]="p.FotoPlanta" *ngIf="p.FotoPlanta" alt="">
+                  <!-- si no existe una imagen -->
+                  <img alt="Lechuga" *ngIf="!p.FotoPlanta"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
+                  <ion-card-header>
+                    <ion-card-title>{{p.NombrePlanta}}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    <ion-list>
+                      <ion-item>
+                        <ion-icon name="leaf" class="ion-margin"></ion-icon>
+                        <!-- Agregar Nombre desde BD -->
+                        Nombre: {{p.NombrePlanta}}
+                      </ion-item>
+                      <ion-item>
+                        <ion-icon name="calendar" class="ion-margin"></ion-icon>
+                        <!-- Agregar Temporada desde BD -->
+                        Temporada: {{p.Temporada}}
+                      </ion-item>
+                      <ion-item>
+                        <img id="seed-icon" src="./../../assets/icon/seedg.png" class="ion-margin"/>
+                        <!-- Calcular tiempo de riego -->
+                        Tipo de siembra: {{p.TipoSiembra}}
+                      </ion-item>
+                      <ion-item>
+                        <ion-icon name="sunny" class="ion-margin"></ion-icon>
+                        <!-- Agregar Temporada desde BD -->
+                        Tipo de luz: {{p.TipoLuz}}
+                      </ion-item>
+                    </ion-list>
+                  </ion-card-content>
+              </ion-card>
+            </swiper-slide>
+                <!--Agregar Plantas-->
+          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button size="small" (click)="addUpdatePlant()">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          </swiper-container>
+        </ion-col>
 
+      </ion-row>
+      <ion-row>
+        <ion-col>
     <!--Agregar Plantas-->
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button size="small" (click)="addUpdatePlant()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+          <ion-fab vertical="bottom" horizontal="end">
+            <ion-fab-button size="small" (click)="addUpdatePlant()">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </ion-col>
+      </ion-row>
 
+
+  </ion-grid>
   </ion-content>
+
 <ion-footer>
   <ion-toolbar>
     <ion-tabs>
