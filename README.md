@@ -19,4 +19,22 @@ npm install @capacitor/camera
 Para la interfaz de la camara
 npm install @ionic/pwa-elements
 
+Para instalar android Studio:
+
+npm install @capacitor/android ,
+
+Ionic build Android ,
+
+npx cap add android ,
+
+ionic capacitor sync android ,
+
+Para iniciar android Studio:
+
+npx cap open android 
+
+//no tocar lo de abajo
+
+npx cap init GreenHome com.Green.Home
+
 
