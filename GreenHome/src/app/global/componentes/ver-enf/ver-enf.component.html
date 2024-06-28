@@ -1,20 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <!--boton para cerrar modal-->
-      <ion-button (click)="dismissModal()">
-        <ion-icon name="close-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
 
-    <ion-title>
-      <ion-icon name="bandage" color="warning" class=""></ion-icon>
-      {{ enfer.NombreEnfer }}
-    </ion-title>
+
+<ion-header>
+  <ion-toolbar (click)="dismissModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="header_tool">
+          <ion-icon name="bandage" color="warning"></ion-icon>
+          {{enfer.NombreEnfer}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+    <ion-fab-button size="small">
+      <ion-icon name="arrow-back-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <!-- foto -->
    <ion-grid id="container">
     <img [src]="enfer.FotoEnfer">

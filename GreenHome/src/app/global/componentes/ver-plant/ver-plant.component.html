@@ -63,34 +63,28 @@
     <ion-item *ngIf="plant.DiasCrecVegetativo === 0">
       <h2>Esta planta no debe ser transplantada</h2>
     </ion-item>
+
+    <!--DistTransplanteCm -->
+    <ion-item>
+      <h2>Distanciamiento entre plantas: {{plant.DistTransplanteCm}} centimetros entre cada planta</h2>
+    </ion-item>
   
     <!--DiasCrecVegetativo -->
     <ion-item *ngIf="plant.DiasCrecVegetativo > 0">
-      <h2>Dias Crecimiento Vegetativo: {{plant.DiasCrecVegetativo}}</h2>
+      <h2>Dias Crecimiento Vegetativo: {{plant.DiasCrecVegetativo}} desde su plantación</h2>
     </ion-item>
-    
-    <ion-item *ngIf="plant.DiasCrecVegetativo === 0">
-      <h2>No tiene crecimiento vegetativo</h2>
-    </ion-item>
-
     
     <!--DiasCrecInflorecencia -->
     <ion-item *ngIf="plant.DiasCrecInflorecencia > 0">
       <h2>Dias Crecimiento Inflorecencia: {{plant.DiasCrecInflorecencia}} desde su plantación</h2>
     </ion-item>
 
-    <ion-item *ngIf="plant.DiasCrecInflorecencia === 0">
-      <h2>No tiene Crecimiento Inflorecencia</h2>
-    </ion-item>
   
     <!--DiasFruto -->
     <ion-item *ngIf="plant.DiasFruto > 0">
-      <h2>La planta dará frutos aproximadamente: {{plant.DiasFruto}} dias desde su plantación</h2>
+      <h2>La planta desarrolla su fruto aproximadamente el dia: {{plant.DiasFruto}} desde su plantación</h2>
     </ion-item>
 
-    <ion-item *ngIf="plant.DiasFruto === 0">
-      <h2>Esta planta no da frutos</h2>
-    </ion-item>
   
     <!--DiasCosecha -->
     <ion-item>
@@ -115,11 +109,6 @@
     <!--Recomendaciones -->
     <ion-item>
       <h2>Recomendaciones: {{plant.Recomendaciones}}</h2>
-    </ion-item>
-  
-    <!--DistTransplanteCm -->
-    <ion-item>
-      <h2>Distanciamiento Transplante planta: {{plant.DistTransplanteCm}} centimetros entre cada planta</h2>
     </ion-item>
   
     <!--MonitoreoPLagas -->

@@ -1,23 +1,22 @@
+
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <!--boton para cerrar modal-->
-      <ion-button (click)="dismissModal()">
-        <ion-icon name="close-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      <strong>{{plant.NombrePlanta}}</strong>
-    </ion-title>
+  <ion-toolbar (click)="dismissModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="header_tool">
+          🌱{{plant.NombrePlanta}}🌱
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!--Nombre Planta-->
-  <ion-item>
-    <ion-icon slot="start" name="leaf" color="primary"></ion-icon>
-    <h1> Nombre: {{plant.NombrePlanta}} </h1>
-  </ion-item>
+  <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+    <ion-fab-button size="small">
+      <ion-icon name="arrow-back-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
   <!--Temporada -->
   <ion-item>
@@ -36,11 +35,26 @@
   </ion-item>
 
   <ion-item>
-    <ion-button size="medium" slot="start" (click)="verPlanta(plant)">Detalles</ion-button>
-    <!--editar-->
-    <ion-button size="medium" (click)="addUpdatePlant(plant)" color="success">Editar</ion-button>
-    <!--borrar-->
-    <ion-button size="medium" slot="end" (click)="confirmDeletePlant(plant)" color="danger">Borrar</ion-button>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <!--detalle-->
+      <ion-col>
+        <ion-button size="medium" color="light" (click)="verPlanta(plant)">Detalles📖</ion-button>
+      </ion-col>
+      <!--agregar-->
+      <ion-col>
+        <ion-button size="medium" color="success" (click)="verPlanta(plant)">Plantar🌱</ion-button>
+      </ion-col>
+          <!--editar-->
+      <ion-col>
+        <ion-button size="medium" *ngIf="admin" (click)="addUpdatePlant(plant)" color="warning">Editar✍</ion-button>
+      </ion-col>
+          <!--borrar-->
+      <ion-col>
+        <ion-button size="medium" *ngIf="admin" (click)="confirmDeletePlant(plant)" color="danger">Borrar❌</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
   
 </ion-content>

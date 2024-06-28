@@ -3,10 +3,10 @@ import { FirebaseService } from '../services/firebase.service';
 import { UtilsService } from '../services/utils.service';
 import { User } from '../modelos/User.module';
 import { PlantasUser } from '../modelos/PlantasUser.model';
-import { PrePlantComponent } from '../global/componentes/pre-plant/pre-plant.component';
 import { ActuAgrePlantUserComponent } from '../global/componentes/actu-agre-plant-user/actu-agre-plant-user.component';
 import { Plantas } from '../modelos/Plantas.model';
 import { VerPlatUserComponent } from '../global/componentes/ver-plat-user/ver-plat-user.component';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -16,13 +16,26 @@ import { VerPlatUserComponent } from '../global/componentes/ver-plat-user/ver-pl
 export class HomePage {
 
   constructor(private firebase:FirebaseService,
-              private utils:UtilsService
+              private utils:UtilsService,
+              private navCtrl: NavController
   ) {}
+
 
   plantUser: PlantasUser[] = [];
   Plant: Plantas[] = [];
   loading: boolean = false;
 
+  goToPlantas(){
+    this.navCtrl.navigateForward('/plantas');
+  }
+
+  goToConsejos(){
+    this.navCtrl.navigateForward('/consejos');
+  }
+
+  goToHome(){
+    this.navCtrl.navigateBack('/home');
+  }
   user(): User{
     return this.utils.getFromLocalStorage('user');
   }
@@ -30,6 +43,23 @@ export class HomePage {
   cerrarSesion() {
     this.firebase.signOut();
   }
+
+  confirmCerrarsesion() {
+    this.utils.presentAlert({
+      header: '👋 Cerrar Sesión',
+      message: '¿Deseas Cerrar Sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Salir',
+          handler: () => {
+            this.cerrarSesion()
+          }
+        }
+      ]
+    });
+  };
 
   ionViewWillEnter() {
     this.getPlantUser();

@@ -1,65 +1,36 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <!-- Colocar el logo aquí -->
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-pading">
-    <!-- Aca va el contenido del menu -->
-    <ion-content>
-      <ion-list [inset]="true">
-                  <!-- Home -->
-        <ion-item href="home">
-          <ion-icon name="home"></ion-icon>
-          <ion-label class="ion-margin">Home</ion-label>
-        </ion-item>
-                  <!-- Perfil -->
-        <ion-item class="disabled" id="perf_prox">
-          <ion-icon name="person"></ion-icon>
-          <ion-label class="ion-margin">Perfil</ion-label>
-        </ion-item>
-                  <!-- Configuración -->
-        <ion-item class="disabled" id="conf_prox">
-          <ion-icon name="build"></ion-icon>
-          <ion-label class="ion-margin">Configuración</ion-label>
-        </ion-item>
-                  <!-- Plantas -->
-        <ion-item href="plantas">
-          <ion-icon name="leaf"></ion-icon>
-          <ion-label class="ion-margin">Plantas</ion-label>
-        </ion-item>
-                  <!-- Consejos -->
-        <ion-item href="consejos">
-          <ion-icon name="help"></ion-icon>
-          <ion-label class="ion-margin">Consejos</ion-label>
-        </ion-item>
-                  <!-- Cerrar Sesión -->
-        <ion-item (click)="cerrarSesion()">
-          <ion-icon name="log-out"></ion-icon>
-          <ion-label class="ion-margin">Cerrar Sesión</ion-label>
-          
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-content>
-</ion-menu>
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Consejos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="header_tool">
+          📗Glosario y consejos📕
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
 
-  <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
+<!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
-  <ion-content>
-    <ion-grid class="background-login-register ion-pading">
+<ion-content>
+  <ion-grid class="background-login-register ion-pading">
     <!-- Fertilizantes -->
-    <h3 class="ion-text-center">Fertilizantes</h3>
-    <br />
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button id="fert_pop" size="large">Fertilizantes</ion-button>
+        <ion-popover trigger="fert_pop" side="bottom" alignment="center">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h4>
+                "Un fertilizante o abono es cualquier tipo de sustancia orgánica 
+                o inorgánica que contiene nutrientes en formas asimilables por las plantas, 
+                para mantener o incrementar el contenido de estos elementos en el suelo."
+              </h4>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+    </ion-row>
     <ion-list lines="inset" *ngIf="!loading" lines="full">
       <ion-item-sliding class="products-item" *ngFor="let f of fert">
         <ion-item [button]="true" (click)="verFert(f)">
@@ -67,7 +38,7 @@
           <ion-label class="ion-text-left">{{f.NombreFert}}</ion-label>
         </ion-item>
         <!-- opciones -->
-        <ion-item-options slot="end" >
+        <ion-item-options slot="end" *ngIf="admin">
           <!-- Editar -->
           <ion-item-option color="warning" (click)="addUpdateFert(f)">
             <ion-icon slot="icon-only" name="create"></ion-icon>
@@ -79,7 +50,7 @@
         </ion-item-options>
       </ion-item-sliding>
       <!-- Agregar -->
-      <ion-item [button]="true" (click)="addUpdateFert()">
+      <ion-item [button]="true" *ngIf="admin" (click)="addUpdateFert()">
         <ion-icon name="add" slot="start"></ion-icon>
         <ion-label>Agregar nuevo</ion-label>
       </ion-item>
@@ -87,8 +58,28 @@
     <br />
 
     <!-- Enfermedades -->
-    <h3 class="ion-text-center">Enfermedades</h3>
-    <br />
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button id="enf-pop" size="large" color="warning">Enfermedades</ion-button>
+        <ion-popover trigger="enf-pop" side="bottom" alignment="center">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h4>
+                "Las enfermedades en hortalizas son principlamente  la proliferación de hongos. Los que si tienen condiciones favorables se dispersan fácilemente por el cultivo por lo que para la prevención de estos te acosejamos lo siguiente:<br> 
+1.- Podar semanalmente hojas secas o que limiten con el suelo.<br> 
+2.-Mantener el suelo humedo, pero no encharcado.<br> 
+3.-Agregar trichodermas al suelo o sustrato (este paso es opcional).
+"
+
+
+
+
+              </h4>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+    </ion-row>
     <ion-list lines="inset" *ngIf="!loading" lines="full">
       <ion-item-sliding class="products-item" *ngFor="let e of enfer">
         <ion-item [button]="true" (click)=verEnf(e)>
@@ -96,7 +87,7 @@
           <ion-label class="ion-text-left">{{e.NombreEnfer}}</ion-label>
         </ion-item>
         <!-- opciones -->
-        <ion-item-options slot="end">
+        <ion-item-options slot="end" *ngIf="admin">
           <!-- Editar -->
           <ion-item-option color="warning" (click)="addUpdateEnfer(e)">
             <ion-icon slot="icon-only" name="create"></ion-icon>
@@ -108,22 +99,38 @@
         </ion-item-options>
       </ion-item-sliding>
       <!-- agregar -->
-      <ion-item [button]="true" (click)="addUpdateEnfer()">
+      <ion-item [button]="true" *ngIf="admin" (click)="addUpdateEnfer()">
         <ion-icon name="add" slot="start"></ion-icon>
         <ion-label>Agregar nuevo</ion-label>
       </ion-item>
     </ion-list>
     <br />
     <!-- Plagas -->
-    <h3 class="ion-text-center">Plagas</h3>
-    <br />
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button id="plag-pop" size="large" color="danger">Plagas</ion-button>
+        <ion-popover trigger="plag-pop" side="bottom" alignment="center">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h4>
+                "Cuando hablamos de las plagas nos referimos principalmente a insectos, ácaros y moluscos como el caracol,  éstos están naturalemente asociados a las plantas ya que las utilizan como alimento, y para su reproducción. Para evitar su presencia podemos tomar las siguientes acciones:<br>
+1.-Mantener limpio y podado el cultivo.<br>
+2.-Realizar un monitoreo semanal revisando las plantas en el vés y envés de la hoja, tallos, flores, frutos.para detectar plagas.<br>
+3.- Agregar una cubierta de malla antiáfidos, para crear barrera contra insectos.<br>
+"
+              </h4>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+    </ion-row>
     <ion-list lines="inset" *ngIf="!loading" lines="full">
       <ion-item-sliding class="products-item" *ngFor="let p of plag">
         <ion-item [button]="true" (click)="verPlag(p)">
           <ion-icon color="danger" class="ion-padding" name="bug"></ion-icon>
           <ion-label class="ion-text-left">{{p.NombrePlag}}</ion-label>
         </ion-item>
-        <ion-item-options slot="end">
+        <ion-item-options slot="end" *ngIf="admin">
           <!-- editar -->
           <ion-item-option color="warning" (click)="addUpdatePlaga(p)">
             <ion-icon slot="icon-only" name="create"></ion-icon>
@@ -135,33 +142,36 @@
         </ion-item-options>
       </ion-item-sliding>
       <!-- agregar plaga -->
-      <ion-item [button]="true" (click)="addUpdatePlaga()">
+      <ion-item [button]="true" *ngIf="admin" (click)="addUpdatePlaga()">
         <ion-icon name="add" slot="start"></ion-icon>
         <ion-label>Agregar nuevo</ion-label>
       </ion-item>
     </ion-list>
   </ion-grid>
-  </ion-content>
+</ion-content>
 
-  <!--Footer-->
-  <ion-footer>
-    <ion-toolbar>
-      <ion-tabs>
-        <ion-tab-bar slot="bottom">
-          <ion-tab-button href="plantas">
-            <ion-icon color="primary" name="leaf"></ion-icon>
-            Plantas
-          </ion-tab-button>
-          <ion-tab-button href="home">
-            <ion-icon color="primary" name="Home"></ion-icon>
-            Home
-          </ion-tab-button>
-          <ion-tab-button href="consejos">
-            <ion-icon color="primary" name="bulb"></ion-icon>
-            Consejos
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    </ion-toolbar>
-  </ion-footer>
-</div>
+<!--Footer-->
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="goToPlantas()">
+          <ion-icon color="primary" name="leaf"></ion-icon>
+          Plantas
+        </ion-tab-button>
+        <ion-tab-button (click)="goToHome()">
+          <ion-icon color="primary" name="Home"></ion-icon>
+          Mi huerta
+        </ion-tab-button>
+        <ion-tab-button (click)="goToConsejos()">
+          <ion-icon color="primary" name="bulb"></ion-icon>
+          Consejos
+        </ion-tab-button>
+        <ion-tab-button (click)="confirmCerrarsesion()">
+          <ion-icon color="primary" name="exit"></ion-icon>
+          Cerrar sesión
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

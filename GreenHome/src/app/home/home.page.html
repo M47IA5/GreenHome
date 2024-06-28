@@ -1,139 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="header_tool">
+          🌱Mi huerta🌱
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
 
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <!-- Colocar el logo aquí -->
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-pading">
-    <!-- Aca va el contenido del menu -->
-    <ion-content>
-      <ion-list [inset]="true">
-                  <!-- Home -->
-        <ion-item href="home">
-          <ion-icon name="home"></ion-icon>
-          <ion-label class="ion-margin">Home</ion-label>
-        </ion-item>
-                  <!-- Perfil -->
-        <ion-item class="disabled" id="perf_prox">
-          <ion-icon name="person"></ion-icon>
-          <ion-label class="ion-margin">Perfil</ion-label>
-        </ion-item>
-                  <!-- Configuración -->
-        <ion-item class="disabled" id="conf_prox">
-          <ion-icon name="build"></ion-icon>
-          <ion-label class="ion-margin">Configuración</ion-label>
-        </ion-item>
-                  <!-- Plantas -->
-        <ion-item href="plantas">
-          <ion-icon name="leaf"></ion-icon>
-          <ion-label class="ion-margin">Plantas</ion-label>
-        </ion-item>
-                  <!-- Consejos -->
-        <ion-item href="consejos">
-          <ion-icon name="help"></ion-icon>
-          <ion-label class="ion-margin">Consejos</ion-label>
-        </ion-item>
-                  <!-- Cerrar Sesión -->
-        <ion-item (click)="cerrarSesion()">
-          <ion-icon name="log-out"></ion-icon>
-          <ion-label class="ion-margin">Cerrar Sesión</ion-label>
-          
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-content>
-</ion-menu>
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<!-- Arriba el header, abajo el contenido de la pagina  -->
 
-  <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
-
-  <ion-content>
-    <ion-grid class="background-login-register ion-padding">
+<ion-content>
+  <ion-grid class="background-login-register ion-padding">
     <swiper-container *ngIf="!loading">
       <swiper-slide *ngFor="let p of plantUser">
-          <ion-card (click)="prePlanta(p)" class="card-holder">
-            <!-- si tiene imagen -->
-            <img  *ngIf="p.FotoPlantUser" [src]="p.FotoPlantUser">
-            <!-- si no tiene imagen -->
-            <img alt="Lechuga" *ngIf="!p.FotoPlantUser" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
-            
-            <ion-card-header>
-              <ion-card-title>{{p.NombrePerso}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-list>
-                <ion-item>
-                  <ion-icon name="leaf" class="ion-margin"></ion-icon>
-                  <!-- Agregar Nombre desde BD -->
-                  Nombre: {{p.NombrePlanta}}
-                </ion-item>
-                <ion-item>
-                  <ion-icon name="calendar" class="ion-margin"></ion-icon>
-                  <!-- Agregar Temporada desde BD -->
-                  Temporada: {{p.Temporada}}
-                </ion-item>
-                <ion-item>
-                  <ion-icon name="time" class="ion-margin"></ion-icon>
-                  <!-- Calcular tiempo de riego -->
-                  Ultimo Riego: {{p.UltimoDiaRiego}}
-                </ion-item>
-                <ion-item>
-                  <ion-icon name="sunny" class="ion-margin"></ion-icon>
-                  <!-- Agregar Temporada desde BD -->
-                  Tipo de plantación: {{p.TipoPLanta}}
-                </ion-item>
-              </ion-list>
-            </ion-card-content>
+        <ion-card (click)="prePlanta(p)" class="card-holder">
+          <!-- si tiene imagen -->
+          <img *ngIf="p.FotoPlantUser" [src]="p.FotoPlantUser">
+          <!-- si no tiene imagen -->
+          <img alt="Lechuga" *ngIf="!p.FotoPlantUser"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
+
+          <ion-card-header>
+            <ion-card-title>{{p.NombrePerso}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="leaf" class="ion-margin"></ion-icon>
+                <!-- Agregar Nombre desde BD -->
+                Nombre: {{p.NombrePlanta}}
+              </ion-item>
+              <ion-item>
+                <ion-icon name="calendar" class="ion-margin"></ion-icon>
+                <!-- Agregar Temporada desde BD -->
+                Temporada: {{p.Temporada}}
+              </ion-item>
+              <ion-item>
+                <ion-icon name="time" class="ion-margin"></ion-icon>
+                <!-- Calcular tiempo de riego -->
+                Ultimo Riego: {{p.UltimoDiaRiego}}
+              </ion-item>
+              <ion-item>
+                <ion-icon name="sunny" class="ion-margin"></ion-icon>
+                <!-- Agregar Temporada desde BD -->
+                Tipo de plantación: {{p.TipoPLanta}}
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
 
         </ion-card>
       </swiper-slide>
       <!-- Agregar planta nueva slide -->
-      <swiper-slide (click)="addUpdatePlant()">
+      <swiper-slide (click)="goToPlantas()">
         <ion-card>
-            <img alt="Lechuga"
-              src="https://static.vecteezy.com/system/resources/thumbnails/012/578/976/small/leaf-and-pot-icon-potted-plant-icon-trendy-design-leaf-on-pot-icon-garden-logo-illustration-vector.jpg" />
-            <ion-card-header>
-              <ion-card-title>Agregue una nueva planta</ion-card-title>
-            </ion-card-header>
+          <img alt="Lechuga"
+            src="https://static.vecteezy.com/system/resources/thumbnails/012/578/976/small/leaf-and-pot-icon-potted-plant-icon-trendy-design-leaf-on-pot-icon-garden-logo-illustration-vector.jpg" />
+          <ion-card-header>
+            <ion-card-title>Agregue una nueva planta</ion-card-title>
+          </ion-card-header>
 
         </ion-card>
       </swiper-slide>
     </swiper-container>
-
-    <!--Agregar Plantas-->
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button size="small" (click)="addUpdatePlant()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
   </ion-grid>
-  </ion-content>
-  <ion-footer>
-    <ion-toolbar>
-      <ion-tabs>
-        <ion-tab-bar slot="bottom">
-          <ion-tab-button href="plantas">
-            <ion-icon color="primary" name="leaf"></ion-icon>
-            Plantas
-          </ion-tab-button>
-          <ion-tab-button href="home">
-            <ion-icon color="primary" name="Home"></ion-icon>
-            Home
-          </ion-tab-button>
-          <ion-tab-button href="consejos">
-            <ion-icon color="primary" name="bulb"></ion-icon>
-            Consejos
-          </ion-tab-button>
-        </ion-tab-bar>
-      </ion-tabs>
-    </ion-toolbar>
-  </ion-footer>
-</div>
+</ion-content>
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button (click)="goToPlantas()">
+          <ion-icon color="primary" name="leaf"></ion-icon>
+          Plantas
+        </ion-tab-button>
+        <ion-tab-button (click)="goToHome()">
+          <ion-icon color="primary" name="Home"></ion-icon>
+          Mi huerta
+        </ion-tab-button>
+        <ion-tab-button (click)="goToConsejos()">
+          <ion-icon color="primary" name="bulb"></ion-icon>
+          Consejos
+        </ion-tab-button>
+        <ion-tab-button (click)="confirmCerrarsesion()">
+          <ion-icon color="primary" name="exit"></ion-icon>
+          Cerrar sesión
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

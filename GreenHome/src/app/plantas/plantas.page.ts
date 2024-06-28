@@ -6,6 +6,8 @@ import { AgregarActualizarPlantComponent } from '../global/componentes/agregar-a
 import { UtilsService } from '../services/utils.service';
 import { FirebaseService } from '../services/firebase.service';
 import { PrePlantComponent } from '../global/componentes/pre-plant/pre-plant.component';
+import { NavController } from '@ionic/angular';
+import { User } from '../modelos/User.module';
 register(); 
 @Component({
   selector: 'app-plantas',
@@ -15,17 +17,57 @@ register();
 export class PlantasPage {
 
   constructor(private utils: UtilsService,
-    private firebase: FirebaseService
+    private firebase: FirebaseService,
+    private navCtrl: NavController
   ) { }
 
   
   Plant: Plantas[] = [];
   loading: boolean = false;
 
+
+  adm= 'Q8FUObsjYzfeodZVclySit2MLxq2'; 
+  adm2= 'nGC5I2396wgDeWAbDfCyJCn5ep43';
+  adm3= '0FLe7KzUchdO5Fb6hioXBE4ra622';
+  admin: boolean = false;
+  user = {} as User;
+
   ionViewWillEnter() {
     this.getPlantas();
+    this.Administrador();
   }
+
+  ngOnInit() {
+
+    this.user = this.utils.getFromLocalStorage('user');
+
+  }
+
+  Administrador(){
+    if(this.user.UserID === this.adm) {
+      this.admin = true
+    }
+    else if(this.user.UserID === this.adm2) {
+      this.admin = true
+    }
+    else if(this.user.UserID === this.adm3) {
+      this.admin = true
+    } else {
+      this.admin = false;
+    };    
+  };
  
+  goToPlantas(){
+    this.navCtrl.navigateForward('/plantas');
+  }
+
+  goToConsejos(){
+    this.navCtrl.navigateForward('/consejos');
+  }
+
+  goToHome(){
+    this.navCtrl.navigateBack('/home');
+  }
   doRefresh(event) { 
     setTimeout(() => {
       this.getPlantas();
@@ -128,4 +170,21 @@ export class PlantasPage {
   cerrarSesion() {
     this.firebase.signOut();
   }
+
+  confirmCerrarsesion() {
+    this.utils.presentAlert({
+      header: '👋 Cerrar Sesión',
+      message: '¿Deseas Cerrar Sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Salir',
+          handler: () => {
+            this.cerrarSesion()
+          }
+        }
+      ]
+    });
+  };
 }

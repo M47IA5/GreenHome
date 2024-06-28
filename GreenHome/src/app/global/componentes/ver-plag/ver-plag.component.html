@@ -1,20 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <!--boton para cerrar modal-->
-      <ion-button (click)="dismissModal()">
-        <ion-icon name="close-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
 
-    <ion-title>
-      <ion-icon name="bug" color="danger"></ion-icon>
-      {{plag.NombrePlag}}
-    </ion-title>
+<ion-header>
+  <ion-toolbar (click)="dismissModal()">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="header_tool">
+          <ion-icon color="danger" name="bug" ></ion-icon>
+          {{plag.NombrePlag}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+    <ion-fab-button size="small">
+      <ion-icon name="arrow-back-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-grid id="container">
     <img [src]="plag.FotoPlag">
   </ion-grid>

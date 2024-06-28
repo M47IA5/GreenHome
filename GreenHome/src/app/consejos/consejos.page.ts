@@ -11,25 +11,62 @@ import { AgregarActualiEnferComponent } from "../global/componentes/agregar-actu
 import { VerEnfComponent } from "../global/componentes/ver-enf/ver-enf.component";
 import { VerFertComponent } from "../global/componentes/ver-fert/ver-fert.component";
 import { VerPlagComponent } from "../global/componentes/ver-plag/ver-plag.component";
+import { NavController } from '@ionic/angular';
 @Component({
   selector: "app-consejos",
   templateUrl: "./consejos.page.html",
   styleUrls: ["./consejos.page.scss"],
 })
 export class ConsejosPage implements OnInit {
-  constructor(private firebase: FirebaseService, private utils: UtilsService) { }
+  constructor(private firebase: FirebaseService, private utils: UtilsService, private navCtrl: NavController) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.user = this.utils.getFromLocalStorage('user');
+
+   }
 
   fert: Fertilizantes[] = [];
   enfer: Enfermedades[] = [];
   plag: Plagas[] = [];
   loading: boolean = false;
+  user = {} as User;
+  adm= 'Q8FUObsjYzfeodZVclySit2MLxq2'; 
+  adm2= 'nGC5I2396wgDeWAbDfCyJCn5ep43';
+  adm3= '0FLe7KzUchdO5Fb6hioXBE4ra622';
+  admin: boolean = false;
 
   ionViewWillEnter() {
     this.getFert();
     this.getEnfer();
     this.getPlag();
+    this.Administrador();
+  }
+  Administrador(){
+    if(this.user.UserID === this.adm) {
+      this.admin = true
+    }
+    else if(this.user.UserID === this.adm2) {
+      this.admin = true
+    }
+    else if(this.user.UserID === this.adm3) {
+      this.admin = true
+    } else {
+      this.admin = false;
+    };    
+  };
+ 
+
+  goToPlantas(){
+    this.navCtrl.navigateForward('/plantas');
+  }
+
+  goToConsejos(){
+    this.navCtrl.navigateForward('/consejos');
+  }
+
+  goToHome(){
+    this.navCtrl.navigateBack('/home');
   }
 
   //obtener Fertilizantes
@@ -77,13 +114,28 @@ export class ConsejosPage implements OnInit {
     });
   }
 
-  user(): User {
-    return this.utils.getFromLocalStorage("user");
-  }
+
 
   cerrarSesion() {
     this.firebase.signOut();
   }
+
+  confirmCerrarsesion() {
+    this.utils.presentAlert({
+      header: '👋 Cerrar Sesión',
+      message: '¿Deseas Cerrar Sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Salir',
+          handler: () => {
+            this.cerrarSesion()
+          }
+        }
+      ]
+    });
+  };
 
   //Actualizar y agregar fertilizantes
 
