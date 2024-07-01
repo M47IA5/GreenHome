@@ -16,18 +16,30 @@ export class AgregarActualiFertComponent implements OnInit {
 
   constructor(private firebase: FirebaseService,
     private utils: UtilsService
-  ) { }
+  ) { this.diferenciaSelect = '';}
+
+  diferencia: string[] = [
+    'Fertilizante',
+    'Controlador de plaga'
+  ];
+  diferenciaSelect: string;
 
   form = new FormGroup({
     FertID: new FormControl(''),
-    FotoFert: new FormControl('',[Validators.required]),
+    FotoFert: new FormControl('', [Validators.required]),
     NombreFert: new FormControl('', [Validators.required, Validators.minLength(2)]),
     DescripcionFert: new FormControl('', [Validators.required, Validators.minLength(2)]),
     ModoDeUso: new FormControl('', [Validators.required, Validators.minLength(2)]),
     FrecuenciaDias: new FormControl(null, [Validators.required, Validators.min(0)]),
-  })
+    Diferencia: new FormControl('')
+  });
 
   user = {} as User;
+
+  onHeroChange() {
+    console.log("Se escogio:", this.diferenciaSelect);
+    this.form.value.Diferencia = this.diferenciaSelect;
+  }
 
   ngOnInit() {
     this.user = this.utils.getFromLocalStorage('user')
@@ -73,7 +85,8 @@ export class AgregarActualiFertComponent implements OnInit {
 
     const id = this.firebase.getId();
     this.form.value.FertID = id;
-
+    this.form.value.Diferencia = this.diferenciaSelect;
+   
 
     this.firebase.createDoc(this.form.value, path, id).then(async res => {
 

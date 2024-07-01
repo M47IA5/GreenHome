@@ -4,6 +4,7 @@ export interface Fertilizantes{
     FotoFert: string,
     DescripcionFert: string,
     ModoDeUso: string,
-    FrecuenciaDias: number
+    FrecuenciaDias: number,
+    Diferencia: string
 
 }

@@ -2,9 +2,7 @@
   <ion-toolbar>
     <ion-grid>
       <ion-row>
-        <ion-col class="header_tool">
-          📗Glosario y consejos📕
-        </ion-col>
+        <ion-col class="header_tool"> 📗Glosario y consejos📕 </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
@@ -14,6 +12,99 @@
 
 <ion-content>
   <ion-grid class="background-login-register ion-pading">
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-item class="ion-margin">
+        <h2>📗Glosario</h2>
+      </ion-item>
+    </ion-row>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-list lines="full inset" style="width: 100%">
+        <!-- Preparación de suelo -->
+        <ion-item full>
+          <ion-label id="prep-suelo">Preparación de suelo</ion-label>
+          <ion-popover trigger="prep-suelo" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding">
+                Es la manipulación física que se aplica con la intención de
+                modificar aquellas características que afectan la brotación de
+                las semillas y posteriores etapas de crecimiento del cultivo.
+                <br />
+                <ion-item href="https://www.youtube.com/watch?v=uniGzuqH3nE&ab_channel=CosasdelJardin">
+                  <ion-icon name="play-circle"></ion-icon>
+                  <ion-label>Vídeo tutorial: preparar suelo</ion-label>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <!-- Almácigo -->
+        <ion-item full>
+          <ion-label id="almacigo">Almácigo</ion-label>
+          <ion-popover trigger="almacigo" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding">
+                Un almácigo es un espacio controlado y protegido donde se
+                siembran las semillas de plantas con el fin de propiciar su
+                germinación y crecimiento inicial antes de ser trasplantadas al
+                lugar definitivo de cultivo
+                <br />
+                <ion-item href="https://www.youtube.com/watch?v=HA-lUpUsBLo&ab_channel=SembraenSa%C3%B3">
+                  <ion-icon name="play-circle" class="margin"></ion-icon>
+                  <ion-label>Vídeo tutorial: crear almácigo</ion-label>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <!-- Tipos de luz -->
+        <ion-item full>
+          <ion-label id="tipo_luz">Tipos de luz</ion-label>
+          <ion-popover trigger="tipo_luz" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding">
+                <ion-list>
+                  <ion-item>
+                    1.- Luz directa : es cuando la planta necesita estar
+                    expuesto directamente a la luz del sol.
+                  </ion-item>
+                  <ion-item>
+                    "2.- Luz indirecta: se refiere a cuando el cutivo requiere
+                    estar en un lugar donde entre luz solar, pero que los rayos
+                    solares no lleguen directamente a la planta."
+                  </ion-item>
+                </ion-list>
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <!-- Monitoreo y limpieza -->
+        <ion-item full>
+          <ion-label id="myl">Monitoreo y limpieza</ion-label>
+          <ion-popover trigger="myl" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding">
+                "Mantener una frecuencia establecida para la revisión del
+                cultivo, permite evaluar la evolución de este, así como detectar
+                posibles plagas o enfermedades que puedan apafrecer y así
+                controlarlas a tiempo. Para monitorear correctamente debes
+                revisar hojas, tallos, frutos y flores. Al momento de monitorear
+                es buen momento para podar hojas secas, ramas rotas, frutos
+                secos o hojas que limiten con el suelo."
+                <br />
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-item>
+        <!-- Preparar compost -->
+        <ion-item full href="https://www.youtube.com/watch?v=gvL9ItbqL4g&ab_channel=CosasdelJardin">
+          <ion-icon name="play-circle" size="large" slot="end"></ion-icon>
+          <ion-label>Preparar Compost</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+    </ion-row>
     <!-- Fertilizantes -->
     <ion-row>
       <ion-col class="ion-text-center">
@@ -22,21 +113,48 @@
           <ng-template>
             <ion-content class="ion-padding">
               <h4>
-                "Un fertilizante o abono es cualquier tipo de sustancia orgánica 
-                o inorgánica que contiene nutrientes en formas asimilables por las plantas, 
-                para mantener o incrementar el contenido de estos elementos en el suelo."
+                "Un fertilizante o abono es cualquier tipo de sustancia orgánica
+                o inorgánica que contiene nutrientes en formas asimilables por
+                las plantas, para mantener o incrementar el contenido de estos
+                elementos en el suelo."
               </h4>
             </ion-content>
           </ng-template>
         </ion-popover>
       </ion-col>
     </ion-row>
+
     <ion-list lines="inset" *ngIf="!loading" lines="full">
-      <ion-item-sliding class="products-item" *ngFor="let f of fert">
-        <ion-item [button]="true" (click)="verFert(f)">
+      <ion-item-sliding class="products-item" *ngFor="let f of fert">        
+        <ion-item *ngIf="f.Diferencia == 'Fertilizante' " [button]="true" (click)="verFert(f)">
           <ion-icon class="ion-padding" color="secondary" name="nutrition"></ion-icon>
           <ion-label class="ion-text-left">{{f.NombreFert}}</ion-label>
+          <ion-label  class="ion-text-left">{{f.Diferencia}}</ion-label>
         </ion-item>
+
+        <!-- opciones -->
+        <ion-item-options slot="end" *ngIf="admin">
+          <!-- Editar -->
+          <ion-item-option color="warning" (click)="addUpdateFert(f)">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-item-option>
+          <!-- Borrar -->
+          <ion-item-option color="danger" expandable="true" (click)="confirmDeleteFert(f)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-list>
+    <ion-list lines="inset" *ngIf="!loading" lines="full">
+      <ion-item-sliding class="products-item" *ngFor="let f of fert">        
+
+        <ion-item *ngIf="f.Diferencia == 'Controlador de plaga' " [button]="true" (click)="verFert(f)">
+          <ion-icon class="ion-padding" color="secondary" name="nutrition"></ion-icon>
+          <ion-label class="ion-text-left">{{f.NombreFert}}</ion-label>
+          <ion-label  class="ion-text-left">{{f.Diferencia}}</ion-label>
+        </ion-item>
+
         <!-- opciones -->
         <ion-item-options slot="end" *ngIf="admin">
           <!-- Editar -->
@@ -55,6 +173,7 @@
         <ion-label>Agregar nuevo</ion-label>
       </ion-item>
     </ion-list>
+
     <br />
 
     <!-- Enfermedades -->
@@ -65,15 +184,15 @@
           <ng-template>
             <ion-content class="ion-padding">
               <h4>
-                "Las enfermedades en hortalizas son principlamente  la proliferación de hongos. Los que si tienen condiciones favorables se dispersan fácilemente por el cultivo por lo que para la prevención de estos te acosejamos lo siguiente:<br> 
-1.- Podar semanalmente hojas secas o que limiten con el suelo.<br> 
-2.-Mantener el suelo humedo, pero no encharcado.<br> 
-3.-Agregar trichodermas al suelo o sustrato (este paso es opcional).
-"
-
-
-
-
+                "Las enfermedades en hortalizas son principlamente la
+                proliferación de hongos. Los que si tienen condiciones
+                favorables se dispersan fácilemente por el cultivo por lo que
+                para la prevención de estos te acosejamos lo siguiente:<br />
+                1.- Podar semanalmente hojas secas o que limiten con el
+                suelo.<br />
+                2.-Mantener el suelo humedo, pero no encharcado.<br />
+                3.-Agregar trichodermas al suelo o sustrato (este paso es
+                opcional). "
               </h4>
             </ion-content>
           </ng-template>
@@ -82,7 +201,7 @@
     </ion-row>
     <ion-list lines="inset" *ngIf="!loading" lines="full">
       <ion-item-sliding class="products-item" *ngFor="let e of enfer">
-        <ion-item [button]="true" (click)=verEnf(e)>
+        <ion-item [button]="true" (click)="verEnf(e)">
           <ion-icon color="warning" class="ion-padding" name="bandage"></ion-icon>
           <ion-label class="ion-text-left">{{e.NombreEnfer}}</ion-label>
         </ion-item>
@@ -113,11 +232,18 @@
           <ng-template>
             <ion-content class="ion-padding">
               <h4>
-                "Cuando hablamos de las plagas nos referimos principalmente a insectos, ácaros y moluscos como el caracol,  éstos están naturalemente asociados a las plantas ya que las utilizan como alimento, y para su reproducción. Para evitar su presencia podemos tomar las siguientes acciones:<br>
-1.-Mantener limpio y podado el cultivo.<br>
-2.-Realizar un monitoreo semanal revisando las plantas en el vés y envés de la hoja, tallos, flores, frutos.para detectar plagas.<br>
-3.- Agregar una cubierta de malla antiáfidos, para crear barrera contra insectos.<br>
-"
+                "Cuando hablamos de las plagas nos referimos principalmente a
+                insectos, ácaros y moluscos como el caracol, éstos están
+                naturalemente asociados a las plantas ya que las utilizan como
+                alimento, y para su reproducción. Para evitar su presencia
+                podemos tomar las siguientes acciones:<br />
+                1.-Mantener limpio y podado el cultivo.<br />
+                2.-Realizar un monitoreo semanal revisando las plantas en el vés
+                y envés de la hoja, tallos, flores, frutos.para detectar
+                plagas.<br />
+                3.- Agregar una cubierta de malla antiáfidos, para crear barrera
+                contra insectos.<br />
+                "
               </h4>
             </ion-content>
           </ng-template>

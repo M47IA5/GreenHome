@@ -62,11 +62,23 @@
       <div *ngIf="form.controls.FrecuenciaDias.errors?.['min']">no se pueden ingresar numeros negativos</div>
     </div>
 
+    
+  <ion-item class="custom-input">
+
+    <ion-label>Que es?</ion-label>
+  
+    <ion-select interface="popover" placeholder="Selecciona uno"  [ngModelOptions]="{standalone: true}"  [(ngModel)]="diferenciaSelect" (ionChange)="onHeroChange()">
+  
+      <ion-select-option *ngFor="let dife of diferencia" [value]="dife">{{ dife }}</ion-select-option>
+  
+    </ion-select>
+  
+  </ion-item>
+   
     <ion-button mode="md" class="ion-margin" type="submit" [disabled]="form.invalid">
       {{fert ? 'Actualizar fertilizante' : 'Agregar fertilizante'}}
       <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
     </ion-button>
 
   </form>
-
 </ion-content>

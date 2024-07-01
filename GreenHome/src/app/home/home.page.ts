@@ -15,28 +15,27 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private firebase:FirebaseService,
-              private utils:UtilsService,
-              private navCtrl: NavController
-  ) {}
+  constructor(private firebase: FirebaseService,
+    private utils: UtilsService,
+    private navCtrl: NavController
+  ) { }
 
-
+  alertButtons = ['Regar plantita'];
   plantUser: PlantasUser[] = [];
   Plant: Plantas[] = [];
   loading: boolean = false;
-
-  goToPlantas(){
+  goToPlantas() {
     this.navCtrl.navigateForward('/plantas');
   }
 
-  goToConsejos(){
+  goToConsejos() {
     this.navCtrl.navigateForward('/consejos');
   }
 
-  goToHome(){
+  goToHome() {
     this.navCtrl.navigateBack('/home');
   }
-  user(): User{
+  user(): User {
     return this.utils.getFromLocalStorage('user');
   }
 
@@ -114,7 +113,7 @@ export class HomePage {
   }
 
 
-  
+
   //eliminar planta
   async deletePlant(plantUser: PlantasUser) {
 
@@ -151,31 +150,103 @@ export class HomePage {
 
   }
 
-    //confirmar la eliminacion de la planta
-    async confirmDeletePlant(plantUser: PlantasUser) {
-      this.utils.presentAlert({
-        header: 'Eliminar Planta',
-        message: 'Seguro que deseas eliminar esta planta?',
-        buttons: [
-          {
-            text: 'Cancelar',
-          }, {
-            text: 'Si, eliminar',
-            handler: () => {
-              this.deletePlant(plantUser)
-            }
+  //confirmar la eliminacion de la planta
+  async confirmDeletePlant(plantUser: PlantasUser) {
+    this.utils.presentAlert({
+      header: 'Eliminar Planta',
+      message: 'Seguro que deseas eliminar esta planta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Si, eliminar',
+          handler: () => {
+            this.deletePlant(plantUser)
           }
-        ]
-      });
-    }
+        }
+      ]
+    });
+  }
 
-    async prePlanta(plantUser: PlantasUser) {
-      let success = await this.utils.presentModal({
-        component: VerPlatUserComponent,
-        componentProps: { plantUser }
-      })
-      if (success) this.getPlantUser();
+  async prePlanta(plantUser: PlantasUser) {
+    let success = await this.utils.presentModal({
+      component: VerPlatUserComponent,
+      componentProps: { plantUser }
+    })
+    if (success) this.getPlantUser();
+  }
+
+  verificarRiego(UltimoDiaRiego) {
+    let fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth();
+    let anio = fecha.getFullYear();
+    let fechaActual = new Date(anio, mes, dia);
+    let fechaRiego = new Date(UltimoDiaRiego);
+    let diferencia = fechaActual.getTime() - fechaRiego.getTime();
+    let dias = Math.ceil(diferencia / (1000 * 3600 * 24));
+    if (dias >= 3) {
+      return true;
+    } else {
+      return false;
     }
+  }
+  presentarRiego(plantID: string) {
+    this.utils.presentAlert({
+      header: '💧 Tu plantita tiene sed 💧',
+      message: '¿Desea regar su planta?',
+      buttons: [
+        {
+          text: 'Si 👍',
+          handler: () => {
+            this.updateRiegoPlanta(plantID)
+          }
+        }, {
+          text: 'No 👎',
+        }
+      ]
+    });
+  };
+
+  updateRiegoPlanta(plantID: string) {
+    let fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth();
+    let anio = fecha.getFullYear();
+    let fechaActual = new Date(anio, mes, dia);
+    let fechaRiego = fechaActual.toISOString().split('T')[0];
+
+    let user = this.user();
+    let path = `/users/${user.UserID}/plantasUsuario/${plantID}`;
+  
+    const updateData = {
+      UltimoDiaRiego: fechaRiego
+    };
+  
+    this.firebase.updateDocument(path, updateData).then(() => {
+      console.log('💧 Se ha regado la planta! 💧');
+      this.getPlantUser();
+      this.PlantaRegada();
+    }).catch(error => {
+      console.error('No se pudo regar la planta:', error);
+    });
+  }
+
+  PlantaRegada() {
+    this.utils.presentAlert({
+      header: '💧 Tu plantita ya no tiene sed 💧',
+      message: 'Su planta fue regada con éxito',
+      buttons: [
+        {
+          text: 'Aceptar',
+
+        }
+      ]
+    });
+  };
 
 }
+
+
+
 

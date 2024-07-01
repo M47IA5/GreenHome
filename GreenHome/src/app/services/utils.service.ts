@@ -60,17 +60,34 @@ export class UtilsService {
   getFromLocalStorage(key: string) {
     return JSON.parse(localStorage.getItem(key))
   }
+
+
   //habilita la opcion de tomar fotos
   async tomarFoto(promptLabelHeader: string) {
     return await Camera.getPhoto({
       quality: 90,
-      allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Prompt,
       promptLabelHeader,
-      promptLabelPhoto: 'Selecciona una imagen',
+      promptLabelPhoto : 'sacar foto',
       promptLabelPicture: 'Toma una foto'
     });
   };
 
+  async tomarFoto2() {
+    return await Camera.getPhoto({
+      quality: 90,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera
+    });
+  };
+
+  async sacarFoto() {
+    return await Camera.getPhoto({
+      quality: 90,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Photos
+    });
+  };
+  
 }

@@ -16,15 +16,16 @@
   <ion-grid class="background-login-register ion-padding">
     <swiper-container *ngIf="!loading">
       <swiper-slide *ngFor="let p of plantUser">
+        <ion-fab vertical="top" horizontal="end" edge *ngIf="verificarRiego(p.UltimoDiaRiego)">
+          <ion-fab-button (click)="presentarRiego(p.IDPlantaUser)" id="alerta-riego">
+            <ion-icon name="water" size="large"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
         <ion-card (click)="prePlanta(p)" class="card-holder">
           <!-- si tiene imagen -->
-          <img *ngIf="p.FotoPlantUser" [src]="p.FotoPlantUser">
-          <!-- si no tiene imagen -->
-          <img alt="Lechuga" *ngIf="!p.FotoPlantUser"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
-
+          <img [src]="p.FotoPlantUser">
           <ion-card-header>
-            <ion-card-title>{{p.NombrePerso}}</ion-card-title>
+            <ion-card-title class="name_tool">🍃{{p.NombrePerso}}🍃</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ion-list>
@@ -42,6 +43,7 @@
                 <ion-icon name="time" class="ion-margin"></ion-icon>
                 <!-- Calcular tiempo de riego -->
                 Ultimo Riego: {{p.UltimoDiaRiego}}
+              <p *ngIf="verificarRiego(p.UltimoDiaRiego)">La planta necesita Riego</p>
               </ion-item>
               <ion-item>
                 <ion-icon name="sunny" class="ion-margin"></ion-icon>

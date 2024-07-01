@@ -12,26 +12,43 @@
 </ion-header>
 
 <ion-content>
+
+
+
   <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
     <ion-fab-button size="small">
       <ion-icon name="arrow-back-circle"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
+  <ion-avatar>
+    <img [src]="plant.FotoPlanta">
+  </ion-avatar>
   <!--Temporada -->
   <ion-item>
     <h2>Temporada: {{plant.Temporada}}</h2>
   </ion-item>
 
-  <!--Descripcion -->
+  <!--Tipo de luz -->
   <ion-item>
-    <h3>Descripcion: {{plant.Descripcion}}</h3>
+    <h3>Tipo de Luz: {{plant.TipoLuz}}</h3>
   </ion-item>
 
-
-  <!--Recomendaciones -->
+  <!-- Dias de germinacion -->
   <ion-item>
-    <h3>Recomendaciones: {{plant.Recomendaciones}}</h3>
+    <h3>Dias de germinacion: {{plant.DiasGerminacion}}</h3>
+  </ion-item>
+  <!-- Dias cosecha -->
+  <ion-item>
+    <h3>Dias cosecha: {{plant.DiasCosecha}}</h3>
+  </ion-item>
+  <!-- Temperatura minima  -->
+  <ion-item>
+    <h3>Temperatura minima : {{plant.TempMin}}</h3>
+  </ion-item>
+  <!-- Temperatura maxima -->
+  <ion-item>
+    <h3>Temperatura maxima: {{plant.TempMax}}</h3>
   </ion-item>
 
   <ion-item>
@@ -43,7 +60,7 @@
       </ion-col>
       <!--agregar-->
       <ion-col>
-        <ion-button size="medium" color="success" (click)="verPlanta(plant)">Plantar🌱</ion-button>
+        <ion-button size="medium" color="success" (click)="addUpdatePlantUser(plant)">Plantar🌱</ion-button>
       </ion-col>
           <!--editar-->
       <ion-col>

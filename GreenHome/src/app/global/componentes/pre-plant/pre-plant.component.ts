@@ -6,6 +6,7 @@ import { VerPlantComponent } from '../ver-plant/ver-plant.component';
 import { AgregarActualizarPlantComponent } from '../agregar-actualizar-plant/agregar-actualizar-plant.component';
 import { User } from '../../../modelos/User.module';
 import { ActuAgrePlantUserComponent } from '../actu-agre-plant-user/actu-agre-plant-user.component';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-pre-plant',
   templateUrl: './pre-plant.component.html',
@@ -20,9 +21,10 @@ export class PrePlantComponent implements OnInit {
 
   firebase = inject(FirebaseService);
   utils = inject(UtilsService);
-  adm= 'Q8FUObsjYzfeodZVclySit2MLxq2'; 
-  adm2= 'nGC5I2396wgDeWAbDfCyJCn5ep43';
-  adm3= '0FLe7KzUchdO5Fb6hioXBE4ra622';
+  navCtrl= inject(NavController);
+  adm = 'Q8FUObsjYzfeodZVclySit2MLxq2';
+  adm2 = 'nGC5I2396wgDeWAbDfCyJCn5ep43';
+  adm3 = '0FLe7KzUchdO5Fb6hioXBE4ra622';
   admin: boolean = false;
   user = {} as User;
 
@@ -54,18 +56,18 @@ export class PrePlantComponent implements OnInit {
   ionViewWillEnter() {
     this.Administrador();
   }
-  Administrador(){
-    if(this.user.UserID === this.adm) {
+  Administrador() {
+    if (this.user.UserID === this.adm) {
       this.admin = true
     }
-    else if(this.user.UserID === this.adm2) {
+    else if (this.user.UserID === this.adm2) {
       this.admin = true
     }
-    else if(this.user.UserID === this.adm3) {
+    else if (this.user.UserID === this.adm3) {
       this.admin = true
     } else {
       this.admin = false;
-    };    
+    };
   };
 
   verPlanta(plant: Plantas) {
@@ -96,13 +98,20 @@ export class PrePlantComponent implements OnInit {
     if (success) this.getPlantas();
   }
 
-  // async addUpdatePlantUser(plantUser?: PlantasUser) {
 
-  //   let success = await this.utils.presentModal({
-  //     component: ActuAgrePlantUserComponent,
-  //     componentProps: { plantUser }
-  //   })
-  // }
+  //Planta del usuario
+  goToHuerta(){
+    this.navCtrl.navigateBack('/home');
+  }
+
+  async addUpdatePlantUser(plant: Plantas) {
+
+    let success = await this.utils.presentModal({
+      component: ActuAgrePlantUserComponent,
+      componentProps: { plant }
+    })
+    if (success) this.goToHuerta(), this.dismissModal();
+  }
 
 
   //eliminar planta

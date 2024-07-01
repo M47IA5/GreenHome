@@ -24,17 +24,20 @@ export class ConsejosPage implements OnInit {
 
     this.user = this.utils.getFromLocalStorage('user');
 
-   }
+  }
 
   fert: Fertilizantes[] = [];
   enfer: Enfermedades[] = [];
   plag: Plagas[] = [];
   loading: boolean = false;
   user = {} as User;
-  adm= 'Q8FUObsjYzfeodZVclySit2MLxq2'; 
-  adm2= 'nGC5I2396wgDeWAbDfCyJCn5ep43';
-  adm3= '0FLe7KzUchdO5Fb6hioXBE4ra622';
+  adm = 'Q8FUObsjYzfeodZVclySit2MLxq2';
+  adm2 = 'nGC5I2396wgDeWAbDfCyJCn5ep43';
+  adm3 = '0FLe7KzUchdO5Fb6hioXBE4ra622';
   admin: boolean = false;
+
+  yass: boolean = false;
+  fertsa = 'Fertilizante';
 
   ionViewWillEnter() {
     this.getFert();
@@ -42,30 +45,41 @@ export class ConsejosPage implements OnInit {
     this.getPlag();
     this.Administrador();
   }
-  Administrador(){
-    if(this.user.UserID === this.adm) {
+
+  // diferencia(){
+  //   if (this.fertsa === this.fert.){
+  //     this.yass = true
+
+  //   } else {
+  //     this.yass = false
+  //   }
+
+  // }
+
+  Administrador() {
+    if (this.user.UserID === this.adm) {
       this.admin = true
     }
-    else if(this.user.UserID === this.adm2) {
+    else if (this.user.UserID === this.adm2) {
       this.admin = true
     }
-    else if(this.user.UserID === this.adm3) {
+    else if (this.user.UserID === this.adm3) {
       this.admin = true
     } else {
       this.admin = false;
-    };    
+    };
   };
- 
 
-  goToPlantas(){
+
+  goToPlantas() {
     this.navCtrl.navigateForward('/plantas');
   }
 
-  goToConsejos(){
+  goToConsejos() {
     this.navCtrl.navigateForward('/consejos');
   }
 
-  goToHome(){
+  goToHome() {
     this.navCtrl.navigateBack('/home');
   }
 

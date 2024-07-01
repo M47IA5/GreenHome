@@ -14,19 +14,13 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class ActuAgrePlantUserComponent implements OnInit {
 
   @Input() plantUser!: PlantasUser
+  @Input() plant!: Plantas
   constructor(private firebase: FirebaseService,
     private utils: UtilsService
   ) { }
 
   Plant: Plantas[] = [];
   loading: boolean = false;
-
-  // plantSelect: any;
-
-  // TipoSiembra: any;
-  // Temporada: any;
-
-
   user = {} as User;
 
   ngOnInit() {
@@ -36,19 +30,19 @@ export class ActuAgrePlantUserComponent implements OnInit {
 
   form = new FormGroup({
     IDPlantaUser: new FormControl(''),
-    NombrePlanta: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    NombrePlanta: new FormControl(''),
     NombrePerso: new FormControl('', [Validators.required]),
     FechaSiembra: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    TipoPLanta: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    TipoPLanta: new FormControl(''),
     UltimoDiaRiego: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    Temporada: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    FotoPlantUser: new FormControl('',[Validators.required])
+    Temporada: new FormControl(''),
+    FotoPlantUser: new FormControl('')
   })
 
   submit() {
     if (this.form.valid) {
       if (this.plantUser) this.updatePlant();
-      else this.createPlant()
+      else this.createPlantUser();
 
     }
   }
@@ -64,6 +58,17 @@ export class ActuAgrePlantUserComponent implements OnInit {
   // }
 
   async tomarImagen() {
+    const dataUrl = (await this.utils.tomarFoto2()).dataUrl;
+    this.form.controls.FotoPlantUser.setValue(dataUrl)
+  }
+
+  async sacaFoto() {
+    const dataUrl = (await this.utils.sacarFoto()).dataUrl;
+    this.form.controls.FotoPlantUser.setValue(dataUrl)
+  }
+
+
+  async GuardarImagen() {
     const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la planta')).dataUrl;
     this.form.controls.FotoPlantUser.setValue(dataUrl)
   }
@@ -86,21 +91,13 @@ export class ActuAgrePlantUserComponent implements OnInit {
     this.getPlantas();
   }
 
-  //no sirve
-  // setValuesPlant() {
-  //   console.log("Planta Seleccionada", this.plantSelect);
-  //   this.form.value.Temporada = this.plantSelect.Temporada;
-  //   this.form.value.TipoPLanta = this.plantSelect.TipoSiembra;
-  //   this.TipoSiembra = this.plantSelect.TipoSiembra;
-  //   this.Temporada = this.plantSelect.Temporada;
-  // }
-
-  async createPlant() {
+  async createPlantUser() {
 
     let path = `users/${this.user.UserID}/plantasUsuario`
 
     const loading = await this.utils.loading();
     await loading.present();
+
 
     ///subir imagen y obtener la url
     let dataUrl = this.form.value.FotoPlantUser;
@@ -108,8 +105,17 @@ export class ActuAgrePlantUserComponent implements OnInit {
     let imagenUrl = await this.firebase.uploadImage(imagenPath, dataUrl);
     this.form.controls.FotoPlantUser.setValue(imagenUrl);
 
+
+
     const id = this.firebase.getId();
     this.form.value.IDPlantaUser = id;
+
+    this.form.value.NombrePlanta = this.plant.NombrePlanta;
+
+    this.form.value.TipoPLanta = this.plant.TipoSiembra;
+    this.form.value.Temporada = this.plant.Temporada;
+
+
 
     this.firebase.createDoc(this.form.value, path, id).then(async res => {
 
@@ -123,7 +129,6 @@ export class ActuAgrePlantUserComponent implements OnInit {
         icon: 'checkmark-circle-outline'
 
       })
-
 
     }).catch(error => {
       console.log(error);
@@ -141,8 +146,6 @@ export class ActuAgrePlantUserComponent implements OnInit {
     })
 
   }
-
-
 
 
   //actualizar Planta
