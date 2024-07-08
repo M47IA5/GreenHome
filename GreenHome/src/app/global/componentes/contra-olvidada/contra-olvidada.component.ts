@@ -59,6 +59,10 @@ export class ContraOlvidadaComponent  implements OnInit {
     }
   }
 
+  closeModal() {
+    this.utils.dismissModal()
+  }
+
   
 
 }

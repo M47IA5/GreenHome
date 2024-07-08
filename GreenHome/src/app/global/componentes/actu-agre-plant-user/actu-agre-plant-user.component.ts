@@ -36,7 +36,7 @@ export class ActuAgrePlantUserComponent implements OnInit {
     TipoPLanta: new FormControl(''),
     UltimoDiaRiego: new FormControl('', [Validators.required, Validators.minLength(2)]),
     Temporada: new FormControl(''),
-    FotoPlantUser: new FormControl('')
+    FotoPlantUser: new FormControl('', [Validators.required])
   })
 
   submit() {

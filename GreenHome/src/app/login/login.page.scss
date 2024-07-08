@@ -1,66 +1,82 @@
+.logo {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+}
 
-.logo{
-    position:relative;
-    margin:0 auto;
-    width: 100%;
-    height:100%;
-    padding: 10%;
-    }
-    
-    .background-login-register {
-      background-image: url('./../../../src/assets/hojas.png');
-      background-size: 100% 100vh;
-      background-position: center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      width: 100vw;
-      top: 0;
-      left: 0;
-    }
+.background-login-register {
+  background-image: url('./../../../src/assets/hojas.png');
+  background-size: 100% 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
 
 .justify-content-center {
-    justify-content: center;
-    text-align: center;
-    
-  }
+  justify-content: center;
+  text-align: center;
 
-  ion-button {
-    height: 40px; /* establece la altura de los botones */
-    width: 100%; /* establece el ancho de los botones al 100% del padre */
-    padding: 10px; /* agrega un padding a los botones para que se vean bien */
-    font-size: 16px; /* establece el tamaño de la fuente de los botones */
-    color: #066d04;
 }
-  
-  ion-button.submit {
-    color: #ffffff; /* establece el color de texto del botón */
-}
-  
-  ion-button.registrate {
-    /* Estilos específicos para el botón "Registrate" */
-    background-color: #4CAF50; /* establece el color de fondo del botón */
-    color: #ffffff; /* establece el color de texto del botón */
-  }
 
-  ion-text-center{
-    color: #ff0000;
-    
+ion-button {
+  height: 40px;
+  /* establece la altura de los botones */
+  width: 100%;
+  /* establece el ancho de los botones al 100% del padre */
+  padding: 10px;
+  /* agrega un padding a los botones para que se vean bien */
+  font-size: 16px;
+  /* establece el tamaño de la fuente de los botones */
+  color: #066d04;
+}
+
+ion-button.submit {
+  color: #ffffff;
+  /* establece el color de texto del botón */
+}
+
+ion-button.registrate {
+  /* Estilos específicos para el botón "Registrate" */
+  background-color: #4CAF50;
+  /* establece el color de fondo del botón */
+  color: #ffffff;
+  /* establece el color de texto del botón */
+}
+
+ion-text-center {
+  color: #ff0000;
+
 }
 
 h4 {
-    color: #1A3C2E; /* Color verde muy oscuro */
-  }
+  color: #1A3C2E;
+  /* Color verde muy oscuro */
+}
 
-  .app-custom-input {
-    background-color: transparent; /* Fondo transparente */
-  }
-  .app-custom-input::placeholder {
-    color: #2E865F; /* Color verde oscuro para el texto del placeholder */
-  }
-  
-  .app-custom-input:focus {
-    background-color: transparent; /* Fondo transparente al enfocar el input */
-  }
-  .formlog{
-    text-align: center;
-  }
+.app-custom-input {
+  background-color: transparent;
+  /* Fondo transparente */
+}
+
+.app-custom-input::placeholder {
+  color: #2E865F;
+  /* Color verde oscuro para el texto del placeholder */
+}
+
+.app-custom-input:focus {
+  background-color: transparent;
+  /* Fondo transparente al enfocar el input */
+}
+
+.formlog {
+  text-align: center;
+}
+
+p {
+  color: rgb(73, 73, 73);
+}

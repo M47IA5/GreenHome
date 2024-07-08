@@ -1,64 +1,68 @@
-
 <ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col size="auto">
-          <ion-button (click)="dismissModal()">
-            <ion-icon name="close-circle-outline"></ion-icon>
-          </ion-button>
-        </ion-col>
-        <ion-col class="header_tool" size="auto">
-          🌱{{plantUser.NombrePlanta}}🌱
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+    <ion-toolbar color="#1a73b3" class="header_tool">
+      🌱{{plantUser.NombrePerso}}🌱
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <img *ngIf="plantUser.FotoPlantUser" [src]="plantUser.FotoPlantUser">
-    <!-- si no tiene imagen -->
-    <img alt="Lechuga" *ngIf="!plantUser.FotoPlantUser"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
-  </ion-item>
+  <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+    <ion-fab-button size="small">
+      <ion-icon name="arrow-back-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-grid class="background-login-register ion-padding">
+    <br>
+    <br>
+    <ion-card color="#1a73b3">
+      <ion-card-header color="#1a73b3">
+        <ion-item color="#1a73b3">
+          <img *ngIf="plantUser.FotoPlantUser" [src]="plantUser.FotoPlantUser">
+          <!-- si no tiene imagen -->
+          <img alt="Lechuga" *ngIf="!plantUser.FotoPlantUser"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
+        </ion-item>
+      </ion-card-header>
+      <ion-card-content>
+        
   <!--Nombre Planta-->
-  <ion-item>
-    <h2>📖Nombre: {{plantUser.NombrePlanta}} </h2>
+  <ion-item color="#1a73b3" class="item-text">
+    📖Nombre: {{plantUser.NombrePlanta}}
   </ion-item>
 
   <!--Nombre Cientifico-->
-  <ion-item>
-    <h2>🧧Alias de la planta: {{plantUser.NombrePerso}}</h2>
+  <ion-item color="#1a73b3" class="item-text">
+    🧧Alias de la planta: {{plantUser.NombrePerso}}
   </ion-item>
 
   <!--Temporada -->
-  <ion-item>
-    <h2>⏳Temporada: {{plantUser.Temporada}}</h2>
+  <ion-item color="#1a73b3" class="item-text">
+    ⏳Temporada: {{plantUser.Temporada}}
   </ion-item>
 
   <!--Fecha de siembra -->
-  <ion-item>
-    <h2>📅Fecha de Siembra: {{plantUser.FechaSiembra}}</h2>
+  <ion-item color="#1a73b3" class="item-text">
+    📅Fecha de Siembra: {{plantUser.FechaSiembra}}
   </ion-item>
 
   <!--Tipo de siembra -->
-  <ion-item>
-    <h2>🌱Tipo de Siembra: {{plantUser.TipoPLanta}}</h2>
+  <ion-item color="#1a73b3" class="item-text">
+    🌱Tipo de Siembra: {{plantUser.TipoPLanta}}
   </ion-item>
 
   <!--Fecha riego -->
-  <ion-item>
-    <h2>⏰Ultima fecha de Riego: {{plantUser.UltimoDiaRiego}}</h2>
+  <ion-item color="#1a73b3" class="item-text">
+    ⏰Ultima fecha de Riego: {{plantUser.UltimoDiaRiego}}
   </ion-item>
 
-  <ion-item>
+  <ion-item color="#1a73b3">
     <!--editar-->
     <ion-button (click)="addUpdatePlant(plantUser)" size="medium" slot="start" color="success">✍Editar</ion-button>
     <!--borrar-->
-    <ion-button (click)="addUpdatePlant(plantUser)" size="medium" color="tertiary">💧Regar</ion-button>
+    <ion-button (click)="presentarRiego(plantUser.IDPlantaUser)" size="medium" color="tertiary">💧Regar</ion-button>
     <!--borrar-->
     <ion-button (click)="confirmDeletePlant(plantUser)" size="medium" slot="end" color="danger">❌Borrar</ion-button>
   </ion-item>
+      </ion-card-content>
+    </ion-card>
+</ion-grid>
 </ion-content>

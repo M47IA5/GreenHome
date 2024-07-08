@@ -1,39 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="header_tool">
-          <ion-icon color="secondary" name="nutrition"></ion-icon>
-          {{fert.NombreFert}}
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-header slot="fixed">
+  <ion-toolbar color="#1a73b3" class="header_tool">
+    <ion-icon color="secondary" name="nutrition"></ion-icon>
+    {{ fert.NombreFert }}
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+  <ion-fab
+    (click)="dismissModal()"
+    edge="true"
+    slot="fixed"
+    vertical="top"
+    horizontal="left"
+  >
     <ion-fab-button size="small">
       <ion-icon name="arrow-back-circle"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-grid id="container">
-    <img [src]="fert.FotoFert">
+  <ion-grid class="background-fert">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-card>
+          <ion-card-header id="container">
+            <img [src]="fert.FotoFert" />
+          </ion-card-header>
+          <ion-card-content>
+            <h1 class="titulo">Descripción:</h1>
+            <h3 class="ion-margin contenido">{{ fert.DescripcionFert }}</h3>
+            <br />
+            <h2 class="titulo">Frecuencia de uso:</h2>
+            <h3 class="ion-margin contenido">
+              Cada {{ fert.FrecuenciaDias }} dias
+            </h3>
+            <br />
+            <h2 class="titulo">Modo de uso:</h2>
+            <h3 class="ion-margin contenido">{{ fert.ModoDeUso }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
-  <!--Descripcion -->
-  <ion-item>
-    <h3>Descripción: {{fert.DescripcionFert}}</h3>
-  </ion-item>
-
-  <!--Frecuencia -->
-  <ion-item>
-    <h3>Frecuencia de uso: Cada {{fert.FrecuenciaDias}} dias</h3>
-  </ion-item>
-
-  <!--Modo de uso -->
-  <ion-item>
-    <h3>Modo de uso: {{fert.ModoDeUso}}</h3>
-  </ion-item>
-
 </ion-content>

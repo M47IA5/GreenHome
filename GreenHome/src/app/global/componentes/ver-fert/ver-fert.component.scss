@@ -20,10 +20,35 @@ img {
 
 .header_tool{
   text-align: center;
-  font-size: x-large;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-stretch: expanded;
+  font-size: 32px;
   font-weight: 700;
-  color: #fff89a;
+  color: #2a6901;
+  background-color: chartreuse;
   
+}
+
+.background-fert{
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(14,103,0);
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(12,205,62,1) 23%, rgba(0,212,255,1) 100%);
+  
+}
+
+.titulo{
+  color: #2a6901;
+  font-size: 32px;
+  font-weight: 700;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.contenido{
+  text-align: center;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
 }

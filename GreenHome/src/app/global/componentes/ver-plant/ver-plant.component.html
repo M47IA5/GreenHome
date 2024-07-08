@@ -1,118 +1,114 @@
 
-<ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <!--boton para cerrar modal-->
-        <ion-button (click)="dismissModal()" >
-          <ion-icon name="close-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-  
-      <ion-title>
-        <strong>{{plant.NombrePlanta}}</strong>
-      </ion-title>
+<ion-header class="header_tool">
+    <ion-toolbar color="#1a73b3">  
+        🌱{{plant.NombrePlanta}}🌱
     </ion-toolbar>
   </ion-header>
   
-  <ion-content>
+  <ion-content color="tertiary">
+    <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+      <ion-fab-button size="small">
+        <ion-icon name="arrow-back-circle"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <!--Nombre Planta-->
-    <ion-item>
+    <ion-item color="secondary">
       <h2>Nombre: {{plant.NombrePlanta}} </h2>
     </ion-item>
   
     <!--Nombre Cientifico-->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Nombre Cientifico: {{plant.NombreCientifico}}</h2>
     </ion-item>
   
     <!--Temporada -->
-    <ion-item>
+    <ion-item color="secondary">
       <h2>Temporada: {{plant.Temporada}}</h2>
     </ion-item>
   
     <!--Descripcion -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Descripcion: {{plant.Descripcion}}</h2>
     </ion-item>
   
     <!--TipoLuz -->
-    <ion-item>
+    <ion-item color="secondary">
       <h2>Tipo de Luz: {{plant.TipoLuz}}</h2>
     </ion-item>
   
     <!--TipoSiembra -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Tipo de Siembra: {{plant.TipoSiembra}}</h2>
     </ion-item>
   
     <!--DiasFertilizacion -->
-    <ion-item href="consejos">
+    <ion-item href="consejos" color="secondary">
       <h2>Fertilización: Planta apta para el uso de fertilizante</h2>
     </ion-item>
   
     <!--DiasGerminacion -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>La planta germina el día: {{plant.DiasGerminacion}} desde su plantación</h2>
     </ion-item>
   
     <!--DiasTransplante -->
-    <ion-item *ngIf="plant.DiasTransplante > 0">
+    <ion-item *ngIf="plant.DiasTransplante > 0" color="secondary">
       <h2>Se debe trasplantar el día: {{plant.DiasTransplante}} desde su plantación</h2>
     </ion-item>
 
-    <ion-item *ngIf="plant.DiasCrecVegetativo === 0">
+    <ion-item *ngIf="plant.DiasCrecVegetativo === 0" color="secondary">
       <h2>Esta planta no debe ser transplantada</h2>
     </ion-item>
 
     <!--DistTransplanteCm -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Distanciamiento entre plantas: {{plant.DistTransplanteCm}} centimetros entre cada planta</h2>
     </ion-item>
   
     <!--DiasCrecVegetativo -->
-    <ion-item *ngIf="plant.DiasCrecVegetativo > 0">
+    <ion-item *ngIf="plant.DiasCrecVegetativo > 0" color="secondary">
       <h2>Dias Crecimiento Vegetativo: {{plant.DiasCrecVegetativo}} desde su plantación</h2>
     </ion-item>
     
     <!--DiasCrecInflorecencia -->
-    <ion-item *ngIf="plant.DiasCrecInflorecencia > 0">
+    <ion-item *ngIf="plant.DiasCrecInflorecencia > 0" color="secondary">
       <h2>Dias Crecimiento Inflorecencia: {{plant.DiasCrecInflorecencia}} desde su plantación</h2>
     </ion-item>
 
   
     <!--DiasFruto -->
-    <ion-item *ngIf="plant.DiasFruto > 0">
+    <ion-item *ngIf="plant.DiasFruto > 0" color="tertiary">
       <h2>La planta desarrolla su fruto aproximadamente el dia: {{plant.DiasFruto}} desde su plantación</h2>
     </ion-item>
 
   
     <!--DiasCosecha -->
-    <ion-item>
+    <ion-item color="secondary">
       <h2>Deben pasar aproximadamente: {{plant.DiasCosecha}} dias para su cosecha</h2>
     </ion-item>
   
     <!--DiasRiego -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Recomendable regar cada: {{plant.DiasRiego}} dias</h2>
     </ion-item>
   
     <!--TempMin -->
-    <ion-item>
+    <ion-item color="secondary">
       <h2>Temperatura Minima de cultivo: {{plant.TempMin}}</h2>
     </ion-item>
   
     <!--TempMax -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Temperatura Maxima de cultivo: {{plant.TempMax}}</h2>
     </ion-item>
   
     <!--Recomendaciones -->
-    <ion-item>
+    <ion-item color="secondary">
       <h2>Recomendaciones: {{plant.Recomendaciones}}</h2>
     </ion-item>
   
     <!--MonitoreoPLagas -->
-    <ion-item>
+    <ion-item color="tertiary">
       <h2>Monitoreo de Plagas: Cada {{plant.MonitoreoPLagas}} dias</h2>
     </ion-item>
   

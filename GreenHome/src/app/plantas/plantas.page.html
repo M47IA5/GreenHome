@@ -1,15 +1,9 @@
-
-<ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="header_tool">
-          🌿Catalogo de plantas🌿
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-header slot="fixed">
+  <ion-toolbar color="#1a73b3" class="header_tool">
+    🌿Catalogo de plantas🌿
   </ion-toolbar>
 </ion-header>
+
 
   <!-- Arriba todo el menu, abajo el contenido de la pagina  -->
 
@@ -28,29 +22,29 @@
                   <!-- si no existe una imagen -->
                   <img alt="Lechuga" *ngIf="!p.FotoPlanta"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKJlKwuXEzhNOW8IpfoMSHIEIbvglzZX5Msg&s" />
                   <ion-card-header>
-                    <ion-card-title>{{p.NombrePlanta}}</ion-card-title>
+                    <ion-card-title class="name_tool">{{p.NombrePlanta}}</ion-card-title>
                   </ion-card-header>
                   <ion-card-content>
-                    <ion-list>
-                      <ion-item>
-                        <ion-icon name="leaf" class="ion-margin"></ion-icon>
-                        <!-- Agregar Nombre desde BD -->
-                        Nombre: {{p.NombrePlanta}}
-                      </ion-item>
-                      <ion-item>
+                    <ion-list class="list_list" color="#ffe4c4">
+                      <ion-item class="list_item" color="#ffe4c4">
                         <ion-icon name="calendar" class="ion-margin"></ion-icon>
                         <!-- Agregar Temporada desde BD -->
                         Temporada: {{p.Temporada}}
                       </ion-item>
-                      <ion-item>
+                      <ion-item class="list_item" color="#ffe4c4">
                         <img id="seed-icon" src="./../../assets/icon/seedg.png" class="ion-margin"/>
                         <!-- Calcular tiempo de riego -->
                         Tipo de siembra: {{p.TipoSiembra}}
                       </ion-item>
-                      <ion-item>
+                      <ion-item class="list_item" color="#ffe4c4">
                         <ion-icon name="sunny" class="ion-margin"></ion-icon>
                         <!-- Agregar Temporada desde BD -->
                         Tipo de luz: {{p.TipoLuz}}
+                      </ion-item>
+                      <ion-item class="list_item" color="#ffe4c4">
+                        <ion-icon name="sunny" class="ion-margin"></ion-icon>
+                        <!-- Agregar Temporada desde BD -->
+                        Dias hasta su cosecha: {{p.DiasCosecha}}
                       </ion-item>
                     </ion-list>
                   </ion-card-content>

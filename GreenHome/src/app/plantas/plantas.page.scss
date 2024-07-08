@@ -48,4 +48,23 @@ swiper-container {
     
   }
 
+  .name_tool{
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0dad1a;
+    
+  }
+  .list_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #ffe4c4;
+}
+  .list_list{
+    justify-content: space-between;
+    background: #ffe4c4;
+  }
+
   

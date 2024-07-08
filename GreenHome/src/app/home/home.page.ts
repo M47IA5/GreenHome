@@ -63,6 +63,7 @@ export class HomePage {
   ionViewWillEnter() {
     this.getPlantUser();
     this.getPlantas();
+    this.recordarFechaImportante()
   }
 
   //obtener plantas
@@ -193,7 +194,7 @@ export class HomePage {
   }
   presentarRiego(plantID: string) {
     this.utils.presentAlert({
-      header: '💧 Tu plantita tiene sed 💧',
+      header: 'Tu plantita tiene sed 💧',
       message: '¿Desea regar su planta?',
       buttons: [
         {
@@ -234,18 +235,89 @@ export class HomePage {
 
   PlantaRegada() {
     this.utils.presentAlert({
-      header: '💧 Tu plantita ya no tiene sed 💧',
+      header: 'Tu plantita ya no tiene sed 💧',
       message: 'Su planta fue regada con éxito',
       buttons: [
         {
           text: 'Aceptar',
-
         }
       ]
     });
   };
 
-}
+   diasDesdePlantacion(FechaPlantacion){
+     let fecha = new Date();
+     let dia = fecha.getDate();
+     let mes = fecha.getMonth();
+     let anio = fecha.getFullYear();
+     let fechaActual = new Date(anio, mes, dia);
+     let fechaPlantacion = new Date(FechaPlantacion);
+     let dias = fechaActual.getTime() - fechaPlantacion.getTime();
+     let diasDesdePlantacion = Math.ceil(dias / (1000 * 3600 * 24))
+     return diasDesdePlantacion;
+   }
+
+  getPlantaByNombre(nombrePlanta: string): Plantas | undefined {
+    return this.Plant.find(planta => planta.NombrePlanta === nombrePlanta);
+  }
+  recordarFechaImportante(){
+    console.log("Revisando fechas importantes")
+     var PU : PlantasUser
+    for (var pb of this.plantUser){
+
+      let plant = this.getPlantaByNombre(pb.NombrePlanta);
+      let diasDesdePlantacion = this.diasDesdePlantacion(pb.FechaSiembra)
+      console.log("Nombre de la planta a revisar:"+ pb.NombrePerso)
+      console.log("Dias desde plantacion: " + diasDesdePlantacion)
+      if(diasDesdePlantacion == plant.DiasGerminacion){
+        console.log("La planta esta germinando")
+        this.utils.presentAlert({
+          header: '¡Recordatorio!',
+          message: '¡Tu planta '+ pb.NombrePerso +' debería estar pasando por su fase de germinación!',
+          buttons: [
+            {
+              text: 'Aceptar👍',
+              }
+            ]
+          })
+        }
+
+        if(diasDesdePlantacion == plant.DiasCosecha){
+          console.log("La planta esta germinando")
+          this.utils.presentAlert({
+            header: '¡Recordatorio!',
+            message: '¡Tu planta '+ pb.NombrePerso +' debería estar lista para su cosecha!',
+            buttons: [
+              {
+                text: 'Aceptar👍',
+                }
+              ]
+            })
+          }
+    }
+      
+    }
+
+    unaNuevaPlanta(){
+      this.goToPlantas()
+      this.utils.presentAlert({
+        header: '🌱Seleccione una planta del catalogo🌱',
+        message: 'Para agregar una planta a su Huerta',
+        buttons: [
+          {
+            text: 'OK👍',
+          }
+        ]
+      });
+    }
+  }
+
+
+ 
+
+
+
+
 
 
 

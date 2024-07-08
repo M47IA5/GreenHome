@@ -1,7 +1,14 @@
-<app-header [isModal]="true" title="Olvido su contrasena?"></app-header>
+
 
 <ion-content>
-  <div class="d-flex-center">
+
+  <ion-grid class="background-login-register">
+    <ion-icon size="large"  (click)="closeModal()" name="arrow-back-circle-outline"></ion-icon>
+    <ion-row>
+      <ion-col><img id="logo" class="logo" src="assets\icon\GH.png" alt="logo" /></ion-col>
+    </ion-row>
+
+  <div class="background-login-register" class="d-flex-center">
 
     <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
@@ -25,14 +32,10 @@
         <ion-icon slot="end" name="arrow-forward"></ion-icon>
       </ion-button>
 
-
-      
-
     </form>
 
 
   </div>
 
-
-
+</ion-grid> 
 </ion-content>

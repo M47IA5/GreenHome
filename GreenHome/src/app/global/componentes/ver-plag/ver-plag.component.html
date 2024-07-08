@@ -1,46 +1,47 @@
-
-<ion-header>
-  <ion-toolbar (click)="dismissModal()">
-    <ion-grid>
-      <ion-row>
-        <ion-col class="header_tool">
-          <ion-icon color="danger" name="bug" ></ion-icon>
-          {{plag.NombrePlag}}
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-header slot="fixed">
+  <ion-toolbar color="#1a73b3" class="header_tool">
+    <ion-icon name="bug" ></ion-icon>
+    {{plag.NombrePlag}}
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-fab (click)="dismissModal()" edge="true" slot="fixed" vertical="top" horizontal="left">
+  <ion-fab
+    (click)="dismissModal()"
+    edge="true"
+    slot="fixed"
+    vertical="top"
+    horizontal="left"
+  >
     <ion-fab-button size="small">
       <ion-icon name="arrow-back-circle"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-  <ion-grid id="container">
-    <img [src]="plag.FotoPlag">
+  <ion-grid class="background-fert">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-card>
+          <ion-card-header id="container">
+            <img [src]="plag.FotoPlag" />
+          </ion-card-header>
+          <ion-card-content>
+            <h1 class="titulo">Descripción:</h1>
+            <h3 class="ion-margin contenido">{{plag.DescripcionPlag}}</h3>
+            <br />
+            <h2 class="titulo">Posibles causas:</h2>
+            <h3 class="ion-margin contenido">
+              {{plag.CausasPosibles}}
+            </h3>
+            <br />
+            <h2 class="titulo">Controlar usando:</h2>
+            <h3 class="ion-margin contenido">{{plag.Control}}</h3>
+            <br />
+            <h2 class="titulo">Verificar cada:</h2>
+            <h3 class="ion-margin contenido">{{plag.DuracionDias}} días</h3>
+            <br />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-
-  <!--Descripcion -->
-  <ion-item>
-    <h3>Descripción: {{plag.DescripcionPlag}}</h3>
-  </ion-item>
-
-  <!--Causas -->
-  <ion-item>
-    <h3>Causas: {{plag.CausasPosibles}}</h3>
-  </ion-item>
-
-  <!--Control -->
-  <ion-item>
-    <h3>Control: {{plag.Control}}</h3>
-  </ion-item>
-
-  <!--Duración -->
-  <ion-item>
-    <h3>Verificar cada: {{plag.DuracionDias}} dias</h3>
-  </ion-item>
-
 </ion-content>

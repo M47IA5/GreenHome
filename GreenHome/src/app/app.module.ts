@@ -17,15 +17,14 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PrePlantComponent } from './global/componentes/pre-plant/pre-plant.component';
 
-
 @NgModule({
-  declarations: [AppComponent,PrePlantComponent],
+  declarations: [PrePlantComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
             AngularFireAuthModule,
             AngularFirestoreModule,
             ReactiveFormsModule,
-            FormsModule
+            FormsModule,AppComponent
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

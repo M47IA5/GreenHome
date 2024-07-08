@@ -35,8 +35,18 @@ export class AgregarActualiPlagaComponent implements OnInit {
     if (this.plag) this.form.setValue(this.plag);
   }
 
-  async tomarImagen() {
+  async tomarImagen1() {
     const dataUrl = (await this.utils.tomarFoto('Imagen referencial de la Plaga')).dataUrl;
+    this.form.controls.FotoPlag.setValue(dataUrl)
+  }
+
+  async tomarImagen() {
+    const dataUrl = (await this.utils.tomarFoto2()).dataUrl;
+    this.form.controls.FotoPlag.setValue(dataUrl)
+  }
+
+  async sacaFoto() {
+    const dataUrl = (await this.utils.sacarFoto()).dataUrl;
     this.form.controls.FotoPlag.setValue(dataUrl)
   }
 

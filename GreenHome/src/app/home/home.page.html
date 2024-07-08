@@ -1,14 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="header_tool">
-          🌱Mi huerta🌱
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-header slot="fixed">
+  <ion-toolbar color="#1a73b3" class="header_tool">
+
+    🌱Mi huerta🌱
+
   </ion-toolbar>
 </ion-header>
+
 
 <!-- Arriba el header, abajo el contenido de la pagina  -->
 
@@ -28,24 +25,24 @@
             <ion-card-title class="name_tool">🍃{{p.NombrePerso}}🍃</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-list>
-              <ion-item>
+            <ion-list class="list_list" color="#ffe4c4">
+              <ion-item class="list_item" color="#ffe4c4">
                 <ion-icon name="leaf" class="ion-margin"></ion-icon>
                 <!-- Agregar Nombre desde BD -->
                 Nombre: {{p.NombrePlanta}}
               </ion-item>
-              <ion-item>
+              <ion-item class="list_item" color="#ffe4c4">
                 <ion-icon name="calendar" class="ion-margin"></ion-icon>
                 <!-- Agregar Temporada desde BD -->
                 Temporada: {{p.Temporada}}
               </ion-item>
-              <ion-item>
+              <ion-item class="list_item" color="#ffe4c4">
                 <ion-icon name="time" class="ion-margin"></ion-icon>
                 <!-- Calcular tiempo de riego -->
-                Ultimo Riego: {{p.UltimoDiaRiego}}
-              <p *ngIf="verificarRiego(p.UltimoDiaRiego)">La planta necesita Riego</p>
+                <p *ngIf="!verificarRiego(p.UltimoDiaRiego)">Ultimo Riego: {{p.UltimoDiaRiego}}</p>
+                <p *ngIf="verificarRiego(p.UltimoDiaRiego)" class="regar">Ultimo Riego: {{p.UltimoDiaRiego}}</p>
               </ion-item>
-              <ion-item>
+              <ion-item class="list_item" color="#ffe4c4">
                 <ion-icon name="sunny" class="ion-margin"></ion-icon>
                 <!-- Agregar Temporada desde BD -->
                 Tipo de plantación: {{p.TipoPLanta}}
@@ -56,7 +53,7 @@
         </ion-card>
       </swiper-slide>
       <!-- Agregar planta nueva slide -->
-      <swiper-slide (click)="goToPlantas()">
+      <swiper-slide (click)="unaNuevaPlanta()">
         <ion-card>
           <img alt="Lechuga"
             src="https://static.vecteezy.com/system/resources/thumbnails/012/578/976/small/leaf-and-pot-icon-potted-plant-icon-trendy-design-leaf-on-pot-icon-garden-logo-illustration-vector.jpg" />
@@ -68,6 +65,7 @@
       </swiper-slide>
     </swiper-container>
   </ion-grid>
+
 </ion-content>
 <!-- Footer -->
 <ion-footer>

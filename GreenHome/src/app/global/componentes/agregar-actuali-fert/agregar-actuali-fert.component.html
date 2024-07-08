@@ -14,10 +14,13 @@
 
     <br>
     <!--tomar/selecciona imagen-->
-    <ion-button (click)="tomarImagen()"  mode="md" size="small" shape="round">
-      tomar/seleccionar
-    </ion-button>
 
+    <ion-grid>
+      <ion-row>
+        <ion-col> <ion-icon size="large" (click)="tomarImagen()" name="camera-outline"></ion-icon> </ion-col>
+        <ion-col> <ion-icon size="large" (click)="sacaFoto()" name="image-outline"></ion-icon> </ion-col>
+      </ion-row>
+    </ion-grid>
     <!--Nombre de fertilizante-->
 
     <app-custom-input autocomplete="name" [control]="form.controls.NombreFert" type="text"

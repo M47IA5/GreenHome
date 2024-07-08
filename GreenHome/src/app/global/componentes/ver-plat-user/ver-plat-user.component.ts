@@ -122,4 +122,74 @@ export class VerPlatUserComponent implements OnInit {
     });
   }
 
+  verificarRiego(UltimoDiaRiego) {
+    let fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth();
+    let anio = fecha.getFullYear();
+    let fechaActual = new Date(anio, mes, dia);
+    let fechaRiego = new Date(UltimoDiaRiego);
+    let diferencia = fechaActual.getTime() - fechaRiego.getTime();
+    let dias = Math.ceil(diferencia / (1000 * 3600 * 24));
+    if (dias >= 3) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  presentarRiego(plantID: string) {
+    this.utils.presentAlert({
+      header: 'Tu plantita tiene sed 💧',
+      message: '¿Desea regar su planta?',
+      buttons: [
+        {
+          text: 'Si 👍',
+          handler: () => {
+            this.updateRiegoPlanta(plantID)
+          }
+        }, {
+          text: 'No 👎',
+        }
+      ]
+    });
+  };
+
+  updateRiegoPlanta(plantID: string) {
+    let fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth();
+    let anio = fecha.getFullYear();
+    let fechaActual = new Date(anio, mes, dia);
+    let fechaRiego = fechaActual.toISOString().split('T')[0];
+
+    let user = this.user();
+    let path = `/users/${user.UserID}/plantasUsuario/${plantID}`;
+  
+    const updateData = {
+      UltimoDiaRiego: fechaRiego
+    };
+  
+    this.firebase.updateDocument(path, updateData).then(() => {
+      console.log('💧 Se ha regado la planta! 💧');
+      this.getPlantUser();
+      this.PlantaRegada();
+    }).catch(error => {
+      console.error('No se pudo regar la planta:', error);
+    });
+  }
+
+  PlantaRegada() {
+    this.utils.presentAlert({
+      header: 'Tu plantita ya no tiene sed 💧',
+      message: 'Su planta fue regada con éxito',
+      buttons: [
+        {
+          text: 'Aceptar',
+
+        }
+      ]
+    });
+  };
+
+
 }

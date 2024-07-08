@@ -1,6 +1,8 @@
-<app-header [isModal]="true" [title]="plantUser ? 'Actualizar Planta' : 'Agregar Planta'"></app-header>
-<ion-content>
 
+<app-header color="medium" [isModal]="true" [title]="plantUser ? 'Actualizar Planta' : 'Agregar Planta'"></app-header>
+<ion-content class="background-login-register">
+<ion-grid class="background-login-register ion-padding" >
+  <br><br>
   <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
     <!--solo si existe una imagen-->
@@ -12,22 +14,18 @@
     <ion-icon class="image-icon" *ngIf="!form.value.FotoPlantUser" name="image-outline"></ion-icon>
     <br>
     <!--tomar/selecciona imagen-->
-    <ion-icon size="large" (click)="tomarImagen()" name="camera-outline"></ion-icon>
-
-    <br>
-
-    <ion-icon size="large" (click)="sacaFoto()" name="image-outline"></ion-icon>
+    <ion-grid>
+      <ion-row>
+        <ion-col> <ion-icon size="large" (click)="tomarImagen()" name="camera-outline"></ion-icon> </ion-col>
+        <ion-col> <ion-icon size="large" (click)="sacaFoto()" name="image-outline"></ion-icon> </ion-col>
+      </ion-row>
+    </ion-grid>
     
     <!--  Nombre de la Planta -->
 
-    <app-custom-input *ngIf="!plant" [control]="form.controls.NombrePlanta" type="text"
-      label="Nombre de la planta"></app-custom-input>
-
-    <div class="validators" *ngIf="form.controls.NombrePerso.errors && form.controls.NombrePlanta.touched">
-
-      <div *ngIf="form.controls.NombrePlanta.errors?.['required']">Este campo es requerido</div>
-      <div *ngIf="form.controls.NombrePlanta.errors?.['min']">El precio debe ser arriba de 0</div>
-    </div>
+    <ion-item *ngIf="!plant" class="custom-input">
+      <ion-label>Nombre: {{plantUser.NombrePlanta}}</ion-label>
+    </ion-item>
 
     <!--  Nombre de la "Planta" -->
     <ion-item *ngIf="plant" class="custom-input">
@@ -100,11 +98,12 @@
     </ion-item>
 
 
-    <ion-button mode="md" class="ion-margin" type="submit" [disabled]="form.invalid">
+    <ion-button mode="md" class="ion-margin plantar" type="submit" [disabled]="form.invalid">
       {{plantUser ? 'Actualizar Planta' : 'Agregar planta'}}
       <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
     </ion-button>
 
   </form>
 
+</ion-grid>
 </ion-content>

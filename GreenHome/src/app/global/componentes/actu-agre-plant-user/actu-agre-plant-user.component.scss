@@ -9,3 +9,20 @@ ion-avatar{
     --border-radius: 15px;
     margin: 0 auto;
 }
+
+
+.background-login-register{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #0e6700;
+    background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgba(12,205,62,1) 23%, rgba(0,212,255,1) 100%);
+    
+  }
+
+  .plantar{
+    color:black;
+    background-color:forestgreen;
+  }

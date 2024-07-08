@@ -1,10 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-col class="header_tool"> 📗Glosario y consejos📕 </ion-col>
-      </ion-row>
-    </ion-grid>
+<ion-header slot="fixed">
+  <ion-toolbar color="#1a73b3" class="header_tool">
+
+    📗Glosario y consejos📕
+
   </ion-toolbar>
 </ion-header>
 
@@ -13,10 +11,20 @@
 <ion-content>
   <ion-grid class="background-login-register ion-pading">
     <ion-row class="ion-justify-content-center ion-align-items-center">
-      <ion-item class="ion-margin">
-        <h2>📗Glosario</h2>
-      </ion-item>
+      <ion-col class="ion-text-center">
+        <ion-button id="glosario" class="ion-margin" color="success" size="large">📗Glosario</ion-button>
+        <ion-popover trigger="glosario" side="bottom" alignment="center">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <h4>
+                "En este Glosario se pueden encontrar términos Botánicos y de Jardinería."
+              </h4>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
     </ion-row>
+
     <ion-row class="ion-justify-content-center ion-align-items-center">
       <ion-list lines="full inset" style="width: 100%">
         <!-- Preparación de suelo -->
@@ -108,7 +116,7 @@
     <!-- Fertilizantes -->
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button id="fert_pop" size="large">Fertilizantes</ion-button>
+        <ion-button id="fert_pop" size="large">🍎Fertilizantes</ion-button>
         <ion-popover trigger="fert_pop" side="bottom" alignment="center">
           <ng-template>
             <ion-content class="ion-padding">
@@ -125,11 +133,11 @@
     </ion-row>
 
     <ion-list lines="inset" *ngIf="!loading" lines="full">
-      <ion-item-sliding class="products-item" *ngFor="let f of fert">        
+      <ion-item-sliding class="products-item" *ngFor="let f of fert">
         <ion-item *ngIf="f.Diferencia == 'Fertilizante' " [button]="true" (click)="verFert(f)">
           <ion-icon class="ion-padding" color="secondary" name="nutrition"></ion-icon>
           <ion-label class="ion-text-left">{{f.NombreFert}}</ion-label>
-          <ion-label  class="ion-text-left">{{f.Diferencia}}</ion-label>
+          <ion-label class="ion-text-left">{{f.Diferencia}}</ion-label>
         </ion-item>
 
         <!-- opciones -->
@@ -147,12 +155,12 @@
 
     </ion-list>
     <ion-list lines="inset" *ngIf="!loading" lines="full">
-      <ion-item-sliding class="products-item" *ngFor="let f of fert">        
+      <ion-item-sliding class="products-item" *ngFor="let f of fert">
 
         <ion-item *ngIf="f.Diferencia == 'Controlador de plaga' " [button]="true" (click)="verFert(f)">
           <ion-icon class="ion-padding" color="secondary" name="nutrition"></ion-icon>
           <ion-label class="ion-text-left">{{f.NombreFert}}</ion-label>
-          <ion-label  class="ion-text-left">{{f.Diferencia}}</ion-label>
+          <ion-label class="ion-text-left">{{f.Diferencia}}</ion-label>
         </ion-item>
 
         <!-- opciones -->
@@ -179,7 +187,7 @@
     <!-- Enfermedades -->
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button id="enf-pop" size="large" color="warning">Enfermedades</ion-button>
+        <ion-button id="enf-pop" size="large" color="warning">🩹Enfermedades</ion-button>
         <ion-popover trigger="enf-pop" side="bottom" alignment="center">
           <ng-template>
             <ion-content class="ion-padding">
@@ -227,7 +235,7 @@
     <!-- Plagas -->
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button id="plag-pop" size="large" color="danger">Plagas</ion-button>
+        <ion-button id="plag-pop" size="large" color="danger">🐌Plagas</ion-button>
         <ion-popover trigger="plag-pop" side="bottom" alignment="center">
           <ng-template>
             <ion-content class="ion-padding">

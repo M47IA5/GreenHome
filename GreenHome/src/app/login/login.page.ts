@@ -102,7 +102,7 @@ export class LoginPage implements OnInit {
       this.form.reset();
 
       this.utilsSvc.presentToast({
-        message: `te damos la bienvenida ${user.NombreUser}`,
+        message: `Te damos la bienvenida ${user.NombreUser}`,
         duration: 1500,
         position: 'middle',
         icon: 'person-circle-outline'
@@ -131,5 +131,6 @@ export class LoginPage implements OnInit {
     let success = await this.utilsSvc.presentModal({
       component: ContraOlvidadaComponent
     })
+    if (success) this.utilsSvc.dismissModal()
   }
 }
